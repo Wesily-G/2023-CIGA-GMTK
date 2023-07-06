@@ -11,7 +11,10 @@ public enum BuffType
     WaterResistance,
     LightingResistance,
     DelaySpell,
-    Invincible
+    Invincible,
+    CritIncrease,
+    CritDamageIncrease,
+    DamageIncrease,
 }
 public class Buff
 {
@@ -42,13 +45,13 @@ public class Buff
     }
     public static Buff BuffBurn(int time)
     {
-        return new Buff(BuffType.Burn, time, 1);
+        return new Buff(BuffType.Burn, time, 0);
     }
     public static Buff BuffFragile(int time,float percentage)
     {
         if (percentage < 0) percentage = 0;
         else if (percentage > 1) percentage = 1;
-        return new Buff(BuffType.Fragile, time, 0,percentage);
+        return new Buff(BuffType.Fragile, time, 8,percentage);
     }
     public static Buff BuffResistance(ElementTypes type,int time, float percentage)
     {
@@ -57,20 +60,33 @@ public class Buff
         switch (type)
         {
             case ElementTypes.Fire:
-                return new Buff(BuffType.FireResistance, time, 1,percentage);
+                return new Buff(BuffType.FireResistance, time, 9,percentage);
             case ElementTypes.Water:
-                return new Buff(BuffType.WaterResistance, time, 1,percentage);
+                return new Buff(BuffType.WaterResistance, time, 9,percentage);
             case ElementTypes.Lighting:
-                return new Buff(BuffType.LightingResistance, time, 1,percentage);
+                return new Buff(BuffType.LightingResistance, time, 9,percentage);
         }
         return new Buff(BuffType.FireResistance, time, 0,percentage);;
     }
     public static Buff BuffDelaySpell(int time, Action spell)
     {
-        return new Buff(BuffType.DelaySpell, time, 0,spell);
+        return new Buff(BuffType.DelaySpell, time, 10,spell);
     }
     public static Buff BuffInvincible(int time)
     {
-        return new Buff(BuffType.Invincible, 1, 0);
+        return new Buff(BuffType.Invincible, 1, 10);
     }
+    public static Buff BuffDamageIncrease(BuffType type, int time, int priority,float percentage)
+    {
+        return Buff(BuffType.DamageIncrease, time, 8, percentage);
+    }
+    public static Buff BuffCritIncrease(BuffType type, int time, int priority,float percentage)
+    {
+        return Buff(BuffType.CritIncrease, time, 7, percentage);
+    }
+    public static Buff BuffCritDamageIncrease(BuffType type, int time, int priority,float percentage)
+    {
+        return Buff(BuffType.CritDamageIncrease, time, 7, percentage);
+    }
+
 }

@@ -44,13 +44,13 @@ public class Player : MonoBehaviour,IPlayer
                     finalDamage += finalDamage * buff.percentage;
                     break;
                 case BuffType.FireResistance:
-                    if (type == ElementTypes.Fire) finalDamage *= buff.percentage;
+                    if (type == ElementTypes.Fire) finalDamage *= (1-buff.percentage);
                     break;
                 case BuffType.WaterResistance:
-                    if (type == ElementTypes.Water) finalDamage *= buff.percentage;
+                    if (type == ElementTypes.Water) finalDamage *= (1-buff.percentage);
                     break;
                 case BuffType.LightingResistance:
-                    if (type == ElementTypes.Lighting) finalDamage *= buff.percentage;
+                    if (type == ElementTypes.Lighting) finalDamage *= (1-buff.percentage);
                     break;
                 case BuffType.Invincible:
                     finalDamage = 0;
@@ -87,7 +87,10 @@ public class Player : MonoBehaviour,IPlayer
                     damage += maxHp * 0.05f;
                     break;
                 case BuffType.Fragile:
-                    damage += damage * buff.percentage;
+                    damage += damage * (1+buff.percentage);
+                    break;
+                case BuffType.DamageIncrease:
+                    damage += damage * (1+buff.percentage);
                     break;
             }
         }
