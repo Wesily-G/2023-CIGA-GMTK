@@ -78,15 +78,15 @@ public class Buff
     }
     public static Buff BuffDamageIncrease(BuffType type, int time, int priority,float percentage)
     {
-        return Buff(BuffType.DamageIncrease, time, 8, percentage);
+        return new Buff(BuffType.DamageIncrease, time, 8, percentage);
     }
     public static Buff BuffCritIncrease(BuffType type, int time, int priority,float percentage)
     {
-        return Buff(BuffType.CritIncrease, time, 7, percentage);
+        return new Buff(BuffType.CritIncrease, time, 7, percentage);
     }
     public static Buff BuffCritDamageIncrease(BuffType type, int time, int priority,float percentage)
     {
-        return Buff(BuffType.CritDamageIncrease, time, 7, percentage);
+        return new Buff(BuffType.CritDamageIncrease, time, 7, percentage);
     }
 
 }
