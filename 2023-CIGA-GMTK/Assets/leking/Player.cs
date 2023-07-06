@@ -3,51 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-
-public interface IMonster : IHealth, IBuff
+public interface IPlayer : IHealth, IBuff
 {
     
 }
-public class Monster : MonoBehaviour,IMonster
+public class Player : MonoBehaviour,IPlayer
 {
     public float maxHp = 10;
     private float _hp = 10;
-    public string monsterName = "Monster";
-    
-    private readonly List<Buff> _buffs = new();
+    public bool IsDead => Hp <= 0;
 
     public float Hp
     {
         get => _hp;
-        set
-        {
-            if (value <= 0)
-            {
-                Kill();
-            }
-            _hp = value;
-        }
+        set => _hp = value<=0?0:value;
     }
 
-    private void Start()
-    {
-        leking.UIManager.AddMonsterHpBar(this,Vector3.up);
-        leking.UIManager.AddMonsterBuffBar(this,Vector3.down);
-    }
+    private readonly List<Buff> _buffs = new();
 
-    public void MonsterAction()
-    {
-        
-    }
     public void Kill()
     {
-        Destroy(gameObject);
+        
     }
-    
+
     public void Attack(float damage)
     {
-        
         Hp -= damage;
     }
 
@@ -91,6 +73,7 @@ public class Monster : MonoBehaviour,IMonster
     public void AddBuff(Buff buff)
     {
         _buffs.Add(buff);
+        leking.UIManager.UpdatePlayerBuffUI(this);
     }
 
     public void ExecuteBuffs()
@@ -130,5 +113,7 @@ public class Monster : MonoBehaviour,IMonster
                 _buffs[i].time -= 1;
             }
         }
+
+        leking.UIManager.UpdatePlayerBuffUI(this);
     }
 }

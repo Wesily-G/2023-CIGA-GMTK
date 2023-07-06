@@ -1,19 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
 namespace GameplayTest.Scripts
 {
-    public class CardManager : SerializedMonoBehaviour
+    public class CardManager : MonoBehaviour
     {
+        private static CardManager _instants;
         public List<GameObject> cards;
         public Transform cardStart;
         public Transform cardEnd;
         public Transform center;
-        public Transform showCardPos;
         public LayerMask cardLayerMask;
         public Transform hidePos;
         public Transform showPos;
@@ -23,11 +22,23 @@ namespace GameplayTest.Scripts
         private bool _activeDelayActions;
         private readonly Queue<Action> _delayActions = new();
         private Camera _mainCamera;
-        private bool _actionable;
+        public bool actionable;
         private Card _currentShowCard;
         private Card _currentDragCard;
         private bool _onDrag;
         private Camera _camera;
+
+        private void Awake()
+        {
+            if (_instants == null)
+            {
+                _instants = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
@@ -47,7 +58,7 @@ namespace GameplayTest.Scripts
         }
 
         private Vector3 _offset;
-        private Vector3 _initScale = new Vector3(0.5f, 0.5f, 0.5f);
+        private Vector3 _initScale = new Vector3(2.5f, 2.5f, 2.5f);
         private void Update()
         {
             if (_currentShowCard is not null)
@@ -73,7 +84,6 @@ namespace GameplayTest.Scripts
                     _currentDragCard.GetComponent<KGameObject>().ScaleTo(_initScale);
                     if (divider.position.y < _camera.ScreenToWorldPoint(Input.mousePosition).y)
                     {
-                        _actionable = false;
                         _currentCardList.Remove(_currentDragCard);
                         _currentDragCard.OnUseCard();
                     }
@@ -101,7 +111,7 @@ namespace GameplayTest.Scripts
         private void TopColliderAction(Collider2D topCollider)
         {
             var card = topCollider.GetComponent<Card>();
-            if (_actionable && card != _currentDragCard)
+            if (actionable && card != _currentDragCard)
             {
                 //高亮
                 card.isHighlight = true;
@@ -111,7 +121,7 @@ namespace GameplayTest.Scripts
                     _onDrag = true;
                     _offset = topCollider.transform.position - _camera.ScreenToWorldPoint(Input.mousePosition);
                     _currentDragCard = card;
-                    _currentDragCard.GetComponent<KGameObject>().ScaleTo(_initScale + 0.3f * Vector3.one);
+                    _currentDragCard.GetComponent<KGameObject>().ScaleTo(_initScale + 0.5f * Vector3.one);
                     _currentShowCard = null;
                     //_currentCardList.Remove(card);
                     card.GetComponent<SpriteRenderer>().sortingOrder = _currentCardList.Count;
@@ -205,13 +215,14 @@ namespace GameplayTest.Scripts
 
         public void SwitchState()
         {
-            _actionable = !_actionable;
+            actionable = !actionable;
         }
 
-        public void AddCard(Card card)
+        public static void AddCard(Card card)
         {
-            _currentCardList.Add(card);
-            UpdateCardsPos();
+            _instants._currentCardList.Add(card);
+            _instants.UpdateCardsPos();
+            print(1111111111);
         }
         public void AddCard()
         {

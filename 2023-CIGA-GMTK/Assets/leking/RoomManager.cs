@@ -22,6 +22,14 @@ public class RoomManager : MonoBehaviour
     private Room _currentRoom;
     private List<Door> _doors = new();
 
+    private void Start()
+    {
+        foreach (var monster in battleRoomsPool[0].monsters)
+        {
+            print(monster);
+            BattleManager.AddMonster(monster);
+        }
+    }
     public void InitRoom()
     {
         BattleManager.KillAllMonster();
@@ -42,8 +50,8 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public static void NextRoom()
     {
-        
+        print("NextRoom!");
     }
 }

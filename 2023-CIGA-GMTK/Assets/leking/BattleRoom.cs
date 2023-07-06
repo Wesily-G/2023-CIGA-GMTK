@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Room/BattleRoom")]
 public class BattleRoom : RoomAsset
 {
-    public List<GameObject> _monsters;
+    public List<GameObject> monsters;
 }

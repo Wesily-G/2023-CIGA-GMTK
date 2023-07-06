@@ -29,6 +29,23 @@ namespace GameplayTest.Scripts
         //当卡牌被使用时调用
         public void OnUseCard()
         {
+            //硬编码的技能，实际应该动态获取
+            var newCardObject = KGameObject.Instantiate(gameObject);
+            newCardObject.transform.localScale = Vector3.one * 2.5f;
+            newCardObject.transform.position = Vector3.zero;
+            var newCard = newCardObject.GetComponent<Card>();
+            newCard.gameObject.SetActive(false);
+            Action skill = ()=>
+            {
+                BattleManager.AddFirstCommand(() =>
+                {
+                    //在这里添加技能添加的卡
+                    newCard.gameObject.SetActive(true);
+                    print( $"Get : newCard.name");
+                    CardManager.AddCard(newCard);
+                });
+            };
+            BattleManager.AddRoundCommand(skill);
             Destroy(gameObject);
         }
     }

@@ -17,7 +17,7 @@ namespace GameplayTest.Scripts
         // ReSharper disable once InconsistentNaming
         public new GameObject gameObject
         {
-            get => _gameObject;
+            get => gameObject;
             set => _gameObject = value;
         }
 
@@ -64,7 +64,11 @@ namespace GameplayTest.Scripts
         public static KGameObject Instantiate(GameObject original)
         {
             var o = GameObject.Instantiate(original);
-            var ko = o.AddComponent<KGameObject>();
+            KGameObject ko;
+            if (!o.TryGetComponent(out ko))
+            {
+                ko = o.AddComponent<KGameObject>();
+            }
             ko._transform = o.transform;
             ko._gameObject = o.gameObject;
             return ko;
