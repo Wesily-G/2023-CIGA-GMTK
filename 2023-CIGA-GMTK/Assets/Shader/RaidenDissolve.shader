@@ -163,7 +163,7 @@ Shader "RaidenDissolve"
 			ENDCG
 		}
 	}
-	CustomEditor "ASEMaterialInspector"
+	//CustomEditor "ASEMaterialInspector"
 	
 	
 }

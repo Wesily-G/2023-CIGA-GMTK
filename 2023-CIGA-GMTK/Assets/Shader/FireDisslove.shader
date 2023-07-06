@@ -137,5 +137,5 @@ Shader "Shader Forge/FireDisslove" {
         }
     }
     FallBack "Diffuse"
-    CustomEditor "ShaderForgeMaterialInspector"
+    //CustomEditor "ShaderForgeMaterialInspector"
 }
