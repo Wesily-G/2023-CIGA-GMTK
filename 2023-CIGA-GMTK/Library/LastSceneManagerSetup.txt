@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Soraku7/Test.unity
+- path: Assets/Soraku7/VFX/JMO Assets/Cartoon FX (legacy)/Demo/CFX Free Demo.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
