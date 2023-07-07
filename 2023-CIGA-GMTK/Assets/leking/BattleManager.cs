@@ -23,7 +23,8 @@ public class BattleManager : MonoBehaviour
     //命令队列
     private readonly Queue<Action> _firstCommandQueue = new();
     private readonly Queue<Action> _roundCommandQueue = new();
-    private readonly Queue<Action> _castQueue = new();
+    private readonly Queue<Action> _playerCastQueue = new();
+    private readonly Queue<Action> _monsterCastQueue = new();
 
     public int StageNumber
     {
@@ -81,9 +82,13 @@ public class BattleManager : MonoBehaviour
     {
         _instants._roundCommandQueue.Enqueue(action);
     }
-    public static void AddCastQueue(Action spell)
+    public static void AddPlayerCastQueue(Action spell)
     {
-        _instants._castQueue.Enqueue(spell);
+        _instants._playerCastQueue.Enqueue(spell);
+    }
+    public static void AddMonsterCastQueue(Action spell)
+    {
+        _instants._monsterCastQueue.Enqueue(spell);
     }
     //全局
     public static void IncreasePlayerMaxHp(float value)
@@ -405,9 +410,9 @@ public class BattleManager : MonoBehaviour
             _roundCommandQueue.Dequeue()();
         }
 
-        while (_castQueue.Count>0)
+        while (_playerCastQueue.Count>0)
         {
-            var action = _castQueue.Dequeue();
+            var action = _playerCastQueue.Dequeue();
             action();
             if (CheckPlayerBuff(BuffType.DoubleCast))
             {

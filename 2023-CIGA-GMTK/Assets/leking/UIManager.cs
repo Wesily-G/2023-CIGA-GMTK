@@ -46,6 +46,14 @@ namespace leking
             }
         }
 
+        public static void HideCanvas()
+        {
+            _instants.canvas.gameObject.SetActive(false);
+        }
+        public static void ShowCanvas()
+        {
+            _instants.canvas.gameObject.SetActive(true);
+        }
         public static void ShowTitleUI()
         {
             _instants.titleUI.SetActive(true);
