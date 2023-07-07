@@ -116,7 +116,10 @@ public class Player : MonoBehaviour,IPlayer
                     damage += maxHp * 0.05f;
                     break;
                 case BuffType.Fragile:
-                    damage += damage * buff.percentage;
+                    damage += damage * (1+buff.percentage);
+                    break;
+                case BuffType.DamageIncrease:
+                    damage += damage * (1+buff.percentage);
                     break;
                 case BuffType.Paralysis:
                     isSleep = true;
