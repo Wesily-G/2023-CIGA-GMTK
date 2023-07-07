@@ -24,7 +24,8 @@ public interface IBuff
     //执行Buff
     public void ExecuteBuffs();
     //移除Buff
-    public void RemoveBuff();
+    public void RemoveBuffs(BuffType type);
     //进入下一回合
     public void BuffNext();
+    public bool CheckBuff(BuffType type);
 }

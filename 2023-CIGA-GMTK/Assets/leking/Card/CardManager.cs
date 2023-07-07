@@ -79,7 +79,7 @@ namespace GameplayTest.Scripts
             if(Input.GetMouseButtonUp(0))
             {
                 _onDrag = false;
-                if (_currentDragCard is not null)
+                if (_currentDragCard != null)
                 {
                     _currentDragCard.GetComponent<KGameObject>().ScaleTo(_initScale);
                     if (divider.position.y < _camera.ScreenToWorldPoint(Input.mousePosition).y)
@@ -113,6 +113,7 @@ namespace GameplayTest.Scripts
             var card = topCollider.GetComponent<Card>();
             if (actionable && card != _currentDragCard)
             {
+                print(card.name);
                 //高亮
                 card.isHighlight = true;
                 _currentShowCard = card;
@@ -161,6 +162,12 @@ namespace GameplayTest.Scripts
             var centerPos = center.position;
             for (var i = 0; i<_currentCardList.Count; i++)
             {
+                if (_currentCardList[i] == null)
+                {
+                    _currentCardList.RemoveAt(i);
+                    i--;
+                    continue;
+                }
                 var c = _currentCardList[i].GetComponent<KGameObject>();
                 //显示卡牌
                 c.SetActive(true);
@@ -222,7 +229,6 @@ namespace GameplayTest.Scripts
         {
             _instants._currentCardList.Add(card);
             _instants.UpdateCardsPos();
-            print(1111111111);
         }
         public void AddCard()
         {

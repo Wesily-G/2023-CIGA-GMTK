@@ -29,19 +29,23 @@ public class MonsterBuffBar : MonoBehaviour
         }
         foreach (var buff in _target.GetBuffs())
         {
-            switch (buff.type)
-            {
-                case BuffType.Burn:
-                    var burn = Instantiate(Resources.Load<GameObject>("Burn"),transform);
-                    burn.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
-                    break;
-                case BuffType.Fragile:
-                    var fragile = Instantiate(Resources.Load<GameObject>("Fragile"),transform);
-                    fragile.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var o = Instantiate(Resources.Load<GameObject>(buff.type.ToString()),transform);
+            o.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+            // switch (buff.type)
+            // {
+            //     case BuffType.Burn:
+            //         var burn = Instantiate(Resources.Load<GameObject>("Burn"),transform);
+            //         burn.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+            //         break;
+            //     case BuffType.Fragile:
+            //         var fragile = Instantiate(Resources.Load<GameObject>("Fragile"),transform);
+            //         fragile.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+            //         break;
+            //     case BuffType.Paralysis:
+            //         var paralysis = Instantiate(Resources.Load<GameObject>("Paralysis"),transform);
+            //         paralysis.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+            //         break;
+            // }
         }
     }
 

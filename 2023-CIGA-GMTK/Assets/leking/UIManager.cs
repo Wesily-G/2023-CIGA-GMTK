@@ -46,19 +46,48 @@ namespace leking
             }
             foreach (var buff in player.GetBuffs())
             {
-                switch (buff.type)
-                {
-                    case BuffType.Burn:
-                        var o = Instantiate(Resources.Load<GameObject>("Burn"),_instants.buffsTransform);
-                        o.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
-                        break;
-                    case BuffType.Fragile:
-                        var fragile = Instantiate(Resources.Load<GameObject>("Fragile"),_instants.buffsTransform);
-                        fragile.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                var lo = Resources.Load<GameObject>(buff.type.ToString());
+                if(lo == null) continue;
+                var o = Instantiate(lo,_instants.buffsTransform);
+                o.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+                // switch (buff.type)
+                // {
+                //     case BuffType.Burn:
+                //         
+                //         break;
+                //     case BuffType.Fragile:
+                //         var fragile = Instantiate(Resources.Load<GameObject>("Fragile"),_instants.buffsTransform);
+                //         fragile.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+                //         break;
+                //     case BuffType.Paralysis:
+                //         var paralysis = Instantiate(Resources.Load<GameObject>("Paralysis"),_instants.buffsTransform);
+                //         paralysis.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+                //         break;
+                //     case BuffType.Invincible:
+                //         var paralysis = Instantiate(Resources.Load<GameObject>("Paralysis"),_instants.buffsTransform);
+                //         paralysis.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+                //         break;
+                //     case BuffType.CriticalStrike:
+                //         var paralysis = Instantiate(Resources.Load<GameObject>("Paralysis"),_instants.buffsTransform);
+                //         paralysis.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+                //         break;
+                //     case BuffType.DoubleCast:
+                //         var paralysis = Instantiate(Resources.Load<GameObject>("Paralysis"),_instants.buffsTransform);
+                //         paralysis.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+                //         break;
+                //     case BuffType.ExplosiveInjury:
+                //         var paralysis = Instantiate(Resources.Load<GameObject>("Paralysis"),_instants.buffsTransform);
+                //         paralysis.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = buff.time.ToString();
+                //         break;
+                //     case BuffType.FireResistance:
+                //         break;
+                //     case BuffType.WaterResistance:
+                //         break;
+                //     case BuffType.LightingResistance:
+                //         break;
+                //     case BuffType.IncreasedInjury:
+                //         break;
+                // }
             }
         }
         public static void AddMonsterBuffBar(Monster target,Vector3 offset)

@@ -5,16 +5,22 @@ using UnityEngine;
 
 public enum BuffType
 {
-    Burn,
-    Fragile,
-    FireResistance,
-    WaterResistance,
-    LightingResistance,
-    DelaySpell,
-    Invincible,
-    IncreasedInjury,
-    Paralysis,
-    Sleep
+    //普通Buff
+    Burn,//灼烧
+    Fragile,//脆弱
+    FireResistance,//火焰抗性
+    WaterResistance,//水抗性
+    LightingResistance,//雷抗性
+    Paralysis,//麻痹
+    IncreasedInjury,//伤害增加
+    Invincible,//无敌
+    CriticalStrike,//暴击率
+    ExplosiveInjury,//暴击伤害加成
+    DoubleCast,//双重施法
+    
+    //隐藏/全局Buff
+    DelaySpell,//延迟施法
+    Sleep,//睡眠
 }
 public class Buff
 {
@@ -89,5 +95,21 @@ public class Buff
     public static Buff BuffSleep(int time)
     {
         return new Buff(BuffType.Sleep, time, 2);
+    }
+    public static Buff BuffDoubleCast(int time)
+    {
+        return new Buff(BuffType.DoubleCast, time, 0);
+    }
+    public static Buff BuffCriticalStrike(int time,float percentage)
+    {
+        if (percentage < 0) percentage = 0;
+        else if (percentage > 1) percentage = 1;
+        return new Buff(BuffType.CriticalStrike, time, 0,percentage);
+    }
+    public static Buff BuffExplosiveInjury(int time,float percentage)
+    {
+        if (percentage < 0) percentage = 0;
+        else if (percentage > 1) percentage = 1;
+        return new Buff(BuffType.ExplosiveInjury, time, 0,percentage);
     }
 }

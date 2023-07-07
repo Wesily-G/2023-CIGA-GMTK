@@ -97,5 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0865e4152a09855488d8b8104908e1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 1000
   monsterName: Monster
-  hpBar: {fileID: 0}
+  isSleep: 0
+  vampireCount: 0

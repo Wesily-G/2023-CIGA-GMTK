@@ -11,8 +11,8 @@ public interface IMonster : IHealth, IBuff
 }
 public class Monster : MonoBehaviour,IMonster
 {
-    public float maxHp = 10;
-    private float _hp = 10;
+    public float maxHp = 1000;
+    private float _hp = 1000;
     public string monsterName = "Monster";
     
     private readonly List<Buff> _buffs = new();
@@ -20,6 +20,11 @@ public class Monster : MonoBehaviour,IMonster
     public bool isSleep;
     
     public int vampireCount;
+
+    private void Update()
+    {
+        
+    }
 
     public float Hp
     {
@@ -102,6 +107,11 @@ public class Monster : MonoBehaviour,IMonster
         return Hp;
     }
 
+    public void AddMaxUp(float value)
+    {
+        maxHp += value;
+    }
+
     public List<Buff> GetBuffs()
     {
         return _buffs;
@@ -109,22 +119,45 @@ public class Monster : MonoBehaviour,IMonster
 
     public void AddBuff(Buff buff)
     {
+        switch (buff.type)
+        {
+            case BuffType.Paralysis:
+                isSleep = true;
+                break;
+            case BuffType.Sleep:
+                isSleep = true;
+                break;
+        }
         _buffs.Add(buff);
     }
 
     public float GetAttackMultiplier()
     {
         float magnification = 1;
+        float criticalHitRate = 0;
+        float explosiveInjury = 0;
         foreach (var buff in _buffs.OrderByDescending(a => a.priority))
         {
             switch (buff.type)
             {
                 case BuffType.IncreasedInjury:
-                    magnification += 0.2f;
+                    magnification += buff.percentage;
+                    break;
+                case BuffType.CriticalStrike:
+                    criticalHitRate += buff.percentage;
+                    break;
+                case BuffType.ExplosiveInjury:
+                    criticalHitRate += buff.percentage;
                     break;
             }
         }
-
+        if (Ulit.Randomizer(criticalHitRate))
+        {
+            //先算暴击X2
+            magnification *= 2;
+            //再算爆伤倍率
+            magnification *= 1 + explosiveInjury;
+        }
         return magnification;
     }
     public void ExecuteBuffs()
@@ -162,11 +195,6 @@ public class Monster : MonoBehaviour,IMonster
         }
         Hp -= damage;
     }
-
-    public void RemoveBuff()
-    {
-        
-    }
     public void RemoveBuffs(BuffType type)
     {
         for (int i = _buffs.Count - 1; i >= 0; i--)
@@ -182,7 +210,7 @@ public class Monster : MonoBehaviour,IMonster
         for (int i = _buffs.Count - 1; i >= 0; i--)
         {
             if(_buffs[i].time == -1) continue;
-            if (_buffs[i].time == 0)
+            if (_buffs[i].time - 1 == 0)
             {
                 _buffs[i].onBuffEnd();
                 _buffs.RemoveAt(i);
@@ -192,5 +220,14 @@ public class Monster : MonoBehaviour,IMonster
                 _buffs[i].time -= 1;
             }
         }
+    }
+    public bool CheckBuff(BuffType type)
+    {
+        for (int i = _buffs.Count-1; i >= 0; i--)
+        {
+            if (_buffs[i].type == type) return true;
+        }
+
+        return false;
     }
 }
