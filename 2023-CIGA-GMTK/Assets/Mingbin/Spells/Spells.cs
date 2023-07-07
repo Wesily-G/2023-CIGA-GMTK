@@ -17,6 +17,9 @@ public class Spells : ScriptableObject //Base class of all spells
     public int memoryCost = 0;
     public string spellDescription = "";
 
+    public List<Spells> prevSpellsOnTree = new List<Spells>();
+    public List<Spells> nextSpellsOnTree = new List<Spells>();
+
     public virtual void OnAdding()
     {
         //Call when adding spell to list
