@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public enum ElementTypes //List of Elements
 {
     Fire,
@@ -25,7 +25,7 @@ public class Spells : ScriptableObject //Base class of all spells
     [Tooltip("Cost of Memory Slot")]
     public int memoryCost = 0;  //记忆力消耗
     public int magicCost = 0; //法术占用量
-    public Sprite skillSprite;
+    public Image skillSprite;
     
     //学习次数
     public int learnNum;

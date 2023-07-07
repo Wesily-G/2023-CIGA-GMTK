@@ -19,7 +19,7 @@ MonoBehaviour:
   magicCost: 3
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u8303\u56F4\u4F24\u5BB3\uFF0C\u9EBB\u75F91\u56DE\u5408"
+  spellDescription: "\u4F24\u5BB3:28\n\u8303\u56F4\u4F24\u5BB3\uFF0C\u9EBB\u75F91\u56DE\u5408"
   prevSpellsOnTree:
   - decmemoryCost: 1
     preSkill: {fileID: 11400000, guid: 16935316cfb632440a7af098c05d4d59, type: 2}

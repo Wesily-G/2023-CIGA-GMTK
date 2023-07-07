@@ -19,7 +19,7 @@ MonoBehaviour:
   magicCost: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u4F7F\u7528\u540E\u5361\u724C\u4E0D\u4F1A\u6D88\u5931\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
+  spellDescription: "\u4F24\u5BB3:5\\n\u4F7F\u7528\u540E\u5361\u724C\u4E0D\u4F1A\u6D88\u5931\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
   prevSpellsOnTree: []
   damage: 5
   fireballVFX: {fileID: 0}

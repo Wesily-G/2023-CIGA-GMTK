@@ -29,7 +29,6 @@ public class UIManager : MonoBehaviour
         {
             //集合中没有 需要从Resources/UI文件夹中加载
             GameObject obj = Object.Instantiate(Resources.Load("UI/" + uiName), canvasTf) as GameObject;
-
             //改名字
             obj.name = uiName;
 

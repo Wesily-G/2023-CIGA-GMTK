@@ -19,7 +19,7 @@ MonoBehaviour:
   magicCost: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "50%\u66B4\u51FB\u7387\uFF0C\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
+  spellDescription: "\u4F24\u5BB3:3\n50%\u66B4\u51FB\u7387\uFF0C\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
   prevSpellsOnTree: []
   damage: 3
   criticalPercentage: 0.5
