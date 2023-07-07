@@ -12,6 +12,7 @@ public class Ulit : MonoBehaviour
 
     public static void SetSpriteAlpha(ref SpriteRenderer spriteRenderer,float alpha)
     {
+        if(spriteRenderer == null) return;
         var color = spriteRenderer.color;
         color.a = alpha;
         spriteRenderer.color = color;
