@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells//Fire/FireFist")]
+[CreateAssetMenu(menuName = "Spells/Fire/FireFist")]
 public class Spell_FireFist : Spells
 {
     public float damage = 20;

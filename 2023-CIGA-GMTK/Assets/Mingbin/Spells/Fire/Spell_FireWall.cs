@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells//Fire/FireWall")]
+[CreateAssetMenu(menuName = "Spells/Fire/FireWall")]
 public class Spell_FireWall : Spells
 {
     public int burnSustainability = 1;
