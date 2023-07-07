@@ -31,7 +31,7 @@ public class TestCard : Card
                 CardManager.AddCard(newCard);
             });
         };
-        BattleManager.AddCastQueue(spellSet);
+        BattleManager.AddPlayerCastQueue(spellSet);
         base.OnUseCard();
     }
     private void LateUpdate()

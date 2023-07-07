@@ -13,14 +13,20 @@ public class Spell_IceLance : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AttackSelectedMonster(damage, elementType);
-            BattleManager.AddMonsterBuff(monster, Buff.BuffFragile(1, fragilePercentage));
-            BattleManager.AddPlayerVampire();
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AttackSelectedMonster(damage, elementType);
+                BattleManager.AddMonsterBuff(monster, Buff.BuffFragile(1, fragilePercentage));
+                BattleManager.AddPlayerVampire();
+            });
         }
         else
         {
-            BattleManager.AttackPlayer(monster,damage,elementType);
-            BattleManager.AddPlayerBuff(Buff.BuffFragile(1, 0.1f));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AttackPlayer(monster, damage, elementType);
+                BattleManager.AddPlayerBuff(Buff.BuffFragile(1, 0.1f));
+            });
         }
     }
 }

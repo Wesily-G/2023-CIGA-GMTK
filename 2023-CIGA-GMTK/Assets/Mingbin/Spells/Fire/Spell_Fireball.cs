@@ -13,13 +13,19 @@ public class Spell_Fireball : Spells
         base.OnCast(monster);
         if (!castedByMonster) //Casted by player
         {
-            InstantiateVFX(monster.transform.position);
-            BattleManager.AttackSelectedMonster(damage, elementType);
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                InstantiateVFX(monster.transform.position);
+                BattleManager.AttackSelectedMonster(damage, elementType);
+            });
         }
         else
         {
-            InstantiateVFX(GameObject.FindGameObjectWithTag("Player").transform.position);
-            BattleManager.AttackPlayer(monster, damage, elementType);
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                InstantiateVFX(GameObject.FindGameObjectWithTag("Player").transform.position);
+                BattleManager.AttackPlayer(monster, damage, elementType);
+            });
         }
     }
 

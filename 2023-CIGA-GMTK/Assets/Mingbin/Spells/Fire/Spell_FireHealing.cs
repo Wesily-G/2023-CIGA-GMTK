@@ -12,11 +12,17 @@ public class Spell_FireHealing : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.HealPlayer(healAmount);
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.HealPlayer(healAmount);
+            });
         }
         else
         {
-            BattleManager.HealMonster(monster, healAmount);
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.HealMonster(monster, healAmount);
+            });
         }
     }
 }

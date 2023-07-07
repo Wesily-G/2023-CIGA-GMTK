@@ -10,11 +10,17 @@ public class Spell_DoubleCast : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(2));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(2));
+            });
         }
         else
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(2));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(2));
+            }); 
         }
     }
 }

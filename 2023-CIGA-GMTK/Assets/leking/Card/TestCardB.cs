@@ -13,7 +13,7 @@ public class TestCardB : Card
     }
     public override void OnUseCard()
     {
-        BattleManager.AddCastQueue(() =>
+        BattleManager.AddPlayerCastQueue(() =>
         {
             BattleManager.AttackSelectedMonster(65,ElementTypes.Lighting);
             BattleManager.AddAllMonsterBuff(Buff.BuffFragile(2,1));

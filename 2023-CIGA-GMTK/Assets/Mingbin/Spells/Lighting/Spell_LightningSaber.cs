@@ -11,11 +11,17 @@ public class Spell_LightningSaber : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(paralysisConsistance));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(paralysisConsistance));
+            });
         }
         else
         {
-            BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
+            BattleManager.AddMonsterCastQueue(() => 
+            {
+                BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
+            });
         }
     }
 }

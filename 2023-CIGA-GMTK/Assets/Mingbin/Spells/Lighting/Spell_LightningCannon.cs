@@ -15,15 +15,21 @@ public class Spell_LightningCannon : Spells
 
         if (!castedByMonster)
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(paralysisConsistance));
-            BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(0, criticalPercentage));
-            BattleManager.AttackSelectedMonster(damage, elementType);
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(paralysisConsistance));
+                BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(0, criticalPercentage));
+                BattleManager.AttackSelectedMonster(damage, elementType);
+            });
         }
         else
         {
-            BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
-            BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(0, criticalPercentage));
-            BattleManager.AttackPlayer(monster, damage, elementType);
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(0, criticalPercentage));
+                BattleManager.AttackPlayer(monster, damage, elementType);
+            });
         }
     }
 }

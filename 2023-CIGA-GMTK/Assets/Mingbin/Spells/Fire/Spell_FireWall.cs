@@ -13,15 +13,21 @@ public class Spell_FireWall : Spells
 
         if (!castedByMonster)
         {
-            BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
-            BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
-            BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
+                BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
+                BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
+            });
         }
         else
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
-            BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
-            BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
+            });
         }
     }
 }

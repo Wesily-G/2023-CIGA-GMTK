@@ -31,11 +31,6 @@ public class Player : MonoBehaviour,IPlayer
 
     private readonly List<Buff> _buffs = new();
 
-    private void Update()
-    {
-        print(_buffs.Count());
-    }
-
     public void Kill()
     {
         
