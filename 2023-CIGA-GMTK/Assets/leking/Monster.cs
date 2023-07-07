@@ -102,6 +102,11 @@ public class Monster : MonoBehaviour,IMonster
         return Hp;
     }
 
+    public void AddMaxUp(float value)
+    {
+        maxHp += value;
+    }
+
     public List<Buff> GetBuffs()
     {
         return _buffs;

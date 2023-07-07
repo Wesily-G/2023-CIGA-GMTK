@@ -71,17 +71,59 @@ public class BattleManager : MonoBehaviour
     {
         _instants._firstCommandQueue.Enqueue(action);
     }
-
     public static void AddRoundCommand(Action action)
     {
         _instants._roundCommandQueue.Enqueue(action);
     }
-
-    //添加Buff
+    //全局
+    public static void IncreasePlayerMaxHp(float value)
+    {
+        _instants.player.AddMaxUp(value);
+    }
+    public static void IncreaseMonsterMaxHp(Monster monster,float value)
+    {
+        monster.AddMaxUp(value);
+    }
+    public static void IncreaseSelectedMonsterMaxHp(float value)
+    {
+        _instants._monsters[_instants._selectMonsterIndex].AddMaxUp(value);
+    }
+    public static void IncreaseAllMonsterMAxHp(float value)
+    {
+        for (int i = _instants._monsters.Count - 1; i >= 0; i--)
+        {
+            _instants._monsters[i].AddMaxUp(value);
+        }
+    }
+    //回复
+    public static void HealPlayer(float value)
+    {
+        _instants.player.Heal(value);
+    }
+    public static void HealMonster(Monster monster,float value)
+    {
+        monster.Heal(value);
+    }
+    public static void HealSelectedMonster(float value)
+    {
+        _instants._monsters[_instants._selectMonsterIndex].Heal(value);
+    }
+    public static void HealAllMonster(float value)
+    {
+        foreach (var monster in _instants._monsters)
+        {
+            monster.Heal(value);
+        }
+    }
+    //Buff相关
     public static void AddPlayerBuff(Buff buff)
     {
         _instants.player.AddBuff(buff);
         buffChange?.Invoke();
+    }
+    public static void AddMonsterBuff(Monster monster, Buff buff)
+    {
+        monster.AddBuff(buff);
     }
     public static void AddSelectedMonsterBuff(Buff buff)
     {
@@ -90,32 +132,131 @@ public class BattleManager : MonoBehaviour
     }
     public static void AddAllMonsterBuff(Buff buff)
     {
-        
+        foreach (var monster in _instants._monsters)
+        {
+            monster.AddBuff(buff);
+        }
     }
-    
-    //攻击
-    public static void AttackPlayer(Monster monster,float damage,ElementTypes type)
+    public static void RemovePlayerBuffs(BuffType type)
     {
-        
+        _instants.player.RemoveBuffs(type);
+        buffChange?.Invoke();
     }
-    public static void AttackSelectedMonster(float damage,ElementTypes type)
+    public static void RemoveMonsterBuffs(Monster monster, BuffType type)
     {
-        
+        monster.RemoveBuffs(type);
     }
-    public static void AttackAllMonster(float damage,ElementTypes type)
+    public static void RemoveSelectedMonsterBuffs(BuffType type)
     {
-        
+        _instants._monsters[_instants._selectMonsterIndex].RemoveBuffs(type);
+        buffChange?.Invoke();
     }
-    
+    public static void RemoveAllMonsterBuffs(BuffType type)
+    {
+        foreach (var monster in _instants._monsters)
+        {
+            monster.RemoveBuffs(type);
+        }
+        buffChange?.Invoke();
+    }
+    //攻击相关
+    public static float AttackPlayer(Monster monster,float damage,ElementTypes type)
+    {
+        var d = monster.GetAttackMultiplier()*damage;
+        var rd = _instants.player.Attack(d, type);
+        if (monster.vampireCount > 0)
+        {
+            monster.Heal(rd);
+        }
+        return rd;
+    }
+    public static float AttackMonster(Monster monster,float damage,ElementTypes type)
+    {
+        var d = _instants.player.GetAttackMultiplier()*damage;
+        var rd = monster.Attack(d, type);
+        if (_instants.player.vampireCount > 0)
+        {
+            _instants.player.Heal(rd);
+        }
+        return rd;
+    }
+    public static float AttackSelectedMonster(float damage,ElementTypes type)
+    {
+        var d = _instants.player.GetAttackMultiplier()*damage;
+        var rd = _instants._monsters[_instants._selectMonsterIndex].Attack(d, type);
+        if (_instants.player.vampireCount > 0)
+        {
+            _instants.player.Heal(rd);
+        }
+        return rd;
+    }
+    public static float AttackAllMonster(float damage,ElementTypes type)
+    {
+        float endDamage = 0;
+        var d = _instants.player.GetAttackMultiplier()*damage;
+        for (int i = _instants._monsters.Count - 1; i >= 0; i--)
+        {
+            var rd =_instants._monsters[_instants._selectMonsterIndex].Attack(d, type);
+            endDamage += rd;
+            if (_instants.player.vampireCount > 0)
+            {
+                _instants.player.Heal(rd);
+            }
+        }
+        return endDamage;
+    }
+    //吸血
+    public static void AddPlayerVampire()
+    {
+        _instants.player.vampireCount += 1;
+    }
+    public static void AddMonsterVampire(Monster monster)
+    {
+        monster.vampireCount += 1;
+    }
+    public static void AddSelectedMonsterVampire()
+    {
+        _instants._monsters[_instants._selectMonsterIndex].vampireCount += 1;
+    }
+    public static void AddAllMonsterVampire()
+    {
+        for (int i = _instants._monsters.Count - 1; i >= 0; i--)
+        {
+            var rd = _instants._monsters[_instants._selectMonsterIndex].vampireCount += 1;
+        }
+    }
     //延迟施法
-    public static void PlayerDelaySpell(int time,Action spell)
+    public static void DelaySpellPlayer(int time,Action spell)
     {
         AddPlayerBuff(Buff.BuffDelaySpell(time,spell));
     }
-
+    public static void DelaySpellMonster(Monster monster,int time,Action spell)
+    {
+        AddMonsterBuff(monster,Buff.BuffDelaySpell(time,spell));
+    }
+    public static void DelaySpellSelectedMonster(int time,Action spell)
+    {
+        AddSelectedMonsterBuff(Buff.BuffDelaySpell(time,spell));
+    }
+    public static void DelaySpellAllMonster(int time,Action spell)
+    {
+        AddAllMonsterBuff(Buff.BuffDelaySpell(time,spell));
+    }
     public static void InterruptPlayer()
     {
-        
+        RemovePlayerBuffs(BuffType.DelaySpell);
+    }
+    public static void InterruptMonster(Monster monster)
+    {
+        RemoveMonsterBuffs(monster,BuffType.DelaySpell);
+    }
+    public static void InterruptSelectedMonster()
+    {
+        RemoveMonsterBuffs(_instants._monsters[_instants._selectMonsterIndex],BuffType.DelaySpell);
+    }
+    public static void InterruptAllMonster()
+    {
+        RemoveAllMonsterBuffs(BuffType.DelaySpell);
     }
     
     
@@ -213,17 +354,6 @@ public class BattleManager : MonoBehaviour
         {
             _firstCommandQueue.Dequeue()();
         }
-        player.ExecuteBuffs();
-        foreach (var monster in _monsters)
-        {
-            monster.ExecuteBuffs();
-        }
-        player.BuffNext();
-        foreach (var monster in _monsters)
-        {
-            monster.BuffNext();
-        }
-        buffChange?.Invoke();
     }
 
     private void InRound()
@@ -236,11 +366,19 @@ public class BattleManager : MonoBehaviour
 
     private void CloseoutPhase()
     {
-        print("CloseoutPhase");
+        player.ExecuteBuffs();
+        foreach (var monster in _monsters)
+        {
+            monster.ExecuteBuffs();
+        }
+        player.BuffNext();
+        foreach (var monster in _monsters)
+        {
+            monster.BuffNext();
+        }
+        buffChange?.Invoke();
     }
     
-    
-
     #region DEBUG
     public void NextStage()
     {

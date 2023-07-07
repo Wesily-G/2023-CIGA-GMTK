@@ -93,6 +93,11 @@ public class Player : MonoBehaviour,IPlayer
         return Hp;
     }
 
+    public void AddMaxUp(float value)
+    {
+        maxHp += value;
+    }
+
     public List<Buff> GetBuffs()
     {
         return _buffs;

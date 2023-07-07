@@ -6,6 +6,7 @@ public interface IHp
 {
     //获取Hp
     public float GetHp();
+    public void AddMaxUp(float value);
 }
 
 public interface IHealth:IHp

@@ -1267,6 +1267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 0
+  isSleep: 0
+  vampireCount: 0
 --- !u!212 &608124212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1715,6 +1717,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 10
+  isSleep: 0
+  vampireCount: 0
 --- !u!4 &911163252
 Transform:
   m_ObjectHideFlags: 0
@@ -3204,7 +3208,7 @@ PrefabInstance:
       objectReference: {fileID: 2715621877320469363, guid: ea07a6a9e8b88f94cb09b66c3497c370, type: 3}
     - target: {fileID: 1494748339757285485, guid: 00fbfb17f89fdf940bfb792a8dc8b126, type: 3}
       propertyPath: cardLayerMask.m_Bits
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1768458191312310077, guid: 00fbfb17f89fdf940bfb792a8dc8b126, type: 3}
       propertyPath: m_LocalPosition.y
