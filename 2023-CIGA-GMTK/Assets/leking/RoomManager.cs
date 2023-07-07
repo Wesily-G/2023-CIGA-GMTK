@@ -28,12 +28,15 @@ public class RoomManager : MonoBehaviour
     public GameObject readRoomPrefab;
     public Vector3 rollRoomOffset;
     public Vector3 fadeRoomOffset;
+    public Vector3 doorOffset;
     public GameObject roomMask;
     public GameObject roomMaskPos;
+    public Door doorPrefab;
 
     private RoomType _currentRoomType;
 
-    private List<RoomAsset> _nextRoom = new ();
+    private List<RoomAsset> _nextRooms = new ();
+    private RoomAsset _currentRoomAsset;
     
     private void Awake()
     {
@@ -59,32 +62,63 @@ public class RoomManager : MonoBehaviour
     }
     public void SpawnNextRoom()
     {
-        _nextRoom.Clear();
+        _nextRooms.Clear();
         var roomCount = Random.Range(1, 4);
         for (int i = 0; i < roomCount; i++)
         {
             switch (Random.Range(0,2))
             {
                 case 0:
-                    _nextRoom.Add(battleRoomsPool[Random.Range(0,battleRoomsPool.Count)]);
+                    _nextRooms.Add(battleRoomsPool[Random.Range(0,battleRoomsPool.Count)]);
                     break;
                 case 1:
-                    _nextRoom.Add(encounterRoomsPool[Random.Range(0,battleRoomsPool.Count)]);
+                    _nextRooms.Add(encounterRoomsPool[Random.Range(0,encounterRoomsPool.Count)]);
                     break;
             }
         }
+    }
+
+    public void ToBattleRoom(BattleRoom battleRoom)
+    {
+        leking.UIManager.HideTitleUI();
+        foreach (var monster in battleRoom.monsters)
+        {
+            BattleManager.AddMonster(monster);
+        }
+        var vr= Instantiate(battleRoom.roomPrefab,_instants.roomRoot.transform);
+        onSwitched = BattleManager.StartBattle;
+        RoomSwitchFade(vr);
+    }
+    public void ToEncounterRoom(EncounterRoom encounterRoom)
+    {
+        leking.UIManager.HideTitleUI();
+        var vr= Instantiate(encounterRoom.roomPrefab,_instants.roomRoot.transform);
+        onSwitched = leking.UIManager.ShowNextRoomButton;
+        RoomSwitchFade(vr);
+    }
+    //前往下一个房间
+    public static void NextRoom(int roomIndex)
+    {
+        if (roomIndex > _instants._nextRooms.Count-1) return;
+        _instants._currentRoomAsset = _instants._nextRooms[roomIndex];
+        switch (_instants._currentRoomAsset.roomType)
+        {
+            case RoomType.BattleRoom:
+                _instants.ToBattleRoom(_instants._currentRoomAsset as BattleRoom);
+                break;
+            case RoomType.EncounterRoom:
+                _instants.ToEncounterRoom(_instants._currentRoomAsset as EncounterRoom);
+                break;
+        }
+
+        _instants.SpawnNextRoom();
     }
     public void StartGame()
     {
         leking.UIManager.HideTitleUI();
         var room = battleRoomsPool[Random.Range(0, battleRoomsPool.Count)];
-        foreach (var monster in room.monsters)
-        {
-            BattleManager.AddMonster(monster);
-        }
-        var vr= Instantiate(room.roomPrefab,_instants.roomRoot.transform);
-        onSwitched = BattleManager.StartBattle;
-        RoomSwitchFade(vr);
+        SpawnNextRoom();
+        ToBattleRoom(room);
     }
     private Action onSwitched = ()=>{};
     public void InitRoom()
@@ -113,6 +147,13 @@ public class RoomManager : MonoBehaviour
     {
         leking.UIManager.HideNextRoomButton();
         var rr = Instantiate(_instants.readRoomPrefab,_instants.roomRoot.transform);
+        for (int i = 0; i < _instants._nextRooms.Count; i++)
+        {
+            var door = Instantiate(_instants.doorPrefab, rr.transform.Find("Doors").transform);
+            door.transform.position = rr.transform.Find("Doors").transform.position + (i-1)*_instants.doorOffset;
+            door.roomIndex = i;
+            door.type = _instants._nextRooms[i].roomType;
+        }
         _instants.RoomSwitchRoll(rr);
     }
     private GameObject _currentRoomObject;
@@ -153,6 +194,7 @@ public class RoomManager : MonoBehaviour
         _nextRoomObject.transform.position = roomRoot.transform.position;
         Destroy(_currentRoomObject);
         onSwitched();
+        onSwitched = () => { };
         _currentRoomObject = _nextRoomObject;
         for (float i = 0; i <= 1; i += 0.01f)
         {
@@ -168,16 +210,20 @@ public class RoomManager : MonoBehaviour
         var position = roomRoot.transform.position;
         var targetPosNext = position;
         var targetPosCurr = position + rollRoomOffset;
-        for (float i = 0; i <= 1; i += 0.001f)
+        var initNextPos = _nextRoomObject.transform.position;
+        var initCurrPos = _currentRoomObject.transform.position;
+        for (float i = 0; i <= 1; i += 0.01f)
         {
             _currentRoomObject.transform.position =
-                Vector3.Lerp(_currentRoomObject.transform.position, targetPosCurr, i);
+                Vector3.Lerp(initCurrPos, targetPosCurr, i);
             _nextRoomObject.transform.position =
-                Vector3.Lerp(_nextRoomObject.transform.position, targetPosNext, i);
+                Vector3.Lerp(initNextPos, targetPosNext, i);
             yield return new WaitForSeconds(1 / 100f);
         }
+        print(_currentRoomObject.name);
         Destroy(_currentRoomObject);
         _currentRoomObject = _nextRoomObject;
         onSwitched();
+        onSwitched = () => { };
     }
 }
