@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -75,3 +75,20 @@ crashlytics-build.properties
 *.outputdata
 *.payloads
 *.dag
+2023-CIGA-GMTK/.idea/.idea.2023-CIGA-GMTK/.idea/encodings.xml
+2023-CIGA-GMTK/.idea/.idea.2023-CIGA-GMTK/.idea/indexLayout.xml
+2023-CIGA-GMTK/.idea/.idea.2023-CIGA-GMTK/.idea/projectSettingsUpdater.xml
+2023-CIGA-GMTK/.idea/.idea.2023-CIGA-GMTK/.idea/vcs.xml
+2023-CIGA-GMTK/.idea/.idea.2023-CIGA-GMTK/.idea/workspace.xml
+*.dll
+*.log
+*.log
+*.mvfrm
+*.rsp
+*.dag_derived
+*.dag_derived
+*.traceevents
+*.json
+*.digestcache
+*.obj
+*.bin
