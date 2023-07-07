@@ -65,6 +65,7 @@ public class BattleManager : MonoBehaviour
         }
     }
     
+    
     //添加命令
     public static void AddFirstCommand(Action action)
     {
@@ -116,6 +117,9 @@ public class BattleManager : MonoBehaviour
     {
         
     }
+    
+    
+    
 
     public void SpawnMonster()
     {

@@ -14,11 +14,19 @@ public class Player : MonoBehaviour,IPlayer
     public float maxHp = 10;
     private float _hp = 10;
     public bool IsDead => Hp <= 0;
+    public bool isSleep;
+    public int vampireCount;
 
     public float Hp
     {
         get => _hp;
-        set => _hp = value<=0?0:value;
+        set => _hp = value<=0?0:value>maxHp?maxHp:value;
+    }
+
+    public int VampireCount
+    {
+        get => vampireCount;
+        set => vampireCount = value<=0?0:value;
     }
 
     private readonly List<Buff> _buffs = new();
@@ -27,13 +35,27 @@ public class Player : MonoBehaviour,IPlayer
     {
         
     }
-
-    public void Attack(float damage)
+    public float Attack(float damage)
     {
         Hp -= damage;
+        return damage;
     }
+    public float GetAttackMultiplier()
+    {
+        float magnification = 1;
+        foreach (var buff in _buffs.OrderByDescending(a => a.priority))
+        {
+            switch (buff.type)
+            {
+                case BuffType.IncreasedInjury:
+                    magnification += 0.2f;
+                    break;
+            }
+        }
 
-    public void Attack(float damage, ElementTypes type)
+        return magnification;
+    }
+    public float Attack(float damage, ElementTypes type)
     {
         float finalDamage = damage;
         foreach (var buff in _buffs.OrderByDescending(a => a.priority))
@@ -58,6 +80,12 @@ public class Player : MonoBehaviour,IPlayer
             }
         }
         Hp -= finalDamage;
+        return finalDamage;
+    }
+
+    public void Heal(float value)
+    {
+        Hp += value;
     }
 
     public float GetHp()
@@ -79,6 +107,7 @@ public class Player : MonoBehaviour,IPlayer
     public void ExecuteBuffs()
     {
         float damage = 0;
+        var daleyDelete = new Queue<Buff>();
         foreach (var buff in _buffs.OrderByDescending(a => a.priority))
         {
             switch (buff.type)
@@ -87,12 +116,26 @@ public class Player : MonoBehaviour,IPlayer
                     damage += maxHp * 0.05f;
                     break;
                 case BuffType.Fragile:
-                    damage += damage * (1+buff.percentage);
+                    damage += damage * buff.percentage;
                     break;
-                case BuffType.DamageIncrease:
-                    damage += damage * (1+buff.percentage);
+                case BuffType.Paralysis:
+                    isSleep = true;
+                    break;
+                case BuffType.Sleep:
+                    isSleep = true;
+                    break;
+                case BuffType.DelaySpell:
+                    if (isSleep)
+                    {
+                        daleyDelete.Enqueue(buff);
+                    }
+                    else isSleep = true;
                     break;
             }
+        }
+        while (daleyDelete.Count>0)
+        {
+            _buffs.Remove(daleyDelete.Dequeue());
         }
         Hp -= damage;
     }
@@ -102,6 +145,17 @@ public class Player : MonoBehaviour,IPlayer
         
     }
 
+    public void RemoveBuffs(BuffType type)
+    {
+        for (int i = _buffs.Count - 1; i >= 0; i--)
+        {
+            if (_buffs[i].type == type)
+            {
+                _buffs.RemoveAt(i);
+            }
+        }
+    }
+
     public void BuffNext()
     {
         for (int i = _buffs.Count - 1; i >= 0; i--)
@@ -109,6 +163,19 @@ public class Player : MonoBehaviour,IPlayer
             if(_buffs[i].time == -1) continue;
             if (_buffs[i].time - 1 == 0 || _buffs[i].time == 0)
             {
+                switch (_buffs[i].type)
+                {
+                    case BuffType.DelaySpell:
+                        _buffs[i].onBuffEnd();
+                        isSleep = false;
+                        break;
+                    case BuffType.Paralysis:
+                        isSleep = false;
+                        break;
+                    case BuffType.Sleep:
+                        isSleep = false;
+                        break;
+                }
                 _buffs.RemoveAt(i);
             }
             else if (_buffs[i].time > 1)

@@ -13,8 +13,8 @@ public interface IHealth:IHp
     //被杀死时调用
     public void Kill();
     //被攻击时调用
-    public void Attack(float damage);
-    public void Attack(float damage,ElementTypes type);
+    public float Attack(float damage);
+    public float Attack(float damage,ElementTypes type);
 }
 public interface IBuff
 {
