@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-private Transform canvasTf;
+    private Transform canvasTf;
 
     private List<GameObject> uiList;//存储加载过的界面的集合
 
