@@ -5,13 +5,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+
 namespace nier
 {
 
-public interface IPlayer : IHealth, IBuff
-{
-    
-}
 public class Player : MonoBehaviour
 {
     public float maxHp = 10;
@@ -23,7 +21,7 @@ public class Player : MonoBehaviour
     public float Hp
     {
         get => _hp;
-        set => _hp = value<=0?0:value;
+        set => _hp = value<=0?0:value>maxHp?maxHp:value;
     }
 
     public int VampireCount
@@ -34,34 +32,49 @@ public class Player : MonoBehaviour
 
     private readonly List<Buff> _buffs = new();
 
+    private void Update()
+    {
+        print(_buffs.Count());
+    }
+
     public void Kill()
     {
         
     }
-
     public float Attack(float damage)
     {
         Hp -= damage;
         return damage;
     }
-
     public float GetAttackMultiplier()
     {
         float magnification = 1;
+        float criticalHitRate = 0;
+        float explosiveInjury = 0;
         foreach (var buff in _buffs.OrderByDescending(a => a.priority))
         {
             switch (buff.type)
             {
                 case BuffType.IncreasedInjury:
-                    magnification += 0.2f;
+                    magnification += buff.percentage;
+                    break;
+                case BuffType.CriticalStrike:
+                    criticalHitRate += buff.percentage;
+                    break;
+                case BuffType.ExplosiveInjury:
+                    explosiveInjury += buff.percentage;
                     break;
             }
         }
-
+        if (Ulit.Randomizer(criticalHitRate))
+        {
+            //先算暴击X2
+            magnification *= 2;
+            //再算爆伤倍率
+            magnification *= 1 + explosiveInjury;
+        }
         return magnification;
     }
-
-
     public float Attack(float damage, ElementTypes type)
     {
         float finalDamage = damage;
@@ -100,6 +113,11 @@ public class Player : MonoBehaviour
         return Hp;
     }
 
+    public void AddMaxUp(float value)
+    {
+        maxHp += value;
+    }
+
     public List<Buff> GetBuffs()
     {
         return _buffs;
@@ -107,8 +125,20 @@ public class Player : MonoBehaviour
 
     public void AddBuff(Buff buff)
     {
+        switch (buff.type)
+        {
+            case BuffType.Paralysis:
+                isSleep = true;
+                break;
+            case BuffType.Sleep:
+                isSleep = true;
+                break;
+            case BuffType.DelaySpell:
+                isSleep = true;
+                break;
+        }
         _buffs.Add(buff);
-        leking.UIManager.UpdatePlayerBuffUI(this);
+        // leking.UIManager.UpdatePlayerBuffUI(this);
     }
 
     public void ExecuteBuffs()
@@ -125,7 +155,7 @@ public class Player : MonoBehaviour
                 case BuffType.Fragile:
                     damage += damage * (1+buff.percentage);
                     break;
-                case BuffType.DamageIncrease:
+                case BuffType.IncreasedInjury:
                     damage += damage * (1+buff.percentage);
                     break;
                 case BuffType.Paralysis:
@@ -149,12 +179,6 @@ public class Player : MonoBehaviour
         }
         Hp -= damage;
     }
-
-    public void RemoveBuff()
-    {
-        
-    }
-
     public void RemoveBuffs(BuffType type)
     {
         for (int i = _buffs.Count - 1; i >= 0; i--)
@@ -171,21 +195,9 @@ public class Player : MonoBehaviour
         for (int i = _buffs.Count - 1; i >= 0; i--)
         {
             if(_buffs[i].time == -1) continue;
-            if (_buffs[i].time - 1 == 0 || _buffs[i].time == 0)
+            if (_buffs[i].time - 1 == 0)
             {
-                switch (_buffs[i].type)
-                {
-                    case BuffType.DelaySpell:
-                        _buffs[i].onBuffEnd();
-                        isSleep = false;
-                        break;
-                    case BuffType.Paralysis:
-                        isSleep = false;
-                        break;
-                    case BuffType.Sleep:
-                        isSleep = false;
-                        break;
-                }
+                _buffs[i].onBuffEnd();
                 _buffs.RemoveAt(i);
             }
             else if (_buffs[i].time > 1)
@@ -194,7 +206,17 @@ public class Player : MonoBehaviour
             }
         }
 
-        leking.UIManager.UpdatePlayerBuffUI(this);
+        // leking.UIManager.UpdatePlayerBuffUI(this);
+    }
+
+    public bool CheckBuff(BuffType type)
+    {
+        for (int i = _buffs.Count-1; i >= 0; i--)
+        {
+            if (_buffs[i].type == type) return true;
+        }
+
+        return false;
     }
 }
 
