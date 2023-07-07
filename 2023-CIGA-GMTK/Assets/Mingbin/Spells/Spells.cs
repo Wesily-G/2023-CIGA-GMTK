@@ -11,8 +11,10 @@ public enum ElementTypes //List of Elements
 public class Spells : ScriptableObject //Base class of all spells
 {
     public ElementTypes elementType = ElementTypes.Fire;
+    [Tooltip("Cost in Battle")]
     public int cost = 1;
-    public int costDeduction = 1;
+    [Tooltip("Cost of Memory Slot")]
+    public int memoryCost = 0;
     public string spellDescription = "";
 
     public virtual void OnAdding()
@@ -25,8 +27,8 @@ public class Spells : ScriptableObject //Base class of all spells
         //Call when removing spell from list
     }
 
-    public virtual void OnCast()
+    public virtual void OnCast(Monster monster, bool castedByMonster = false)
     {
-        //Call when casting spell in a fight
+        //Call when casting spell to monster in a fight
     }
 }
