@@ -92,3 +92,9 @@ crashlytics-build.properties
 *.digestcache
 *.obj
 *.bin
+2023-CIGA-GMTK/Library/ArtifactDB
+2023-CIGA-GMTK/Library/Search/transactions.db
+2023-CIGA-GMTK/Library/SourceAssetDB
+2023-CIGA-GMTK/Logs/AssetImportWorker1.log
+2023-CIGA-GMTK/Logs/shadercompiler-AssetImportWorker0.log
+2023-CIGA-GMTK/Logs/shadercompiler-UnityShaderCompiler.exe0.log

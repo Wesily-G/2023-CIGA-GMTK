@@ -321,6 +321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFX_ElectricityBall
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -517,9 +521,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1776729792472234868, guid: d8853d6c07ebf5641a9164c507682e65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4157911863277626915, guid: d8853d6c07ebf5641a9164c507682e65, type: 3}
       propertyPath: m_Name
       value: RaidenDissolve
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157911863277626915, guid: d8853d6c07ebf5641a9164c507682e65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8620416043967832194, guid: d8853d6c07ebf5641a9164c507682e65, type: 3}
       propertyPath: m_RootOrder
