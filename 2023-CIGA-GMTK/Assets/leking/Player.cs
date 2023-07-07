@@ -61,7 +61,7 @@ public class Player : MonoBehaviour,IPlayer
                     criticalHitRate += buff.percentage;
                     break;
                 case BuffType.ExplosiveInjury:
-                    criticalHitRate += buff.percentage;
+                    explosiveInjury += buff.percentage;
                     break;
             }
         }
@@ -152,7 +152,10 @@ public class Player : MonoBehaviour,IPlayer
                     damage += maxHp * 0.05f;
                     break;
                 case BuffType.Fragile:
-                    damage += damage * buff.percentage;
+                    damage += damage * (1+buff.percentage);
+                    break;
+                case BuffType.IncreasedInjury:
+                    damage += damage * (1+buff.percentage);
                     break;
                 case BuffType.Paralysis:
                     isSleep = true;

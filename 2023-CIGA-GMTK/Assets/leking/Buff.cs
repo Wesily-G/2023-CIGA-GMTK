@@ -51,19 +51,18 @@ public class Buff
     }
     public static Buff BuffBurn(int time)
     {
-        return new Buff(BuffType.Burn, time, 1);
+        return new Buff(BuffType.Burn, time, 0);
     }
     public static Buff BuffFragile(int time,float percentage)
     {
         if (percentage < 0) percentage = 0;
         else if (percentage > 1) percentage = 1;
-        return new Buff(BuffType.Fragile, time, 0,percentage);
+        return new Buff(BuffType.Fragile, time, 8,percentage);
     }
     public static Buff BuffIncreasedInjury(int time,float percentage)
     {
         if (percentage < 0) percentage = 0;
-        else if (percentage > 1) percentage = 1;
-        return new Buff(BuffType.IncreasedInjury, time, 0,percentage);
+        return new Buff(BuffType.IncreasedInjury, time, 8,percentage);
     }
     public static Buff BuffResistance(ElementTypes type,int time, float percentage)
     {
@@ -72,44 +71,43 @@ public class Buff
         switch (type)
         {
             case ElementTypes.Fire:
-                return new Buff(BuffType.FireResistance, time, 1,percentage);
+                return new Buff(BuffType.FireResistance, time, 9,percentage);
             case ElementTypes.Water:
-                return new Buff(BuffType.WaterResistance, time, 1,percentage);
+                return new Buff(BuffType.WaterResistance, time, 9,percentage);
             case ElementTypes.Lighting:
-                return new Buff(BuffType.LightingResistance, time, 1,percentage);
+                return new Buff(BuffType.LightingResistance, time, 9,percentage);
         }
-        return new Buff(BuffType.FireResistance, time, 0,percentage);;
+        return new Buff(BuffType.FireResistance, time, 0,percentage);
     }
     public static Buff BuffDelaySpell(int time, Action spell)
     {
-        return new Buff(BuffType.DelaySpell, time, 0,spell);
+        return new Buff(BuffType.DelaySpell, time, 10,spell);
     }
     public static Buff BuffInvincible(int time)
     {
-        return new Buff(BuffType.Invincible, time, 0);
+        return new Buff(BuffType.Invincible, time, 10);
     }
     public static Buff BuffParalysis(int time)
     {
-        return new Buff(BuffType.Paralysis, time, 1);
+        return new Buff(BuffType.Paralysis, time, 10);
     }
     public static Buff BuffSleep(int time)
     {
-        return new Buff(BuffType.Sleep, time, 2);
+        return new Buff(BuffType.Sleep, time, 10);
     }
     public static Buff BuffDoubleCast(int time)
     {
-        return new Buff(BuffType.DoubleCast, time, 0);
+        return new Buff(BuffType.DoubleCast, time, 1);
     }
     public static Buff BuffCriticalStrike(int time,float percentage)
     {
         if (percentage < 0) percentage = 0;
         else if (percentage > 1) percentage = 1;
-        return new Buff(BuffType.CriticalStrike, time, 0,percentage);
+        return new Buff(BuffType.CriticalStrike, time, 7,percentage);
     }
     public static Buff BuffExplosiveInjury(int time,float percentage)
     {
         if (percentage < 0) percentage = 0;
-        else if (percentage > 1) percentage = 1;
-        return new Buff(BuffType.ExplosiveInjury, time, 0,percentage);
+        return new Buff(BuffType.ExplosiveInjury, time, 7,percentage);
     }
 }
