@@ -13,13 +13,19 @@ public class Spell_SnowStorm : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AttackAllMonster(damage, elementType);
-            BattleManager.AddAllMonsterBuff(Buff.BuffFragile(2, fragilePercentage));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AttackAllMonster(damage, elementType);
+                BattleManager.AddAllMonsterBuff(Buff.BuffFragile(2, fragilePercentage));
+            });
         }
         else
         {
-            BattleManager.AttackPlayer(monster, damage, elementType);
-            BattleManager.AddPlayerBuff(Buff.BuffFragile(2, fragilePercentage));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AttackPlayer(monster, damage, elementType);
+                BattleManager.AddPlayerBuff(Buff.BuffFragile(2, fragilePercentage));
+            });
         }
     }
 }

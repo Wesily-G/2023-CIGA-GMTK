@@ -12,13 +12,19 @@ public class Spell_Siphon : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AddPlayerVampire();
-            BattleManager.AttackSelectedMonster(damage, elementType);
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddPlayerVampire();
+                BattleManager.AttackSelectedMonster(damage, elementType);
+            });
         }
         else
         {
-            BattleManager.AddMonsterVampire(monster);
-            BattleManager.AttackPlayer(monster, damage, elementType);
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AddMonsterVampire(monster);
+                BattleManager.AttackPlayer(monster, damage, elementType);
+            });
         }
     }
 }

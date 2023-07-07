@@ -12,14 +12,20 @@ public class Spell_Freeze : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffInvincible(1));
-            BattleManager.AddMonsterBuff(monster, Buff.BuffSleep(1));
-            BattleManager.AddMonsterBuff(monster, Buff.BuffFragile(2, fragilePercentage));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddMonsterBuff(monster, Buff.BuffInvincible(1));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffSleep(1));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffFragile(2, fragilePercentage));
+            });
         }
         else
         {
-            BattleManager.AddPlayerBuff(Buff.BuffInvincible(1));
-            BattleManager.AddPlayerBuff(Buff.BuffSleep(1));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AddPlayerBuff(Buff.BuffInvincible(1));
+                BattleManager.AddPlayerBuff(Buff.BuffSleep(1));
+            });
         }
     }
 }
