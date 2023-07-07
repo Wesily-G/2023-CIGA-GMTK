@@ -13,11 +13,17 @@ public class Spell_LightningWrath : Spells
 
         if (!castedByMonster)
         {
-            BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(2, 0.5f));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(2, 0.5f));
+            });
         }
         else
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(2, criticalPercentage));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(2, criticalPercentage));
+            });
         }
     }
 }

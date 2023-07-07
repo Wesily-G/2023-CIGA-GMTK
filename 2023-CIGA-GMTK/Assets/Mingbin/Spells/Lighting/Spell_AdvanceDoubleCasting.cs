@@ -11,22 +11,29 @@ public class Spell_AdvanceDoubleCasting : Spells
 
         if (!castedByMonster)
         {
-            BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(-1));
-            int rand = Random.Range(0, 100);
-            if (rand <= 20)
+            BattleManager.AddPlayerCastQueue(() =>
             {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(1));
-            }
+                BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(-1));
+                int rand = Random.Range(0, 100);
+                if (rand <= 20)
+                {
+                    BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(1));
+                }
+            });
         }
         else
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(-1));
-
-            int rand = Random.Range(0, 100);
-            if (rand <= 20)
+            BattleManager.AddMonsterCastQueue(() => 
             {
-                BattleManager.AddPlayerBuff(Buff.BuffParalysis(1));
-            }
+                BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(-1));
+
+                int rand = Random.Range(0, 100);
+                if (rand <= 20)
+                {
+                    BattleManager.AddPlayerBuff(Buff.BuffParalysis(1));
+                }
+            });
+
         }
     }
 }

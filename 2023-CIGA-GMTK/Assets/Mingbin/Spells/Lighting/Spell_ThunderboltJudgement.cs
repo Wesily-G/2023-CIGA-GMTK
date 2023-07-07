@@ -17,17 +17,23 @@ public class Spell_ThunderboltJudgement : Spells
 
         if (!castedByMonster)
         {
-            BattleManager.AttackAllMonster(damage, elementType);
-            BattleManager.AddAllMonsterBuff(Buff.BuffFragile(2, fragilePercentage));
-            BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(2, criticalPercentage));
-            BattleManager.AddPlayerBuff(Buff.BuffExplosiveInjury(2, explosiveInjuryPercentage));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AttackAllMonster(damage, elementType);
+                BattleManager.AddAllMonsterBuff(Buff.BuffFragile(2, fragilePercentage));
+                BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(2, criticalPercentage));
+                BattleManager.AddPlayerBuff(Buff.BuffExplosiveInjury(2, explosiveInjuryPercentage));
+            });
         }
         else
         {
-            BattleManager.AttackPlayer(monster, damage, elementType);
-            BattleManager.AddPlayerBuff(Buff.BuffFragile(2, fragilePercentage));
-            BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(2, criticalPercentage));
-            BattleManager.AddMonsterBuff(monster, Buff.BuffExplosiveInjury(2, explosiveInjuryPercentage));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AttackPlayer(monster, damage, elementType);
+                BattleManager.AddPlayerBuff(Buff.BuffFragile(2, fragilePercentage));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(2, criticalPercentage));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffExplosiveInjury(2, explosiveInjuryPercentage));
+            });
         }
     }
 }

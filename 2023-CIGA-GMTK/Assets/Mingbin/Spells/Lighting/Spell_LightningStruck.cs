@@ -17,13 +17,19 @@ public class Spell_LightningStruck : Spells
 
         if (!castedByMonster)
         {
-            BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(0, criticalPercentage));
-            BattleManager.AttackSelectedMonster(damage, elementType);
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(0, criticalPercentage));
+                BattleManager.AttackSelectedMonster(damage, elementType);
+            });
         }
         else
         {
-            BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(0, criticalPercentage));
-            BattleManager.AttackPlayer(monster, damage, elementType);
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(0, criticalPercentage));
+                BattleManager.AttackPlayer(monster, damage, elementType);
+            });
         }
     }
 }

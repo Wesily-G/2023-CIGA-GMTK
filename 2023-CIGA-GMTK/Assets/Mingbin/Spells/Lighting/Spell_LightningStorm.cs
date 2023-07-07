@@ -12,13 +12,20 @@ public class Spell_LightningStorm : Spells
 
         if (!castedByMonster)
         {
-            BattleManager.AttackAllMonster(damage, elementType);
-            BattleManager.AddAllMonsterBuff(Buff.BuffParalysis(1));
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AttackAllMonster(damage, elementType);
+                BattleManager.AddAllMonsterBuff(Buff.BuffParalysis(1));
+            });
+
         }
         else
         {
-            BattleManager.AttackPlayer(monster, damage, elementType);
-            BattleManager.AddPlayerBuff(Buff.BuffParalysis(1));
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AttackPlayer(monster, damage, elementType);
+                BattleManager.AddPlayerBuff(Buff.BuffParalysis(1));
+            });
         }
     }
 }
