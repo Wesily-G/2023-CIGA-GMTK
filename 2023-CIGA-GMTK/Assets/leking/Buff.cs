@@ -17,7 +17,7 @@ public enum BuffType
     CriticalStrike,//暴击率
     ExplosiveInjury,//暴击伤害加成
     DoubleCast,//双重施法
-    
+
     //隐藏/全局Buff
     DelaySpell,//延迟施法
     Sleep,//睡眠

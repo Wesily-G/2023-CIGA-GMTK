@@ -56,7 +56,10 @@ public class Monster : MonoBehaviour,IMonster
         _hp = maxHp;
     }
 
-    public virtual void MonsterAction(){}
+    public void MonsterAction()
+    {
+        
+    }
     public void Kill()
     {
         Destroy(gameObject);
@@ -136,8 +139,13 @@ public class Monster : MonoBehaviour,IMonster
         float magnification = 1;
         float criticalHitRate = 0;
         float explosiveInjury = 0;
+        var daleyDelete = new Queue<Buff>();
         foreach (var buff in _buffs.OrderByDescending(a => a.priority))
         {
+            if (buff.time == 0)
+            {
+                daleyDelete.Enqueue(buff);
+            }
             switch (buff.type)
             {
                 case BuffType.IncreasedInjury:
@@ -150,6 +158,10 @@ public class Monster : MonoBehaviour,IMonster
                     criticalHitRate += buff.percentage;
                     break;
             }
+        }
+        while (daleyDelete.Count>0)
+        {
+            _buffs.Remove(daleyDelete.Dequeue());
         }
         if (Ulit.Randomizer(criticalHitRate))
         {
@@ -210,7 +222,7 @@ public class Monster : MonoBehaviour,IMonster
         for (int i = _buffs.Count - 1; i >= 0; i--)
         {
             if(_buffs[i].time == -1) continue;
-            if (_buffs[i].time - 1 == 0)
+            if (_buffs[i].time - 1 == 0||_buffs[i].time==0)
             {
                 _buffs[i].onBuffEnd();
                 _buffs.RemoveAt(i);

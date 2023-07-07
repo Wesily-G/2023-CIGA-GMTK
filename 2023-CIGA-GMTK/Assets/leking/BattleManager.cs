@@ -57,6 +57,11 @@ public class BattleManager : MonoBehaviour
         _instants.SpawnMonster();
         _instants._inBattle = true;
     }
+    public static void EndBattle()
+    {
+        _instants.SpawnMonster();
+        _instants._inBattle = false;
+    }
     public static void KillAllMonster()
     {
         if(_instants == null) return;
@@ -196,6 +201,7 @@ public class BattleManager : MonoBehaviour
         {
             monster.Heal(rd);
         }
+        buffChange?.Invoke();
         return rd;
     }
     public static float AttackMonster(Monster monster,float damage,ElementTypes type)
@@ -206,6 +212,7 @@ public class BattleManager : MonoBehaviour
         {
             _instants.player.Heal(rd);
         }
+        buffChange?.Invoke();
         return rd;
     }
     public static float AttackSelectedMonster(float damage,ElementTypes type)
@@ -216,6 +223,7 @@ public class BattleManager : MonoBehaviour
         {
             _instants.player.Heal(rd);
         }
+        buffChange?.Invoke();
         return rd;
     }
     public static float AttackAllMonster(float damage,ElementTypes type)
@@ -231,6 +239,7 @@ public class BattleManager : MonoBehaviour
                 _instants.player.Heal(rd);
             }
         }
+        buffChange?.Invoke();
         return endDamage;
     }
     //吸血
@@ -353,7 +362,7 @@ public class BattleManager : MonoBehaviour
         {
             _inBattle = false;
             _battleOver = true;
-            RoomManager.NextRoom();
+            RoomManager.OnBattleCompletion();
         }
         if(_battleOver) return;
         switch (StageNumber)

@@ -6,8 +6,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 namespace leking
 {
@@ -20,7 +22,9 @@ namespace leking
         public TextMeshProUGUI roundNumber;
         public TextMeshProUGUI messageText;
         public MonsterBuffBar monsterBuffBarPrefab;
+        public GameObject toReadyRoomButton;
         public Transform buffsTransform;
+        public GameObject titleUI;
 
         private void Awake()
         {
@@ -34,6 +38,22 @@ namespace leking
             }
         }
 
+        private void Start()
+        {
+            if (toReadyRoomButton.TryGetComponent(out Button button))
+            {
+                button.onClick.AddListener(RoomManager.ToReadyRoom);
+            }
+        }
+
+        public static void ShowTitleUI()
+        {
+            _instants.titleUI.SetActive(true);
+        }
+        public static void HideTitleUI()
+        {
+            _instants.titleUI.SetActive(false);
+        }
         public static void UpdatePlayerBuffUI(Player player)
         {
             var childCount = _instants.buffsTransform.childCount;
@@ -108,7 +128,6 @@ namespace leking
             var hpBar = Instantiate(_instants.hpBarPrefab, _instants.canvas.transform);
             hpBar.TargetTo(target,offset);
         }
-
         public static void ShowPlayerStates()
         {
             _instants.playerStatesUI.ShowUI();
@@ -116,6 +135,14 @@ namespace leking
         public static void HidePlayerStates()
         {
             _instants.playerStatesUI.HideUI();
+        }
+        public static void ShowNextRoomButton()
+        {
+            _instants.toReadyRoomButton.SetActive(true);
+        }
+        public static void HideNextRoomButton()
+        {
+            _instants.toReadyRoomButton.SetActive(false);
         }
     }
 }

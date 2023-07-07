@@ -6,4 +6,5 @@ public class RoomAsset : ScriptableObject
 {
     public string roomName;
     public string describe;
+    public GameObject roomPrefab;
 }

@@ -49,12 +49,13 @@ namespace GameplayTest.Scripts
                 _currentCardList.Add(c.AddComponent<Card>());
                 c.SetActive(false);
             }
+            HideCardHard();
 
             //获取主摄像头
             _mainCamera = Camera.main;
             
             //显示并刷新卡牌坐标
-            UpdateCardsPos();
+            UpdateCardsPosHard();
         }
 
         private Vector3 _offset;
@@ -191,6 +192,43 @@ namespace GameplayTest.Scripts
                 var newRot = new Vector3(0, 0, Vector3.Angle(newPos - centerPos, Vector3.right) - 90);
                 c.RotateTo(newRot);
             }
+            
+        }
+        //硬移动
+        private void UpdateCardsPosHard()
+        {
+            //获取中心坐标
+            var centerPos = center.position;
+            for (var i = 0; i<_currentCardList.Count; i++)
+            {
+                if (_currentCardList[i] == null)
+                {
+                    _currentCardList.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                var c = _currentCardList[i].GetComponent<KGameObject>();
+                //显示卡牌
+                c.SetActive(true);
+                //设置卡牌的排序层
+                c.GetComponent<SpriteRenderer>().sortingOrder = i;
+                //对卡牌位置进行球面插值
+                var t = _currentCardList.Count - 1>0?i / (float)(_currentCardList.Count - 1):0;
+                var sp = cardStart.position;
+                var ep = cardEnd.position;
+                if (_currentCardList.Count < 15)
+                {
+                    var halfPos = (1 / 2f) * (ep - sp);
+                    var offsetPos = ((15 -_currentCardList.Count)/15f)*halfPos;
+                    sp += offsetPos;
+                    ep -= offsetPos;
+                }
+                var newPos = Vector3.Slerp(sp-centerPos, ep-centerPos, t)+centerPos;
+                //移动卡牌到新位置
+                c.transform.position = newPos;
+                //旋转卡牌到新角度
+                c.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Vector3.Angle(newPos - centerPos, Vector3.right) - 90));
+            }
         }
 
         public void ShowCard()
@@ -216,6 +254,17 @@ namespace GameplayTest.Scripts
             cardEnd.position = ep;
             UpdateCardsPos();
         }
+        public void HideCardHard()
+        {
+            var sp = cardStart.position;
+            var ep = cardEnd.position;
+            var position = hidePos.position;
+            sp.y = position.y;
+            ep.y = position.y;
+            cardStart.position = sp;
+            cardEnd.position = ep;
+            UpdateCardsPosHard();
+        }
         
         //测试用函数
         #region DEBUG
@@ -229,6 +278,15 @@ namespace GameplayTest.Scripts
         {
             _instants._currentCardList.Add(card);
             _instants.UpdateCardsPos();
+        }
+
+        public static void AddCardFromSpell(Spells spell)
+        {
+            
+        }
+        public static void RemoveAllCard()
+        {
+            
         }
         public void AddCard()
         {
