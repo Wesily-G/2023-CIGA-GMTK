@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddbad2334b619842a4c665fcfd78644, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: 
+  elementType: 0
+  Name: "\u5C0F\u706B\u7403"
+  cost: 1
+  memoryCost: 0
+  magicCost: 0
+  skillSprite: {fileID: 0}
+  learnNum: 0
+  spellDescription: "\u4F7F\u7528\u540E\u5361\u724C\u4E0D\u4F1A\u6D88\u5931\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
+  prevSpellsOnTree: []
+  damage: 5
+  fireballVFX: {fileID: 0}

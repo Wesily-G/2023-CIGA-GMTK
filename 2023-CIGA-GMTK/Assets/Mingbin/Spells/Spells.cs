@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,17 +9,30 @@ public enum ElementTypes //List of Elements
     Water,
     Lighting
 }
+
+[Serializable]
+public struct PreSkill
+{
+    public int decmemoryCost; //学习前驱后的记忆力减少量
+    public Spells preSkill;
+}
 public class Spells : ScriptableObject //Base class of all spells
 {
     public ElementTypes elementType = ElementTypes.Fire;
+    public string Name;
     [Tooltip("Cost in Battle")]
-    public int cost = 1;
+    public int cost = 1;  //魔法量消耗
     [Tooltip("Cost of Memory Slot")]
-    public int memoryCost = 0;
+    public int memoryCost = 0;  //记忆力消耗
+    public int magicCost = 0; //法术占用量
+    public Sprite skillSprite;
+    
+    //学习次数
+    public int learnNum;
+    [TextArea(1 , 8)]
     public string spellDescription = "";
-
-    public List<Spells> prevSpellsOnTree = new List<Spells>();
-    public List<Spells> nextSpellsOnTree = new List<Spells>();
+    
+    public List<PreSkill> prevSpellsOnTree = new List<PreSkill>();
 
     public virtual void OnAdding()
     {

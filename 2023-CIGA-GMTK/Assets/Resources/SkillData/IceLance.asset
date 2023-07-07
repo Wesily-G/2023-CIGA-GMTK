@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c046fae2a91d08c47b0f274b66a547f3, type: 3}
+  m_Name: IceLance
+  m_EditorClassIdentifier: 
+  elementType: 1
+  Name: "\u51B0\u9525"
+  cost: 0
+  memoryCost: 1
+  magicCost: 0
+  skillSprite: {fileID: 0}
+  learnNum: 0
+  spellDescription: "\u5438\u8840\u5E76\u9020\u621010%\u7684\u8106\u5F31\uFF0C\u56DE\u5408\u7ED3\u675F\u540E\u56DE\u5230\u624B\u724C"
+  prevSpellsOnTree: []
+  damage: 2
+  fragilePercentage: 0.1

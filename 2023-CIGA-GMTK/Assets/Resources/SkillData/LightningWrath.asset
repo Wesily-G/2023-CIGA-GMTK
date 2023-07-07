@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2b35c5cfb604343b5f8be925cad887, type: 3}
+  m_Name: LightningWrath
+  m_EditorClassIdentifier: 
+  elementType: 2
+  Name: "\u96F7\u9706\u76DB\u6012"
+  cost: 3
+  memoryCost: 5
+  magicCost: 1
+  skillSprite: {fileID: 0}
+  learnNum: 0
+  spellDescription: "50%\u66B4\u51FB\u7387\uFF0C20%\u66B4\u51FB\u4F24\u5BB3\u6301\u7EED3\u56DE\u5408"
+  prevSpellsOnTree:
+  - decmemoryCost: 1
+    preSkill: {fileID: 11400000, guid: 2cb820db61d3b774282c2904f8c4b3da, type: 2}
+  - decmemoryCost: 1
+    preSkill: {fileID: 11400000, guid: 1dc92a55564d1664f877d0a2cf02525b, type: 2}
+  criticalPercentage: 0.5

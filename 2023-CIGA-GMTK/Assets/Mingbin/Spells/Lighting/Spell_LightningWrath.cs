@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells/Lightning/LightningCannon")]
+[CreateAssetMenu(menuName = "Spells/Lightning/LightningWrath")]
 public class Spell_LightningWrath : Spells
 {
     public float criticalPercentage = 0.5f;
