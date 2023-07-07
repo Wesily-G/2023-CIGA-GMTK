@@ -8,16 +8,16 @@ public class SpellsManager : MonoBehaviour
 
     public void OnPlayerRoundStart()
     {
-        //平A回到卡组
+        //When Round Starts 
     }
 
     public void OnPlayerRoundEnd()
     {
-        //预留
+        //When Round Ends
     }
 
     public void Initialize()
     {
-        //初始化卡牌
+        //Init
     }
 }
