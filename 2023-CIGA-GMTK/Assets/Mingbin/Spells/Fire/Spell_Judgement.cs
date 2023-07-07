@@ -13,7 +13,7 @@ public class Spell_Judgement : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AttackMonster(monster, damage, elementType);
+            BattleManager.AttackSelectedMonster(damage, elementType);
         }
         else
         {

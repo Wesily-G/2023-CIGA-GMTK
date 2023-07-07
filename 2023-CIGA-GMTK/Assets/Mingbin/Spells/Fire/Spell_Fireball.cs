@@ -14,7 +14,7 @@ public class Spell_Fireball : Spells
         if (!castedByMonster) //Casted by player
         {
             InstantiateVFX(monster.transform.position);
-            BattleManager.AttackMonster(monster, damage, elementType);
+            BattleManager.AttackSelectedMonster(damage, elementType);
         }
         else
         {

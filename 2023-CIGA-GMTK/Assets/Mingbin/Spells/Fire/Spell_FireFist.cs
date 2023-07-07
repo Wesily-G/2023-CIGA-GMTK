@@ -13,7 +13,7 @@ public class Spell_FireFist : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AttackMonster(monster, damage, elementType);
+            BattleManager.AttackSelectedMonster(damage, elementType);
             BattleManager.AddMonsterBuff(monster, Buff.BuffBurn(burnSustainability));
             BattleManager.InterruptMonster(monster);
         }
