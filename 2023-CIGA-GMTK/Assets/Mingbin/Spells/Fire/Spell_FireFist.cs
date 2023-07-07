@@ -13,15 +13,21 @@ public class Spell_FireFist : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AttackSelectedMonster(damage, elementType);
-            BattleManager.AddMonsterBuff(monster, Buff.BuffBurn(burnSustainability));
-            BattleManager.InterruptMonster(monster);
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AttackSelectedMonster(damage, elementType);
+                BattleManager.AddMonsterBuff(monster, Buff.BuffBurn(burnSustainability));
+                BattleManager.InterruptMonster(monster);
+            });
         }
         else
         {
-            BattleManager.AttackPlayer(monster, damage, elementType);
-            BattleManager.AddPlayerBuff(Buff.BuffBurn(burnSustainability));
-            BattleManager.InterruptPlayer();
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AttackPlayer(monster, damage, elementType);
+                BattleManager.AddPlayerBuff(Buff.BuffBurn(burnSustainability));
+                BattleManager.InterruptPlayer();
+            });
         }
     }
 }

@@ -13,11 +13,17 @@ public class Spell_Judgement : Spells
         base.OnCast(monster, castedByMonster);
         if (!castedByMonster)
         {
-            BattleManager.AttackSelectedMonster(damage, elementType);
+            BattleManager.AddPlayerCastQueue(() =>
+            {
+                BattleManager.AttackSelectedMonster(damage, elementType);
+            });
         }
         else
         {
-            BattleManager.AttackPlayer(monster, damage, elementType);
+            BattleManager.AddMonsterCastQueue(() =>
+            {
+                BattleManager.AttackPlayer(monster, damage, elementType);
+            });
         }
     }
 }
