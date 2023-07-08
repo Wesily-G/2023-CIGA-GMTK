@@ -15,7 +15,7 @@ public class BossMonsterAction : MonsterAction
                 }else if(MonsterCost<=4){
                     SpellsCast(randomSpells(2,new string[2]{"FireWall","FireFist"}),monster,true);
                 }else if(MonsterCost<=6){
-                    SpellsCast(randomSpells(2,new string[2]{"FireMinion","AdvanceDoubleCast"}),monster,true);
+                    SpellsCast(randomSpells(2,new string[2]{"FireMinion","AdvanceDoubleCasting"}),monster,true);
                 }else if(MonsterCost<=8){
                     SpellsCast(randomSpells(2,new string[2]{"SnowStorm","FireFist"}),monster,true);
                 }else{
@@ -41,7 +41,7 @@ public class BossMonsterAction : MonsterAction
                 }else if(MonsterCost<=4){
                     SpellsCast(randomSpells(1,new string[1]{"LightningCannon"}),monster,true);
                 }else if(MonsterCost<=6){
-                    SpellsCast(randomSpells(2,new string[2]{"ThunderStorm","AdvanceDoubleCast"}),monster,true);
+                    SpellsCast(randomSpells(2,new string[2]{"ThunderStorm","AdvanceDoubleCasting"}),monster,true);
                 }else if(MonsterCost<=8){
                     SpellsCast(randomSpells(2,new string[2]{"ThunderStorm","LightningWrath"}),monster,true);
                 }else{

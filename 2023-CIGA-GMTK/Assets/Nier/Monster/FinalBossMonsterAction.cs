@@ -11,7 +11,7 @@ public class FinalBossMonsterAction : MonsterAction
         if(MonsterCost<=2){
             SpellsCast(randomSpells(2,new string[2]{"Siphon","LightningCannon"}),monster,true);
         }else if(MonsterCost<=4){
-            SpellsCast(randomSpells(1,new string[1]{"AdvanceDoubleCast"}),monster,true);
+            SpellsCast(randomSpells(1,new string[1]{"AdvanceDoubleCasting"}),monster,true);
         }else if(MonsterCost<=6){
             SpellsCast(randomSpells(2,new string[2]{"SnowStorm","FireMinion"}),monster,true);
         }else if(MonsterCost<=8){
