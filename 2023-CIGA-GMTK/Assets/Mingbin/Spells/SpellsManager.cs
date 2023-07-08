@@ -49,6 +49,7 @@ public class SpellsManager : MonoBehaviour
                 targetSpell = spell;
                 if (!learnedSpells.Contains(spell))
                 {
+                    //If playerCost >= spell.cost
                     learnedSpells.Add(spell);
                     return true;
                 }
