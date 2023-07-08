@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779170a007ade324082498d5a0ad80dc, type: 3}
-  m_Name: BattleRoomA
+  m_Name: BattleRoom1_2
   m_EditorClassIdentifier: 
-  roomName: BattleRoomB
+  roomType: 0
+  roomName: BattleRoom1_2
   describe: 
   roomPrefab: {fileID: 1218305626183215613, guid: 7e9e76144eac2644db2a6d6a12152574, type: 3}
+  floor: 1
   monsters:
-  - {fileID: 6174678211130278593, guid: 8cc73a08d8e085d42a73664b58b28816, type: 3}
-  - {fileID: 6174678211130278593, guid: 68c72d55a51e3524aae881abd9183ff3, type: 3}
+  - {fileID: 6174678211130278593, guid: 79d8b60553e11da479f488593c2a1d65, type: 3}

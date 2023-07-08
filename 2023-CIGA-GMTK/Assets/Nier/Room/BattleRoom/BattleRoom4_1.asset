@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779170a007ade324082498d5a0ad80dc, type: 3}
+  m_Name: BattleRoom4_1
+  m_EditorClassIdentifier: 
+  roomType: 0
+  roomName: BattleRoom4_1
+  describe: 
+  roomPrefab: {fileID: 1218305626183215613, guid: 7e9e76144eac2644db2a6d6a12152574, type: 3}
+  floor: 4
+  monsters:
+  - {fileID: 6174678211130278593, guid: 12ec6d6f5b67d6148bd3580f9e34dd66, type: 3}
+  - {fileID: 6174678211130278593, guid: 77141e3060f1eca41bc9e7e4e4ce5d43, type: 3}
