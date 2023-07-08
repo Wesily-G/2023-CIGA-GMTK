@@ -134,6 +134,7 @@ public class RoomManager : MonoBehaviour
         if(isSwitchRoom) return;
         if (roomIndex > _instants._nextRooms.Count-1) return;
         _instants._currentRoomAsset = _instants._nextRooms[roomIndex];
+        SpellsManager.AddMagicAmount(5);
         switch (_instants._currentRoomAsset.roomType)
         {
             case RoomType.BattleRoom:

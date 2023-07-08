@@ -20,12 +20,35 @@ public class SpellsManager : MonoBehaviour
 
     public int fixedSpellNum = 5;
 
+    public int initMagicAmount;
+    private int _magicAmount;
+
     private void Awake()
     {
         if (_instance == null)
             _instance = this;
         else
             Destroy(gameObject);
+    }
+    
+    //魔法量相关
+    public static int GetMagicAmount()
+    {
+        return _instance._magicAmount;
+    }
+    public static bool TryUseMagicAmount(int value)
+    {
+        if (_instance._magicAmount - value <= 0)
+        {
+            return false;
+        }
+        _instance._magicAmount -= value;
+        return true;
+    }
+
+    public static void AddMagicAmount(int value)
+    {
+        _instance._magicAmount += value;
     }
 
     //学习技能List
