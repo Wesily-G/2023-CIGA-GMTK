@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fb74c5a5acd84f9e35a9bb407d51c, type: 3}
+  m_Name: BloodFuneral
+  m_EditorClassIdentifier: 
+  elementType: 1
+  Name: "\u8840\u4E4B\u846C\u793C"
+  cost: 10
+  memoryCost: 10
+  magicCost: 4
+  finalMemoryCost: 0
+  isFixed: 0
+  skillSprite: {fileID: 0}
+  learnNum: 0
+  spellDescription: "\u4F24\u5BB3:70\n\u51FB\u6740\u76EE\u6807\u540E\u6C38\u4E45\u83B7\u5F97\u517610%\u7684\u8840\u91CF\u5E76\u56DE\u590D\u76EE\u6807\u751F\u547D\u503C\u768450%"
+  preSkills: []

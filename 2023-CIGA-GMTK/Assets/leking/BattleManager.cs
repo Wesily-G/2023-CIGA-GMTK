@@ -38,6 +38,14 @@ public class BattleManager : MonoBehaviour
     private readonly Queue<Action> _playerCastQueue = new();
     private readonly Queue<Action> _monsterCastQueue = new();
 
+    private int _tempMagic = 2;
+    private int _currentCost;
+    public int TempMagic
+    {
+        get => _tempMagic;
+        set => _tempMagic = value>=10?10:value;
+    }
+
     private void Awake()
     {
         if (_instants == null)
@@ -223,6 +231,7 @@ public class BattleManager : MonoBehaviour
         }
         if (monster.vampireCount > 0)
         {
+            monster.vampireCount -= 1;
             monster.Heal(rd);
         }
         buffChange?.Invoke();
@@ -234,6 +243,7 @@ public class BattleManager : MonoBehaviour
         var rd = monster.Attack(d, type);
         if (_instants.player.vampireCount > 0)
         {
+            _instants.player.vampireCount -= 1;
             _instants.player.Heal(rd);
         }
         buffChange?.Invoke();
@@ -245,6 +255,7 @@ public class BattleManager : MonoBehaviour
         var rd = _instants._monsters[_instants._selectMonsterIndex].Attack(d, type);
         if (_instants.player.vampireCount > 0)
         {
+            _instants.player.vampireCount -= 1;
             _instants.player.Heal(rd);
         }
         buffChange?.Invoke();
@@ -258,10 +269,11 @@ public class BattleManager : MonoBehaviour
         {
             var rd =_instants._monsters[i].Attack(d, type);
             endDamage += rd;
-            if (_instants.player.vampireCount > 0)
-            {
-                _instants.player.Heal(rd);
-            }
+        }
+        if (_instants.player.vampireCount > 0)
+        {
+            _instants.player.vampireCount -= 1;
+            _instants.player.Heal(endDamage);
         }
         buffChange?.Invoke();
         return endDamage;
@@ -388,6 +400,7 @@ public class BattleManager : MonoBehaviour
     {
         _instants.ResetBattle();
         _instants.SpawnMonster();
+        _instants.TempMagic = 1 + RoomManager.GetFloorNumber();
         CardManager.ShowCard();
     }
     public static void EndBattle()
@@ -399,6 +412,7 @@ public class BattleManager : MonoBehaviour
         {
             _instants._currentAvatar.Kill();
         }
+        _instants._roundCount = 0;
         CardManager.HideCard();
         buffChange?.Invoke();
     }
@@ -427,12 +441,15 @@ public class BattleManager : MonoBehaviour
                 _currentStage = StageType.PlayerPart;
                 _roundCount++;
                 leking.UIManager.SetRoundNumber(_roundCount);
+                _instants.TempMagic++;
+                _currentCost = _instants.TempMagic;
                 GameObject.Find("CardManager").GetComponent<CardManager>().actionable = true;
                 break;
             case StageType.PlayerPart:
                 PlayerPart();
                 break;
             case StageType.PlayerPartEnd:
+                GameObject.Find("CardManager").GetComponent<CardManager>().actionable = false;
                 PlayerPartEnd();
                 _currentStage = StageType.MonsterPart;
                 break;
@@ -445,7 +462,14 @@ public class BattleManager : MonoBehaviour
                 break;
         }
     }
-
+    public static int GetCost()
+    {
+        return _instants._currentCost;
+    }
+    public static void UseCost()
+    {
+        _instants._currentCost-=1;
+    }
     private void RoundStart()
     {
         while (_firstCommandQueue.Count>0)
@@ -469,12 +493,12 @@ public class BattleManager : MonoBehaviour
         while (_playerCastQueue.Count>0)
         {
             var action = _playerCastQueue.Dequeue();
-            action();
             if (CheckPlayerBuff(BuffType.DoubleCast))
             {
                 print("Double");
                 action();
             }
+            action();
         }
     }
 
@@ -509,11 +533,11 @@ public class BattleManager : MonoBehaviour
         while (_monsterCastQueue.Count>0)
         {
             var action = _monsterCastQueue.Dequeue();
-            action();
             if (CheckMonsterBuff(_currentActionMonster,BuffType.DoubleCast))
             {
                 action();
             }
+            action();
         }
     }
 
@@ -544,7 +568,6 @@ public class BattleManager : MonoBehaviour
     public void NextStage()
     {
         _currentStage = StageType.PlayerPartEnd;
-        GameObject.Find("CardManager").GetComponent<CardManager>().actionable = false;
     }
     public void OnStartButtonDown()
     {

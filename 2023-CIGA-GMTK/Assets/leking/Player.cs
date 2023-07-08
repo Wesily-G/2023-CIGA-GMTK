@@ -14,8 +14,12 @@ public class Player : MonoBehaviour,IPlayer
     public float maxHp = 40;
     private float _hp = 40;
     public bool IsDead => Hp <= 0;
+    [NonSerialized] 
     public bool isSleep;
+    [NonSerialized] 
     public int vampireCount;
+    
+    private readonly List<Buff> _buffs = new();
 
     public float Hp
     {
@@ -29,8 +33,21 @@ public class Player : MonoBehaviour,IPlayer
         set => vampireCount = value<=0?0:value;
     }
 
-    private readonly List<Buff> _buffs = new();
+    private float _recordMaxHp;
+    private float _recordHp;
+    private float _recordMagicAmount;
+    public void RecordState()
+    {
+        _recordMaxHp = maxHp;
+        _recordHp = _hp;
+        _recordMagicAmount = SpellsManager.GetMagicAmount();
+    }
 
+    public void RollbackState()
+    {
+        maxHp = _recordMaxHp;
+        _hp = _recordHp;
+    }
     public void Kill()
     {
         
@@ -231,5 +248,10 @@ public class Player : MonoBehaviour,IPlayer
             _buffs.RemoveAt(i);
         }
         leking.UIManager.UpdatePlayerBuffUI(this);
+    }
+
+    public void OnOutBattle()
+    {
+        
     }
 }

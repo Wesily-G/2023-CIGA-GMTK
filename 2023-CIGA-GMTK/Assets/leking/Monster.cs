@@ -58,10 +58,14 @@ public class Monster : MonoBehaviour,IMonster
     }
     public void MonsterAction()
     {
-        if (action != null)
+        Task.Delay(1000).GetAwaiter().OnCompleted(() =>
         {
-            action.Action(this);
-        }
+            if (action != null)
+            {
+                action.Action(this);
+            }
+            actionCompleted = true;
+        });
     }
     public void Kill()
     {

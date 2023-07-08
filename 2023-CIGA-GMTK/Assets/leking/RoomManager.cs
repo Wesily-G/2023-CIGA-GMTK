@@ -38,7 +38,9 @@ public class RoomManager : MonoBehaviour
 
     public static bool isSwitchRoom;
     private RoomType _currentRoomType;
+    private RoomType _recordCurrentRoomType;
 
+    private List<RoomAsset> _recordNextRooms = new ();
     private List<RoomAsset> _nextRooms = new ();
     private RoomAsset _currentRoomAsset;
     
@@ -78,6 +80,10 @@ public class RoomManager : MonoBehaviour
     }
     public void SpawnNextRoom()
     {
+        foreach (var roomAsset in _nextRooms)
+        {
+            _recordNextRooms.Add(roomAsset);
+        }
         _nextRooms.Clear();
         if (_currentStep == 5)
         {
@@ -133,6 +139,8 @@ public class RoomManager : MonoBehaviour
     {
         if(isSwitchRoom) return;
         if (roomIndex > _instants._nextRooms.Count-1) return;
+        GameObject.FindWithTag("Player").GetComponent<Player>().RecordState();
+        _instants._recordCurrentRoomType = _instants._currentRoomType;
         _instants._currentRoomAsset = _instants._nextRooms[roomIndex];
         SpellsManager.AddMagicAmount(5);
         switch (_instants._currentRoomAsset.roomType)
@@ -162,9 +170,11 @@ public class RoomManager : MonoBehaviour
     {
         leking.UIManager.HideTitleUI();
         _currentStep = 0;
-        var room = battleRoomsPool[Random.Range(0, battleRoomsPool.Count)];
+        _currentRoomAsset = battleRoomsPool[Random.Range(0, battleRoomsPool.Count)];
         _currentStep++;
-        ToBattleRoom(room);
+        _currentRoomType = RoomType.BattleRoom;
+        GameObject.FindWithTag("Player").GetComponent<Player>().RecordState();
+        ToBattleRoom(_currentRoomAsset as BattleRoom);
         SpawnNextRoom();
     }
     private Action onSwitched = ()=>{};
@@ -240,6 +250,51 @@ public class RoomManager : MonoBehaviour
         }
         _nextRoomObject = targetRoom;
         StartCoroutine(nameof(RoomSwitchFadeCoroutine));
+    }
+
+    public void RollBack()
+    {
+        RollBackBattalStart();
+    }
+    private static void RollBackBattalStart()
+    {
+        BattleManager.EndBattle();
+        GameObject.FindWithTag("Player").GetComponent<Player>().RollbackState();
+        switch (_instants._currentRoomType)
+        {
+            case RoomType.BattleRoom:
+                _instants.ToBattleRoom(_instants._currentRoomAsset as BattleRoom);
+                break;
+        }
+    }
+    private static void RollBackRoom()
+    {
+        BattleManager.EndBattle();
+        GameObject.FindWithTag("Player").GetComponent<Player>().RollbackState();
+        foreach (var roomAsset in _instants._recordNextRooms)
+        {
+            _instants._nextRooms.Clear();
+            _instants._nextRooms.Add(roomAsset);
+        }
+        leking.UIManager.HideNextRoomButton();
+        GameObject rr;
+        if (_instants._recordCurrentRoomType == RoomType.BossRoom)
+        {
+            rr = Instantiate(_instants.floorReadRoomPrefab,_instants.roomRoot.transform);
+        }
+        else
+        {
+            rr = Instantiate(_instants.readRoomPrefab,_instants.roomRoot.transform);
+            for (int i = 0; i < _instants._nextRooms.Count; i++)
+            {
+                var door = Instantiate(_instants.doorPrefab, rr.transform.Find("Doors").transform);
+                door.transform.position = rr.transform.Find("Doors").transform.position + (i-1)*_instants.doorOffset;
+                door.roomIndex = i;
+                door.type = _instants._nextRooms[i].roomType;
+            }
+        }
+        
+        _instants.RoomSwitchFade(rr);
     }
     private IEnumerator RoomSwitchFadeCoroutine()
     {
