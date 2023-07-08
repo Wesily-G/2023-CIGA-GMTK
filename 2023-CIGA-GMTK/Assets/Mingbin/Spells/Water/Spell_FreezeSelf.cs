@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Water/Freeze")]
-public class Spell_Freeze : Spells
+public class Spell_FreezeSelf : Spells
 {
     public float fragilePercentage = 0.4f;
 
@@ -14,18 +14,16 @@ public class Spell_Freeze : Spells
         {
             BattleManager.AddPlayerCastQueue(() =>
             {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffInvincible(1));
-                BattleManager.AddMonsterBuff(monster, Buff.BuffSleep(1));
-                BattleManager.AddMonsterBuff(monster, Buff.BuffFragile(2, fragilePercentage));
+                BattleManager.AddPlayerBuff(Buff.BuffInvincible(1));
+                BattleManager.AddPlayerBuff(Buff.BuffSleep(1));
             });
         }
         else
         {
             BattleManager.AddMonsterCastQueue(() =>
             {
-                BattleManager.AddPlayerBuff(Buff.BuffInvincible(1));
-                BattleManager.AddPlayerBuff(Buff.BuffSleep(1));
-                BattleManager.AddMonsterBuff(monster, Buff.BuffFragile(2, fragilePercentage));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffInvincible(1));
+                BattleManager.AddMonsterBuff(monster, Buff.BuffSleep(1));
             });
         }
     }
