@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterAction : ScriptableObject
 {
+    public ElementTypes type;
     public virtual void Action(Monster monster)
     {
         

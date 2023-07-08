@@ -100,4 +100,4 @@ MonoBehaviour:
   maxHp: 30
   monsterName: FireNormal
   elementTypes: 0
-  action: {fileID: 0}
+  action: {fileID: 11400000, guid: 27fa263161fbdbd46902cdb7c0abb435, type: 2}

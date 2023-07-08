@@ -22,11 +22,15 @@ public class BattleManager : MonoBehaviour
     public Player player;
     public Transform monsterSpawnStart;
     public Transform monsterSpawnEnd;
+    public Transform avatarPos;
     private readonly List<Monster> _monsters = new();
     private StageType _currentStage;
     private int _roundCount;
-
+    
     private int _selectMonsterIndex;
+
+    private Avatar _currentAvatar;
+    public Avatar avatarPrefab;
     public static event Action buffChange;
     //命令队列
     private readonly Queue<Action> _firstCommandQueue = new();
@@ -104,6 +108,18 @@ public class BattleManager : MonoBehaviour
         {
             _instants._monsters[i].AddMaxUp(value);
         }
+    }
+    //分身
+    public static void CreateAvatar(ElementTypes type, Action onDead)
+    {
+        if (_instants._currentAvatar != null)
+        {
+            _instants._currentAvatar.Kill();
+        }
+        _instants._currentAvatar = Instantiate(_instants.avatarPrefab, _instants.avatarPos.transform);
+        _instants._currentAvatar.SetHp(_instants.player.maxHp * 0.3f);
+        _instants._currentAvatar.type = type;
+        _instants._currentAvatar.onDead = onDead;
     }
     //回复
     public static void HealPlayer(float value)
@@ -196,7 +212,15 @@ public class BattleManager : MonoBehaviour
     public static float AttackPlayer(Monster monster,float damage,ElementTypes type)
     {
         var d = monster.GetAttackMultiplier()*damage;
-        var rd = _instants.player.Attack(d, type);
+        float rd = d;
+        if (_instants._currentAvatar != null)
+        {
+            rd = _instants._currentAvatar.Attack(d, type);
+        }
+        else
+        {
+            rd = _instants.player.Attack(d, type);
+        }
         if (monster.vampireCount > 0)
         {
             monster.Heal(rd);
@@ -351,6 +375,7 @@ public class BattleManager : MonoBehaviour
     private void ResetBattle()
     {
         KillAllMonster();
+        _currentAvatar.Kill();
         _inBattle = true;
         _battleOver = false;
         _currentStage = StageType.RoundStart;
@@ -560,6 +585,21 @@ public class BattleManager : MonoBehaviour
     public void AddParalysisPlayer()
     {
         AddPlayerBuff(Buff.BuffParalysis(3));
+    }
+    public void AddFireAvatar()
+    {
+        CreateAvatar(ElementTypes.Fire, () =>
+        {
+            AttackAllMonster(40,ElementTypes.Fire);
+            AddAllMonsterBuff(Buff.BuffBurn(3));
+        });
+    }
+    public void AddWaterAvatar()
+    {
+        CreateAvatar(ElementTypes.Water, () =>
+        {
+            AddAllMonsterBuff(Buff.BuffFragile(2,0.3f));
+        });
     }
     #endregion
     
