@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e210dc4d1f73f94479be769efdf40d9b, type: 3}
+  m_Name: Boss_3_Room
+  m_EditorClassIdentifier: 
+  roomType: 0
+  roomName: Boss_Lighting
+  describe: 
+  roomPrefab: {fileID: 1218305626183215613, guid: 9f31249b355a24f4c8f4db30b4816d10, type: 3}
+  floor: 3
+  monsters:
+  - {fileID: 6174678211130278593, guid: baf0e240574d36c4aafca63709d0ec1a, type: 3}
