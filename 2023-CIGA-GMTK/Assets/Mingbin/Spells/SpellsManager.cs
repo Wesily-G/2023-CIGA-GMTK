@@ -6,6 +6,11 @@ public class SpellsManager : MonoBehaviour
 {
     private static SpellsManager _instance;
 
+    public static SpellsManager GetInstance()
+    {
+        return _instance;
+    }
+
     public int magicCostLimit = 5; //Limit of Magic Cost
     public int magicCost = 0;
 
@@ -69,16 +74,17 @@ public class SpellsManager : MonoBehaviour
                
                 if (!learnedSpells.Contains(spell))
                 {
+                    spell.OnAdding();
                     //Check if magic cost is sufficient
                     if (magicCost + spell.magicCost > magicCostLimit)
                         return false;
 
                     //Check if memory coast is sufficient
-                    if (currentMemory < spell.memoryCost)
+                    if (currentMemory < spell.finalMemoryCost)
                         return false;
 
                     //Successfully learn spell
-                    currentMemory -= spell.memoryCost;
+                    currentMemory -= spell.finalMemoryCost;
                     magicCost += spell.magicCost;
                     spell.learnNum++;
                     if (spell.learnNum >= fixedSpellNum)
