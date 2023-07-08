@@ -386,6 +386,7 @@
 "Assets/leking/Card/CardManager.cs"
 "Assets/leking/Card/TestCard.cs"
 "Assets/leking/Card/TestCardB.cs"
+"Assets/leking/DialogueManager.cs"
 "Assets/leking/Door.cs"
 "Assets/leking/KGameObject.cs"
 "Assets/leking/Monster.cs"

@@ -114,7 +114,6 @@ namespace GameplayTest.Scripts
             var card = topCollider.GetComponent<Card>();
             if (actionable && card != _currentDragCard)
             {
-                print(card.name);
                 //高亮
                 card.isHighlight = true;
                 _currentShowCard = card;
@@ -231,7 +230,15 @@ namespace GameplayTest.Scripts
             }
         }
 
-        public void ShowCard()
+        public static void ShowCard()
+        {
+            _instants.SetCardToShowPos();
+        }
+        public static void HideCard()
+        {
+            _instants.SetCardToHidePos();
+        }
+        public void SetCardToShowPos()
         {
             var sp = cardStart.position;
             var ep = cardEnd.position;
@@ -242,8 +249,8 @@ namespace GameplayTest.Scripts
             cardEnd.position = ep;
             UpdateCardsPos();
         }
-
-        public void HideCard()
+        
+        public void SetCardToHidePos()
         {
             var sp = cardStart.position;
             var ep = cardEnd.position;

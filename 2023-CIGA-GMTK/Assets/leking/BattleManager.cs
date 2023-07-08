@@ -7,6 +7,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+public enum StageType
+{
+    RoundStart,
+    PlayerPart,
+    PlayerPartEnd,
+    MonsterPart,
+    RoundEnd
+}
 public class BattleManager : MonoBehaviour
 {
     private static BattleManager _instants;
@@ -15,7 +23,7 @@ public class BattleManager : MonoBehaviour
     public Transform monsterSpawnStart;
     public Transform monsterSpawnEnd;
     private readonly List<Monster> _monsters = new();
-    private int _stageNumber;
+    private StageType _currentStage;
     private int _roundCount;
 
     private int _selectMonsterIndex;
@@ -25,12 +33,6 @@ public class BattleManager : MonoBehaviour
     private readonly Queue<Action> _roundCommandQueue = new();
     private readonly Queue<Action> _playerCastQueue = new();
     private readonly Queue<Action> _monsterCastQueue = new();
-
-    public int StageNumber
-    {
-        get => _stageNumber;
-        set => _stageNumber = value % 3;
-    }
 
     private void Awake()
     {
@@ -351,19 +353,20 @@ public class BattleManager : MonoBehaviour
         KillAllMonster();
         _inBattle = true;
         _battleOver = false;
-        StageNumber = 0;
+        _currentStage = StageType.RoundStart;
         _roundCount = 0;
     }
     public static void StartBattle()
     {
         _instants.ResetBattle();
         _instants.SpawnMonster();
+        CardManager.ShowCard();
     }
     public static void EndBattle()
     {
         _instants._inBattle = false;
         _instants.player.CleanTempBuff();
-        print("Battle End!");
+        CardManager.HideCard();
         buffChange?.Invoke();
     }
     private void Update()
@@ -384,39 +387,45 @@ public class BattleManager : MonoBehaviour
             RoomManager.OnBattleCompletion();
         }
         if(_battleOver) return;
-        switch (StageNumber)
+        switch (_currentStage)
         {
-            case 0:
-                ProcessFirst();
-                StageNumber++;
+            case StageType.RoundStart:
+                RoundStart();
+                _currentStage = StageType.PlayerPart;
                 _roundCount++;
                 leking.UIManager.SetRoundNumber(_roundCount);
                 GameObject.Find("CardManager").GetComponent<CardManager>().actionable = true;
                 break;
-            case 1:
-                InRound();
+            case StageType.PlayerPart:
+                PlayerPart();
                 break;
-            case 2:
-                CloseoutPhase();
-                StageNumber++;
+            case StageType.PlayerPartEnd:
+                PlayerPartEnd();
+                _currentStage = StageType.MonsterPart;
+                break;
+            case StageType.MonsterPart:
+                MonsterPart();
+                break;
+            case StageType.RoundEnd:
+                RoundEnd();
+                _currentStage = StageType.RoundStart;
                 break;
         }
     }
 
-    private void ProcessFirst()
+    private void RoundStart()
     {
-        print("ProcessFirst");
         while (_firstCommandQueue.Count>0)
         {
             _firstCommandQueue.Dequeue()();
         }
     }
 
-    private void InRound()
+    private void PlayerPart()
     {
         if (_instants.player.isSleep)
         {
-            StageNumber += 1;
+            _currentStage = StageType.PlayerPartEnd;
             return;
         }
         while (_roundCommandQueue.Count>0)
@@ -436,11 +445,50 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void CloseoutPhase()
+    private void PlayerPartEnd()
     {
-        
-        //处理怪物行为
-        
+        _monsterReadyStack.Clear();
+        for (int i = _monsters.Count -1; i >=0; i--)
+        {
+            _monsterReadyStack.Push(_monsters[i]);
+        }
+    }
+    private void MonsterPart()
+    {
+        if (_monsterReadyStack.Count <= 0 && _monsterActionQueue.Count <= 0 && _monsterCastQueue.Count <= 0)
+        {
+            _currentStage = StageType.RoundEnd;
+            return;
+        }
+        if(_monsterActionQueue.Count<=0 && _monsterCastQueue.Count<=0 && _monsterReadyStack.Count>0)
+        {
+            _currentActionMonster = _monsterReadyStack.Pop();
+            _currentActionMonster.MonsterAction();
+            _monsterActionQueue.Enqueue(_currentActionMonster);
+        }
+        else
+        {
+            if (_monsterActionQueue.Peek().actionCompleted)
+            {
+                _monsterActionQueue.Dequeue().actionCompleted = false;
+            }
+        }
+        while (_monsterCastQueue.Count>0)
+        {
+            var action = _monsterCastQueue.Dequeue();
+            action();
+            if (CheckMonsterBuff(_currentActionMonster,BuffType.DoubleCast))
+            {
+                action();
+            }
+        }
+    }
+
+    private Stack<Monster> _monsterReadyStack = new();
+    private Queue<Monster> _monsterActionQueue = new();
+    private Monster _currentActionMonster;
+    private void RoundEnd()
+    {
         _instants.player.isSleep = false;
         for (int i = _instants._monsters.Count - 1; i >= 0; i--)
         {
@@ -462,7 +510,7 @@ public class BattleManager : MonoBehaviour
     #region DEBUG
     public void NextStage()
     {
-        StageNumber++;
+        _currentStage = StageType.PlayerPartEnd;
         GameObject.Find("CardManager").GetComponent<CardManager>().actionable = false;
     }
     public void OnStartButtonDown()

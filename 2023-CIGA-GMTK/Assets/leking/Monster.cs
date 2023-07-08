@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -16,13 +17,15 @@ public class Monster : MonoBehaviour,IMonster
     public string monsterName = "Monster";
     public ElementTypes elementTypes;
     public MonsterAction action;
-    
+
     private readonly List<Buff> _buffs = new();
     
     [NonSerialized] 
     public bool isSleep;
     [NonSerialized] 
     public int vampireCount;
+    [NonSerialized] 
+    public bool actionCompleted;
 
     public float Hp
     {
@@ -53,9 +56,13 @@ public class Monster : MonoBehaviour,IMonster
         leking.UIManager.AddMonsterBuffBar(this,Vector3.down);
         _hp = maxHp;
     }
-    public void MonsterAction(Monster monster)
+    public void MonsterAction()
     {
-        
+        Task.Delay(1000).GetAwaiter().OnCompleted(() =>
+        {
+            BattleManager.AttackPlayer(this, 1, ElementTypes.Fire);
+            actionCompleted = true;
+        });
     }
     public void Kill()
     {
