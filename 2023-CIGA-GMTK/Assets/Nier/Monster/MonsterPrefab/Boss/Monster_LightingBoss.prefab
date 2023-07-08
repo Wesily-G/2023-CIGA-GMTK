@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4220801633233105438}
   - component: {fileID: 8098398351459079602}
   m_Layer: 0
-  m_Name: Monster_FireN
+  m_Name: Monster_LightingBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,4 +100,4 @@ MonoBehaviour:
   maxHp: 30
   monsterName: FireNormal
   elementTypes: 0
-  action: {fileID: 11400000, guid: 27fa263161fbdbd46902cdb7c0abb435, type: 2}
+  action: {fileID: 11400000, guid: 3395b055b7dfa214d9ba7df3f739fa5a, type: 2}
