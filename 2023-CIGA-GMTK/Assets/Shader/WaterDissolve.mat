@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WaterDissolve
-  m_Shader: {fileID: 4800000, guid: e3f7bd00fb37bc9419b6bd5e1bb20d7b, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0be3d6321a7e2bb4bb702dd56fa3860c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveTex:
-        m_Texture: {fileID: 2800000, guid: 20f10e7f92f441f4291476defd263ef7, type: 3}
+        m_Texture: {fileID: 2800000, guid: d894e918a9bf7f24dbce5492ec368689, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -48,11 +48,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlowMap:
-        m_Texture: {fileID: 2800000, guid: 078dfbf3af4654a49b1af464c4645575, type: 3}
+        m_Texture: {fileID: 2800000, guid: fa2ebca8bb9715c43a9e72573d6778bc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e98a282489ea95344af9f5606a1d53a3, type: 3}
+        m_Texture: {fileID: 2800000, guid: bbaf8ad173ecec249b472b3792ae5536, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

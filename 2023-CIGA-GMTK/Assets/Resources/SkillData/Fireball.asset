@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ddbad2334b619842a4c665fcfd78644, type: 3}
+  m_Script: {fileID: 11500000, guid: 31ba9846b08b21f4da3b477c30a1ad8f, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
   elementType: 0
@@ -17,9 +17,11 @@ MonoBehaviour:
   cost: 1
   memoryCost: 0
   magicCost: 0
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:5\\n\u4F7F\u7528\u540E\u5361\u724C\u4E0D\u4F1A\u6D88\u5931\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
-  prevSpellsOnTree: []
+  spellDescription: "\u4F24\u5BB3:5\n\u56DE\u5408\u7ED3\u675F\u540E\u56DE\u5230\u624B\u724C"
+  preSkills: []
   damage: 5
   fireballVFX: {fileID: 0}

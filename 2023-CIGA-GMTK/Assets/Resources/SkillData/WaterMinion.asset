@@ -9,19 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d985cedb8619842b35e29588b2d2b9, type: 3}
-  m_Name: IceLance
+  m_Script: {fileID: 11500000, guid: 38f8c24cc34fdc944b1ba43a20aa6056, type: 3}
+  m_Name: WaterMinion
   m_EditorClassIdentifier: 
   elementType: 1
-  Name: "\u51B0\u9525"
-  cost: 0
-  memoryCost: 1
-  magicCost: 0
+  Name: "\u6C34\u5206\u8EAB"
+  cost: 4
+  memoryCost: 6
+  magicCost: 2
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:2\n\u5438\u8840\uFF0C\u4F7F\u654C\u4EBA\u83B7\u5F9710%\u8106\u5F31i\uFF0C\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
+  spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u53EC\u5524\u4E00\u4E2A\u9AD8\u5632\u8BBD\u7684\u6C34\u5206\u8EAB\uFF0C\n\u6B7B\u4EA1\u65F6\u5730\u65B9\u5168\u4F53\u83B7\u5F97\u8106\u5F31\uFF0C\u6301\u7EED2\u56DE\u5408"
   preSkills: []
-  damage: 1
-  fragilePercentage: 0.1

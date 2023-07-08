@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f5d34a5eab93a4488047c7e4b4eb2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 65d0423cc4bea994694f6b8d837dd5d7, type: 3}
   m_Name: FireFist
   m_EditorClassIdentifier: 
   elementType: 0
@@ -17,11 +17,11 @@ MonoBehaviour:
   cost: 4
   memoryCost: 5
   magicCost: 2
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:20\n\u4EA7\u751F\u707C\u70E7\u6548\u679C\u4E09\u56DE\u5408\u4E14\u6253\u65AD\u654C\u4EBA\u65BD\u6CD5"
-  prevSpellsOnTree:
-  - decmemoryCost: 2
-    preSkill: {fileID: 11400000, guid: b3c5865fd996b914b8e1b55ebce3fee3, type: 2}
+  spellDescription: "\u4F24\u5BB3:20\n\u9020\u6210\u707C\u70E7\u6548\u679C\u5E76\u6253\u65AD\u654C\u4EBA"
+  preSkills: []
   damage: 20
   burnSustainability: 3

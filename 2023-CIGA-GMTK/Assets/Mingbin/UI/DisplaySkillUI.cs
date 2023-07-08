@@ -13,8 +13,7 @@ public class DisplaySkillUI : MonoBehaviour
     private void Start()
     {
         //获取组件
-        skillImage = GameObject.Find("SkillImage").GetComponent<Image>();
-        skillDes = GameObject.Find("TxSkill").GetComponent<Text>();
+        
         sureBtn = GameObject.Find("BtnSure").GetComponent<Button>();
         closeBtn = GameObject.Find("BtnClose").GetComponent<Button>();
         
@@ -25,14 +24,19 @@ public class DisplaySkillUI : MonoBehaviour
 
     public void DisPlaySkill(string SkillName)
     {
-
+        sureBtn = GameObject.Find("BtnSure").GetComponent<Button>();
+        closeBtn = GameObject.Find("BtnClose").GetComponent<Button>();
+        sureBtn.onClick.AddListener(onsureBtnClick);
+        closeBtn.onClick.AddListener(oncloseBtnClick);
+        
         Spells skill = Resources.Load<Spells>("SkillData/" + SkillName);
         
         if(skill == null) Debug.LogError("寻找不到"+SkillName +"序列化脚本");
-        
-        if (skill.skillSprite != null) skillImage = skill.skillSprite;
-        
-        skillDes.text = skill.Name + "\n魔法量消耗:" + skill.cost +
+        skillImage = GameObject.Find("SkillImage").GetComponent<Image>();
+        skillDes = GameObject.Find("TxSkill").GetComponent<Text>();
+        if (skill.skillSprite != null)skillImage = skill.skillSprite;
+        if(skillDes != null)
+            skillDes.text = skill.Name + "\n魔法量消耗:" + skill.cost +
                         "\n记忆力消耗:" + skill.memoryCost +
                         "\n法术容量占用" + skill.magicCost + 
                         "\n" + skill.spellDescription;
@@ -46,6 +50,7 @@ public class DisplaySkillUI : MonoBehaviour
 
     private void oncloseBtnClick()
     {
+        Debug.Log("关闭");
         Game.uiManager.CloseUI("DisplaySkillUI");
     }
 }

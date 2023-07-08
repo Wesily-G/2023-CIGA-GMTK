@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
         GameObject ui = Find(uiName);
         if (ui != null)
         {
-            ui.SetActive(true);
+            ui.SetActive(false);
         }
     }
 

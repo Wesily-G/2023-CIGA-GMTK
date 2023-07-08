@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FireDisslove
-  m_Shader: {fileID: 4800000, guid: 2e2ce512b7a8f0b4890a0d9e65ed05a5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 149dc28beb6e66845b7108450df436fe, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveTex:
-        m_Texture: {fileID: 2800000, guid: 03855863ad6606d4d99d1a1545572a81, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2fa5ac13b688615459f1079460b03ce1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise:
-        m_Texture: {fileID: 2800000, guid: 03855863ad6606d4d99d1a1545572a81, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2fa5ac13b688615459f1079460b03ce1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

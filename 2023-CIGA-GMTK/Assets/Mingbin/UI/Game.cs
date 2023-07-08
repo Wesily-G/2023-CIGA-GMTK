@@ -21,6 +21,5 @@ public class Game : MonoBehaviour
             Game.uiManager.Init();
         }
 
-        
     }
 }

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RaidenDissolve
-  m_Shader: {fileID: 4800000, guid: 18f863a0cd9ff424aac802808e39eb91, type: 3}
+  m_Shader: {fileID: 4800000, guid: d066adba2836d5045b1d1025aa37b8b3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CardTex:
-        m_Texture: {fileID: 2800000, guid: 765e81a507f3c4d498f2fa2739fb8056, type: 3}
+        m_Texture: {fileID: 2800000, guid: d1896985df25b4749a46b95be52cedf4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,15 +44,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveTex:
-        m_Texture: {fileID: 2800000, guid: f0269aa980a85904d843287cbadb3dbf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 78fc92c801c11d5499cf2317ddfeb284, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EdgeMask:
-        m_Texture: {fileID: 2800000, guid: 5f2ab2afa33a2d640be5ea7c74bb2dd5, type: 3}
+        m_Texture: {fileID: 2800000, guid: d5b53f668c86e5f41acbba8aeeaf19b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EdgeTex:
-        m_Texture: {fileID: 2800000, guid: b0e4cd3d6d2fb6c49b1174e497e0c42e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9f21e22d764572542b2ef0f8e8623c2a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -76,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _T_noise_01:
-        m_Texture: {fileID: 2800000, guid: 9adf500f2459d6448ac6dc60c5258150, type: 3}
+        m_Texture: {fileID: 2800000, guid: d714eec2ed5cf3d4eb556bf6bfd62e20, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:

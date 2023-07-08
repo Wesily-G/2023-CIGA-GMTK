@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a6dc82baf84c534b89e0e4309188714, type: 3}
+  m_Script: {fileID: 11500000, guid: ca374a8d77c4e224481c6931d49992e0, type: 3}
   m_Name: DoubleCast2
   m_EditorClassIdentifier: 
-  elementType: 2
-  Name: "\u53CC\u91CD\u65BD\u6CD51"
-  cost: 3
-  memoryCost: 5
-  magicCost: 1
+  elementType: 0
+  Name: 
+  cost: 1
+  memoryCost: 0
+  magicCost: 0
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u53D1\u52A8\u540E2\u56DE\u5408\u6CD5\u672F\u91CA\u653E\u4E24\u6B21"
-  prevSpellsOnTree: []
+  spellDescription: 
+  preSkills: []
