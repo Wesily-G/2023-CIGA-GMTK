@@ -7,24 +7,23 @@ public class Spell_Siphon : Spells
 {
     public float damage = 5f;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        if (!castedByMonster)
+        base.OnCastByMonster(monster, castedByMonster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AddPlayerVampire();
-                BattleManager.AttackSelectedMonster(damage, elementType);
-            });
-        }
-        else
+            BattleManager.AddMonsterVampire(monster);
+            BattleManager.AttackPlayer(monster, damage, elementType);
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AddMonsterVampire(monster);
-                BattleManager.AttackPlayer(monster, damage, elementType);
-            });
-        }
+            BattleManager.AddPlayerVampire();
+            BattleManager.AttackSelectedMonster(damage, elementType);
+        });
     }
 }

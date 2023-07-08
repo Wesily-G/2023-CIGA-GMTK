@@ -5,9 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/Water/FireMinion")]
 public class Spell_FireMinion : Spells
 {
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public float explosionDamage = 40f;
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        //Place Holder
+        base.OnCastByMonster(monster, castedByMonster);
+        //Summon minion
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.CreateAvatar(elementType, () =>
+        {
+            BattleManager.AttackAllMonster(explosionDamage, elementType);
+            BattleManager.AddAllMonsterBuff(Buff.BuffBurn(2));
+        });
     }
 }

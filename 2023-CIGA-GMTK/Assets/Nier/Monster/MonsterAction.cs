@@ -17,6 +17,6 @@ public class MonsterAction : ScriptableObject
 
     public static void SpellsCast(string name,Monster monster,bool castedByMonster = false){
         Spells spell = SpellsManager.GetSpell(name);
-        spell.OnCast(monster,castedByMonster);
+        spell.OnCastByMonster(monster,castedByMonster);
     }
 }

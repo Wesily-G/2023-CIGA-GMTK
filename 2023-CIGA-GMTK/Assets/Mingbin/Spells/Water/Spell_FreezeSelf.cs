@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells/Water/Freeze")]
+[CreateAssetMenu(menuName = "Spells/Water/FreezeSelf")]
 public class Spell_FreezeSelf : Spells
 {
     public float fragilePercentage = 0.4f;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        if (!castedByMonster)
+        base.OnCastByMonster(monster, castedByMonster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AddPlayerBuff(Buff.BuffInvincible(1));
-                BattleManager.AddPlayerBuff(Buff.BuffSleep(1));
-            });
-        }
-        else
+            BattleManager.AddMonsterBuff(monster, Buff.BuffInvincible(1));
+            BattleManager.AddMonsterBuff(monster, Buff.BuffSleep(1));
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffInvincible(1));
-                BattleManager.AddMonsterBuff(monster, Buff.BuffSleep(1));
-            });
-        }
+            BattleManager.AddPlayerBuff(Buff.BuffInvincible(1));
+            BattleManager.AddPlayerBuff(Buff.BuffSleep(1));
+        });
     }
 }

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Lightning/LightningCannon")]
@@ -9,27 +11,26 @@ public class Spell_LightningCannon : Spells
     public int paralysisConsistance = 1;
     public float criticalPercentage = 0.3f;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
+        base.OnCastByMonster(monster, castedByMonster);
 
-        if (!castedByMonster)
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(paralysisConsistance));
-                BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(0, criticalPercentage));
-                BattleManager.AttackSelectedMonster(damage, elementType);
-            });
-        }
-        else
+            BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
+            BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(0, criticalPercentage));
+            BattleManager.AttackPlayer(monster, damage, elementType);
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
-                BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(0, criticalPercentage));
-                BattleManager.AttackPlayer(monster, damage, elementType);
-            });
-        }
+            BattleManager.AddSelectedMonsterBuff(Buff.BuffParalysis(paralysisConsistance));
+            BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(0, criticalPercentage));
+            BattleManager.AttackSelectedMonster(damage, elementType);
+        });
     }
 }

@@ -1,27 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Lightning/LightningSaber")]
 public class Spell_LightningSaber : Spells
 {
     public int paralysisConsistance = 3;
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        if (!castedByMonster)
+        base.OnCastByMonster(monster, castedByMonster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(paralysisConsistance));
-            });
-        }
-        else
+            BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() => 
-            {
-                BattleManager.AddPlayerBuff(Buff.BuffParalysis(paralysisConsistance));
-            });
-        }
+            BattleManager.AddSelectedMonsterBuff(Buff.BuffParalysis(paralysisConsistance));
+        });
     }
 }

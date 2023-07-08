@@ -190,7 +190,7 @@ public class SpellsManager : MonoBehaviour
             return false;
 
         magicCost -= spell.magicCost;
-        spell.OnCast(monster, usedByMonster);
+        spell.OnCastByMonster(monster, usedByMonster);
         RemoveSpell(spell.name);
         return true;
     }

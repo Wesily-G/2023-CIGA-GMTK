@@ -8,22 +8,21 @@ public class Spell_Judgement : Spells
 {
     public float damage = 99999f;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        if (!castedByMonster)
+        base.OnCastByMonster(monster, castedByMonster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AttackSelectedMonster(damage, elementType);
-            });
-        }
-        else
+            BattleManager.AttackPlayer(monster, damage, elementType);
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AttackPlayer(monster, damage, elementType);
-            });
-        }
+            BattleManager.AttackSelectedMonster(damage, elementType);
+        });
     }
 }

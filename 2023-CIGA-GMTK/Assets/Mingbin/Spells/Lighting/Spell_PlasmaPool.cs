@@ -5,9 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/Water/PlasmaPool")]
 public class Spell_PlasmaPool : Spells
 {
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public float damage;
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
+        base.OnCastByMonster(monster, castedByMonster);
         //Place Holder
+        BattleManager.AttackPlayer(monster, damage, elementType);
+        BattleManager.AddPlayerBuff(Buff.BuffParalysis(2));
+        BattleManager.AddMonsterVampire(monster);
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AttackSelectedMonster(damage, elementType);
+        BattleManager.AddSelectedMonsterBuff(Buff.BuffParalysis(2));
+        BattleManager.AddPlayerVampire();
     }
 }
