@@ -99,5 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 1000
   monsterName: Monster
+  elementTypes: 1
   isSleep: 0
   vampireCount: 0

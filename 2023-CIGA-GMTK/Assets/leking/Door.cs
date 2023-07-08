@@ -29,6 +29,11 @@ public class Door : MonoBehaviour
             case RoomType.EncounterRoom:
                 _spriteRenderer.color = Color.white;
                 break;
+            case RoomType.BossRoom:
+                _spriteRenderer.color = Color.black;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 

@@ -10,7 +10,8 @@ public enum RoomType
     BattleRoom,
     NormalRoom,
     EncounterRoom,
-    TitleRoom
+    TitleRoom,
+    BossRoom,
 }
 
 public class RoomManager : MonoBehaviour
@@ -20,12 +21,14 @@ public class RoomManager : MonoBehaviour
     public List<BattleRoom> battleRoomsPool;
     public List<NormalRoom> normalRoomsPool;
     public List<EncounterRoom> encounterRoomsPool;
+    public List<BossRoom> bossRoomPool;
     private List<Door> _doors = new();
     private bool _readyNextRoom;
     private int _currentFloor;
     private int _currentStep;
     public GameObject roomRoot;
     public GameObject readRoomPrefab;
+    public GameObject floorReadRoomPrefab;
     public Vector3 rollRoomOffset;
     public Vector3 fadeRoomOffset;
     public Vector3 doorOffset;
@@ -33,6 +36,7 @@ public class RoomManager : MonoBehaviour
     public GameObject roomMaskPos;
     public Door doorPrefab;
 
+    public static bool isSwitchRoom;
     private RoomType _currentRoomType;
 
     private List<RoomAsset> _nextRooms = new ();
@@ -53,6 +57,15 @@ public class RoomManager : MonoBehaviour
     {
         ToTitleRoom();
     }
+
+    public static int GetStepNumber()
+    {
+        return _instants._currentStep;
+    }
+    public static int GetFloorNumber()
+    {
+        return _instants._currentFloor;
+    }
     public void ToTitleRoom()
     {
         _currentFloor = 0;
@@ -63,6 +76,11 @@ public class RoomManager : MonoBehaviour
     public void SpawnNextRoom()
     {
         _nextRooms.Clear();
+        if (_currentStep == 5)
+        {
+            _nextRooms.Add(bossRoomPool[_currentFloor]);
+            return;
+        }
         var roomCount = Random.Range(1, 4);
         for (int i = 0; i < roomCount; i++)
         {
@@ -96,29 +114,54 @@ public class RoomManager : MonoBehaviour
         onSwitched = leking.UIManager.ShowNextRoomButton;
         RoomSwitchFade(vr);
     }
+    public void ToBossRoom(BossRoom bossRoom)
+    {
+        leking.UIManager.HideTitleUI();
+        foreach (var monster in bossRoom.monsters)
+        {
+            BattleManager.AddMonster(monster);
+        }
+        var vr= Instantiate(bossRoom.roomPrefab,_instants.roomRoot.transform);
+        onSwitched = BattleManager.StartBattle;
+        RoomSwitchFade(vr);
+    }
     //前往下一个房间
     public static void NextRoom(int roomIndex)
     {
+        if(isSwitchRoom) return;
         if (roomIndex > _instants._nextRooms.Count-1) return;
         _instants._currentRoomAsset = _instants._nextRooms[roomIndex];
         switch (_instants._currentRoomAsset.roomType)
         {
             case RoomType.BattleRoom:
+                _instants._currentRoomType = RoomType.BattleRoom;
                 _instants.ToBattleRoom(_instants._currentRoomAsset as BattleRoom);
                 break;
             case RoomType.EncounterRoom:
+                _instants._currentRoomType = RoomType.EncounterRoom;
                 _instants.ToEncounterRoom(_instants._currentRoomAsset as EncounterRoom);
                 break;
+            case RoomType.BossRoom:
+                _instants._currentRoomType = RoomType.BossRoom;
+                _instants.ToBossRoom(_instants._currentRoomAsset as BossRoom);
+                break;
         }
-
+        _instants._currentStep += 1;
         _instants.SpawnNextRoom();
+    }
+
+    public static void NextFloor()
+    {
+        if(isSwitchRoom) return;
     }
     public void StartGame()
     {
         leking.UIManager.HideTitleUI();
+        _currentStep = 0;
         var room = battleRoomsPool[Random.Range(0, battleRoomsPool.Count)];
-        SpawnNextRoom();
+        _currentStep++;
         ToBattleRoom(room);
+        SpawnNextRoom();
     }
     private Action onSwitched = ()=>{};
     public void InitRoom()
@@ -143,17 +186,31 @@ public class RoomManager : MonoBehaviour
     {
         leking.UIManager.ShowNextRoomButton();
     }
+
+    public static void ReadyNextRoom()
+    {
+        leking.UIManager.ShowNextRoomButton();
+    }
     public static void ToReadyRoom()
     {
         leking.UIManager.HideNextRoomButton();
-        var rr = Instantiate(_instants.readRoomPrefab,_instants.roomRoot.transform);
-        for (int i = 0; i < _instants._nextRooms.Count; i++)
+        GameObject rr;
+        if (_instants._currentRoomType == RoomType.BossRoom)
         {
-            var door = Instantiate(_instants.doorPrefab, rr.transform.Find("Doors").transform);
-            door.transform.position = rr.transform.Find("Doors").transform.position + (i-1)*_instants.doorOffset;
-            door.roomIndex = i;
-            door.type = _instants._nextRooms[i].roomType;
+            rr = Instantiate(_instants.floorReadRoomPrefab,_instants.roomRoot.transform);
         }
+        else
+        {
+            rr = Instantiate(_instants.readRoomPrefab,_instants.roomRoot.transform);
+            for (int i = 0; i < _instants._nextRooms.Count; i++)
+            {
+                var door = Instantiate(_instants.doorPrefab, rr.transform.Find("Doors").transform);
+                door.transform.position = rr.transform.Find("Doors").transform.position + (i-1)*_instants.doorOffset;
+                door.roomIndex = i;
+                door.type = _instants._nextRooms[i].roomType;
+            }
+        }
+        
         _instants.RoomSwitchRoll(rr);
     }
     private GameObject _currentRoomObject;
@@ -182,48 +239,58 @@ public class RoomManager : MonoBehaviour
     }
     private IEnumerator RoomSwitchFadeCoroutine()
     {
-        leking.UIManager.HideCanvas();
-        _nextRoomObject.transform.position += fadeRoomOffset;
-        for (float i = 0; i <= 1; i += 0.01f)
+        if (!isSwitchRoom)
         {
-            roomMask.transform.position =
-                Vector3.Lerp(roomMaskPos.transform.position, roomRoot.transform.position, Mathf.Sqrt(i));
-            yield return new WaitForSeconds(1 / 100f);
-        }
+            isSwitchRoom = true;
+            leking.UIManager.HideCanvas();
+            _nextRoomObject.transform.position += fadeRoomOffset;
+            for (float i = 0; i <= 1; i += 0.01f)
+            {
+                roomMask.transform.position =
+                    Vector3.Lerp(roomMaskPos.transform.position, roomRoot.transform.position, Mathf.Sqrt(i));
+                yield return new WaitForSeconds(1 / 100f);
+            }
 
-        _nextRoomObject.transform.position = roomRoot.transform.position;
-        Destroy(_currentRoomObject);
-        onSwitched();
-        onSwitched = () => { };
-        _currentRoomObject = _nextRoomObject;
-        for (float i = 0; i <= 1; i += 0.01f)
-        {
-            roomMask.transform.position =
-                Vector3.Lerp(roomRoot.transform.position,roomMaskPos.transform.position , Mathf.Pow(i,2));
-            yield return new WaitForSeconds(1 / 100f);
+            _nextRoomObject.transform.position = roomRoot.transform.position;
+            Destroy(_currentRoomObject);
+            onSwitched();
+            onSwitched = () => { };
+            _currentRoomObject = _nextRoomObject;
+            for (float i = 0; i <= 1; i += 0.01f)
+            {
+                roomMask.transform.position =
+                    Vector3.Lerp(roomRoot.transform.position,roomMaskPos.transform.position , Mathf.Pow(i,2));
+                yield return new WaitForSeconds(1 / 100f);
+            }
+            leking.UIManager.ShowCanvas();
+            isSwitchRoom = false;
         }
-        leking.UIManager.ShowCanvas();
     }
     private IEnumerator RoomSwitchRollCoroutine()
     {
-        _nextRoomObject.transform.position -= rollRoomOffset;
-        var position = roomRoot.transform.position;
-        var targetPosNext = position;
-        var targetPosCurr = position + rollRoomOffset;
-        var initNextPos = _nextRoomObject.transform.position;
-        var initCurrPos = _currentRoomObject.transform.position;
-        for (float i = 0; i <= 1; i += 0.01f)
+        if (!isSwitchRoom)
         {
-            _currentRoomObject.transform.position =
-                Vector3.Lerp(initCurrPos, targetPosCurr, i);
-            _nextRoomObject.transform.position =
-                Vector3.Lerp(initNextPos, targetPosNext, i);
-            yield return new WaitForSeconds(1 / 100f);
+            isSwitchRoom = true;
+            _nextRoomObject.transform.position -= rollRoomOffset;
+            var position = roomRoot.transform.position;
+            var targetPosNext = position;
+            var targetPosCurr = position + rollRoomOffset;
+            var initNextPos = _nextRoomObject.transform.position;
+            var initCurrPos = _currentRoomObject.transform.position;
+            for (float i = 0; i <= 1; i += 0.01f)
+            {
+                _currentRoomObject.transform.position =
+                    Vector3.Lerp(initCurrPos, targetPosCurr, i);
+                _nextRoomObject.transform.position =
+                    Vector3.Lerp(initNextPos, targetPosNext, i);
+                yield return new WaitForSeconds(1 / 100f);
+            }
+            print(_currentRoomObject.name);
+            Destroy(_currentRoomObject);
+            _currentRoomObject = _nextRoomObject;
+            onSwitched();
+            onSwitched = () => { };
+            isSwitchRoom = false;
         }
-        print(_currentRoomObject.name);
-        Destroy(_currentRoomObject);
-        _currentRoomObject = _nextRoomObject;
-        onSwitched();
-        onSwitched = () => { };
     }
 }

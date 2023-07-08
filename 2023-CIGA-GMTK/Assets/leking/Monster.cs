@@ -14,17 +14,15 @@ public class Monster : MonoBehaviour,IMonster
     public float maxHp = 1000;
     private float _hp = 1000;
     public string monsterName = "Monster";
+    public ElementTypes elementTypes;
+    public MonsterAction action;
     
     private readonly List<Buff> _buffs = new();
     
+    [NonSerialized] 
     public bool isSleep;
-    
+    [NonSerialized] 
     public int vampireCount;
-
-    private void Update()
-    {
-        
-    }
 
     public float Hp
     {
@@ -55,8 +53,7 @@ public class Monster : MonoBehaviour,IMonster
         leking.UIManager.AddMonsterBuffBar(this,Vector3.down);
         _hp = maxHp;
     }
-
-    public void MonsterAction()
+    public void MonsterAction(Monster monster)
     {
         
     }
@@ -241,5 +238,13 @@ public class Monster : MonoBehaviour,IMonster
         }
 
         return false;
+    }
+    public void CleanTempBuff()
+    {
+        for (int i = _buffs.Count-1; i >= 0; i--)
+        {
+            if (_buffs[i].isGlobal) continue;
+            _buffs.RemoveAt(i);
+        }
     }
 }

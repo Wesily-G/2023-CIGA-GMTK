@@ -28,4 +28,6 @@ public interface IBuff
     //进入下一回合
     public void BuffNext();
     public bool CheckBuff(BuffType type);
+
+    public void CleanTempBuff();
 }

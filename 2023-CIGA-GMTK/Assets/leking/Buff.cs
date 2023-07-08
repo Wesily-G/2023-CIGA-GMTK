@@ -28,6 +28,7 @@ public class Buff
     public int time;
     public int priority;
     public float percentage;
+    public bool isGlobal; 
     public Action onBuffEnd = () => {};
     public Buff(BuffType type, int time, int priority)
     {

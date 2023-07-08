@@ -25,6 +25,8 @@ namespace leking
         public GameObject toReadyRoomButton;
         public Transform buffsTransform;
         public GameObject titleUI;
+        public TextMeshProUGUI stepNumber;
+        public TextMeshProUGUI floorNumber;
 
         private void Awake()
         {
@@ -44,6 +46,12 @@ namespace leking
             {
                 button.onClick.AddListener(RoomManager.ToReadyRoom);
             }
+        }
+
+        private void Update()
+        {
+            stepNumber.text = RoomManager.GetStepNumber().ToString();
+            floorNumber.text = RoomManager.GetFloorNumber().ToString();
         }
 
         public static void HideCanvas()

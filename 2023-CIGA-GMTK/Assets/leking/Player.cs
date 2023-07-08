@@ -221,4 +221,15 @@ public class Player : MonoBehaviour,IPlayer
 
         return false;
     }
+
+    public void CleanTempBuff()
+    {
+        for (int i = _buffs.Count-1; i >= 0; i--)
+        {
+            if (_buffs[i].isGlobal) continue;
+            print(_buffs[i].type);
+            _buffs.RemoveAt(i);
+        }
+        leking.UIManager.UpdatePlayerBuffUI(this);
+    }
 }

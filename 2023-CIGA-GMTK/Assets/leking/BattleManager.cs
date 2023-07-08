@@ -52,17 +52,7 @@ public class BattleManager : MonoBehaviour
 
     private bool _battleOver;
     private bool _inBattle;
-
-    public static void StartBattle()
-    {
-        _instants.SpawnMonster();
-        _instants._inBattle = true;
-    }
-    public static void EndBattle()
-    {
-        _instants.SpawnMonster();
-        _instants._inBattle = false;
-    }
+    
     public static void KillAllMonster()
     {
         if(_instants == null) return;
@@ -71,8 +61,11 @@ public class BattleManager : MonoBehaviour
             monster.Kill();
         }
     }
-    
-    
+
+    public static int GetRoundNumber()
+    {
+        return _instants._roundCount;
+    }
     //添加命令
     public static void AddFirstCommand(Action action)
     {
@@ -352,6 +345,27 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    private void ResetBattle()
+    {
+        KillAllMonster();
+        _inBattle = true;
+        _battleOver = false;
+        StageNumber = 0;
+        _roundCount = 0;
+    }
+    public static void StartBattle()
+    {
+        _instants.ResetBattle();
+        _instants.SpawnMonster();
+    }
+    public static void EndBattle()
+    {
+        _instants._inBattle = false;
+        _instants.player.CleanTempBuff();
+        print("Battle End!");
+        buffChange?.Invoke();
+    }
     private void Update()
     {
         RemoveDeadMonster();
@@ -365,7 +379,7 @@ public class BattleManager : MonoBehaviour
         }
         if (_monsters.Count <= 0)
         {
-            _inBattle = false;
+            EndBattle();
             _battleOver = true;
             RoomManager.OnBattleCompletion();
         }
@@ -424,6 +438,9 @@ public class BattleManager : MonoBehaviour
 
     private void CloseoutPhase()
     {
+        
+        //处理怪物行为
+        
         _instants.player.isSleep = false;
         for (int i = _instants._monsters.Count - 1; i >= 0; i--)
         {
