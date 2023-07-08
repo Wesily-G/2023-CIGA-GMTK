@@ -51,6 +51,7 @@ namespace GameplayTest.Scripts
             }
 
             HideCardHard();
+            //测试用卡
             AddCardFromSpell(SpellsManager.GetSpell("Fireball"));
             AddCardFromSpell(SpellsManager.GetSpell("IceLance"));
             AddCardFromSpell(SpellsManager.GetSpell("ThunderboltJudgement"));

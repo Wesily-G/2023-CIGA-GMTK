@@ -33,6 +33,7 @@ public class Spells : ScriptableObject //Base class of all spells
     public bool isFixed = false; // Fixed spells will return to hand
 
     public Sprite skillSprite;
+    public Sprite cardSprite;
     
     //学习次数
     public int learnNum;
