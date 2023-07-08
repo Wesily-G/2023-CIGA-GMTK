@@ -18,4 +18,4 @@ MonoBehaviour:
   roomPrefab: {fileID: 1218305626183215613, guid: 7e9e76144eac2644db2a6d6a12152574, type: 3}
   floor: 0
   monsters:
-  - {fileID: 6174678211130278593, guid: 2fabc0b4240aec54e851967f9be02b76, type: 3}
+  - {fileID: 6174678211130278593, guid: 77141e3060f1eca41bc9e7e4e4ce5d43, type: 3}
