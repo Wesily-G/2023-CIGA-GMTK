@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d0423cc4bea994694f6b8d837dd5d7, type: 3}
+  m_Name: FireFist
+  m_EditorClassIdentifier: 
+  elementType: 0
+  Name: "\u708E\u62F3"
+  cost: 4
+  memoryCost: 5
+  magicCost: 2
+  finalMemoryCost: 0
+  isFixed: 0
+  skillSprite: {fileID: 0}
+  learnNum: 0
+  spellDescription: "\u4F24\u5BB3:20\n\u9020\u6210\u707C\u70E7\u6548\u679C\u5E76\u6253\u65AD\u654C\u4EBA"
+  preSkills:
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: 5328069fc3306d244864912d7711dfeb, type: 2}
+  damage: 20
+  burnSustainability: 3

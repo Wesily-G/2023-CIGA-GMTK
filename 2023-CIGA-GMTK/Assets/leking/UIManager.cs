@@ -27,6 +27,8 @@ namespace leking
         public GameObject titleUI;
         public TextMeshProUGUI stepNumber;
         public TextMeshProUGUI floorNumber;
+        public TextMeshProUGUI magicAmount;
+        public TextMeshProUGUI cost;
 
         private void Awake()
         {
@@ -52,6 +54,8 @@ namespace leking
         {
             stepNumber.text = RoomManager.GetStepNumber().ToString();
             floorNumber.text = RoomManager.GetFloorNumber().ToString();
+            magicAmount.text = SpellsManager.GetMagicAmount().ToString();
+            cost.text = BattleManager.GetCost().ToString();
         }
 
         public static void HideCanvas()

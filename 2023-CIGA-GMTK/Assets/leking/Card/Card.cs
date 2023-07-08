@@ -7,13 +7,16 @@ namespace GameplayTest.Scripts
     {
         public bool isHighlight;
         public string describe = "This is Test Card";
-        protected static int _testId;
+        private Spells _currentSpell;
         protected Color _initColor;
         private void Start()
         {
-            describe = $"This is Test Card :{_testId}";
-            _testId++;
             _initColor = GetComponent<SpriteRenderer>().color;
+        }
+
+        public void SetCardSpell(Spells spells)
+        {
+            _currentSpell = spells;
         }
 
         protected void Highlight()
@@ -28,10 +31,28 @@ namespace GameplayTest.Scripts
             isHighlight = false;
         }
 
-        //当卡牌被使用时调用
-        public virtual void OnUseCard()
+        public void OnCardUsed()
         {
+            if (_currentSpell.isFixed)
+            {
+                BattleManager.AddFirstCommand(() =>
+                {
+                    CardManager.AddCardFromSpell(_currentSpell);
+                });
+            }
+            _currentSpell.OnCastByPlayer();
             Destroy(gameObject);
+        }
+        //当卡牌被使用时调用
+        public bool UseCard()
+        {
+            var tempMagic = Mathf.Min(BattleManager.GetCost(),SpellsManager.GetMagicAmount());
+            if (_currentSpell.cost <= tempMagic)
+            {
+                OnCardUsed();
+                return true;
+            }
+            return false;
         }
     }
 }
