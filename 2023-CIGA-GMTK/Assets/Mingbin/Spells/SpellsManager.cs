@@ -20,8 +20,8 @@ public class SpellsManager : MonoBehaviour
 
     public int fixedSpellNum = 5;
 
-    public int initMagicAmount;
-    private int _magicAmount;
+    public int initMagicAmount = 80;
+    private int _magicAmount = 80;
 
     private void Awake()
     {
@@ -36,6 +36,12 @@ public class SpellsManager : MonoBehaviour
     {
         return _instance._magicAmount;
     }
+
+    public static void addMagicAmount(int addMagicAmount)
+    {
+        _instance._magicAmount += addMagicAmount;
+    }
+
     public static bool TryUseMagicAmount(int value)
     {
         if (_instance._magicAmount - value <= 0)
