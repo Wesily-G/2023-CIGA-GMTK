@@ -16,6 +16,7 @@ public class SkillTreeUI : MonoBehaviour
         //添加事件
         for (int i = 0; i < skillBtns.transform.childCount; i++)
         {
+            print( skillBtns.transform.GetChild(i).name);
             Button skillBtn = skillBtns.transform.GetChild(i).GetComponent<Button>();
             //skillBtn空引用
             if(skillBtn == null) Debug.LogError("空引用");

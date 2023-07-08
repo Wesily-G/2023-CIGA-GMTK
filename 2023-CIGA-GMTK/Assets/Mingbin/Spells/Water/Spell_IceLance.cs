@@ -25,9 +25,9 @@ public class Spell_IceLance : Spells
 
         BattleManager.AddPlayerCastQueue(() =>
         {
+            BattleManager.AddPlayerVampire();
             BattleManager.AttackSelectedMonster(damage, elementType);
             BattleManager.AddSelectedMonsterBuff(Buff.BuffFragile(1, fragilePercentage));
-            BattleManager.AddPlayerVampire();
         });
     }
 }

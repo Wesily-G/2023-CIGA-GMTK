@@ -13,10 +13,8 @@ public class DisplaySkillUI : MonoBehaviour
     private void Start()
     {
         //获取组件
-        
-        sureBtn = GameObject.Find("BtnSure").GetComponent<Button>();
-        closeBtn = GameObject.Find("BtnClose").GetComponent<Button>();
-        
+        sureBtn = transform.Find("BtnSure").GetComponent<Button>();
+        closeBtn = transform.Find("BtnClose").GetComponent<Button>();
         //添加
         sureBtn.onClick.AddListener(onsureBtnClick);
         closeBtn.onClick.AddListener(oncloseBtnClick);
