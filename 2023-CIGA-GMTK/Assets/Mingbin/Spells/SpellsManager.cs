@@ -13,6 +13,8 @@ public class SpellsManager : MonoBehaviour
     public int currentMemory = 20;
     public int memoryLimit = 20;
 
+    public int fixedSpellNum = 5;
+
     private void Awake()
     {
         if (_instance == null)
@@ -78,6 +80,9 @@ public class SpellsManager : MonoBehaviour
                     //Successfully learn spell
                     currentMemory -= spell.memoryCost;
                     magicCost += spell.magicCost;
+                    spell.learnNum++;
+                    if (spell.learnNum >= fixedSpellNum)
+                        AddFixSpell(spell);
                     learnedSpells.Add(spell);
                     return true;
                 }
