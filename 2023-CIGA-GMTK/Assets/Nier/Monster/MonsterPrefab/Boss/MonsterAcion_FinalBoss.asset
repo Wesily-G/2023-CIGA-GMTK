@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53cbe6af619b2884299fb3a7751e3d97, type: 3}
+  m_Script: {fileID: 11500000, guid: 35fe53aefd584ad40b617b0e3f4cb708, type: 3}
   m_Name: MonsterAcion_FinalBoss
   m_EditorClassIdentifier: 
   type: 0

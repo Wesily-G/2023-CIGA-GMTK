@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpellsManager : MonoBehaviour
 {
-    public static SpellsManager instance;
+    private static SpellsManager _instance;
 
     public int magicCostLimit = 5; //Limit of Magic Cost
     public int magicCost = 0;
@@ -15,8 +15,8 @@ public class SpellsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (_instance == null)
+            _instance = this;
         else
             Destroy(gameObject);
     }
@@ -27,21 +27,10 @@ public class SpellsManager : MonoBehaviour
     //All Spells
     public List<Spells> allSpells = new List<Spells>();
 
-    public Spells getSpell(string name){
-        // switch(name){
-        //     case "":
-        //         break;
-        //     default:
-        //         return null;
-        // }
-
-        foreach (Spells spell in allSpells)
-        {
-            if (spell.name == name) return spell;
-        }
-
-        return null;
-        
+    public static Spells GetSpell(string name)
+    {
+        var spell = Resources.Load<Spells>($"SkillData/{name}");
+        return spell;
     }
 
     //TODO:添加学习法术接口

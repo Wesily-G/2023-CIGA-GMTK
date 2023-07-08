@@ -58,11 +58,10 @@ public class Monster : MonoBehaviour,IMonster
     }
     public void MonsterAction()
     {
-        Task.Delay(1000).GetAwaiter().OnCompleted(() =>
+        if (action != null)
         {
-            BattleManager.AttackPlayer(this, 1, ElementTypes.Fire);
-            actionCompleted = true;
-        });
+            action.Action(this);
+        }
     }
     public void Kill()
     {

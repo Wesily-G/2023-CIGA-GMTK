@@ -375,7 +375,10 @@ public class BattleManager : MonoBehaviour
     private void ResetBattle()
     {
         KillAllMonster();
-        _currentAvatar.Kill();
+        if (_currentAvatar != null)
+        {
+            _currentAvatar.Kill();
+        }
         _inBattle = true;
         _battleOver = false;
         _currentStage = StageType.RoundStart;
@@ -391,6 +394,11 @@ public class BattleManager : MonoBehaviour
     {
         _instants._inBattle = false;
         _instants.player.CleanTempBuff();
+        KillAllMonster();
+        if (_instants._currentAvatar != null)
+        {
+            _instants._currentAvatar.Kill();
+        }
         CardManager.HideCard();
         buffChange?.Invoke();
     }

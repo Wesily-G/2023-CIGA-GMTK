@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0865e4152a09855488d8b8104908e1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 30
+  maxHp: 110
   monsterName: FireNormal
   elementTypes: 0
   action: {fileID: 11400000, guid: 3395b055b7dfa214d9ba7df3f739fa5a, type: 2}

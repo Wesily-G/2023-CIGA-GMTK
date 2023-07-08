@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
+/2023-CIGA-GMTK/[Ll]ibrary/
+/2023-CIGA-GMTK/[Tt]emp/
+/2023-CIGA-GMTK/[Oo]bj/
+/2023-CIGA-GMTK/[Bb]uild/
+/2023-CIGA-GMTK/[Bb]uilds/
+/2023-CIGA-GMTK/[Ll]ogs/
+/2023-CIGA-GMTK/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -70,7 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-*.meta
+# *.meta
 *.json
 *.outputdata
 *.payloads
@@ -92,9 +92,9 @@ crashlytics-build.properties
 *.digestcache
 *.obj
 *.bin
-2023-CIGA-GMTK/Library/ArtifactDB
-2023-CIGA-GMTK/Library/Search/transactions.db
-2023-CIGA-GMTK/Library/SourceAssetDB
-2023-CIGA-GMTK/Logs/AssetImportWorker1.log
-2023-CIGA-GMTK/Logs/shadercompiler-AssetImportWorker0.log
-2023-CIGA-GMTK/Logs/shadercompiler-UnityShaderCompiler.exe0.log
+2023-CIGA-GMTK/Library/ArtifactDB/
+2023-CIGA-GMTK/Library/Search/transactions.db/
+2023-CIGA-GMTK/Library/SourceAssetDB/
+2023-CIGA-GMTK/Logs/AssetImportWorker1.log/
+2023-CIGA-GMTK/Logs/shadercompiler-AssetImportWorker0.log/
+2023-CIGA-GMTK/Logs/shadercompiler-UnityShaderCompiler.exe0.log/

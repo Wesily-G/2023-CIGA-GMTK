@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d081e6d8b2e407c439fd2af054d0b79c, type: 3}
+  m_Script: {fileID: 11500000, guid: a78969fc6e3157847810d82b32599825, type: 3}
   m_Name: MonsterAction_LightingN
   m_EditorClassIdentifier: 
   type: 2
