@@ -27,10 +27,30 @@ public class SpellsManager : MonoBehaviour
     //All Spells
     public List<Spells> allSpells = new List<Spells>();
 
+    public List<Spells> fixedSpells = new List<Spells>();
+
     public static Spells GetSpell(string name)
     {
         var spell = Resources.Load<Spells>($"SkillData/{name}");
         return spell;
+    }
+
+    public void AddFixSpell(Spells spell)
+    {
+        spell.isFixed = true;
+        if (!fixedSpells.Contains(spell))
+            fixedSpells.Add(spell);
+    }
+
+    public void FixedSpellReturnToHand()
+    {
+        foreach (Spells spell in fixedSpells)
+        {
+            if (!learnedSpells.Contains(spell))
+            {
+                learnedSpells.Add(spell);
+            }
+        }
     }
 
     //TODO:添加学习法术接口
