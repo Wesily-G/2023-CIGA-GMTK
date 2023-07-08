@@ -7,6 +7,9 @@ public class SpellsManager : MonoBehaviour
     //学习技能List
     public List<Spells> learnedSpells = new List<Spells>();
 
+    //All Spells
+    public static List<Spells> allSpells = new List<Spells>();
+
     public static Spells getSpell(string name){
         // switch(name){
         //     case "":
@@ -14,6 +17,11 @@ public class SpellsManager : MonoBehaviour
         //     default:
         //         return null;
         // }
+
+        foreach (Spells spell in allSpells)
+        {
+            if (spell.name == name) return spell;
+        }
 
         return null;
         
