@@ -22,6 +22,8 @@ MonoBehaviour:
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u4F24\u5BB3:20\n\u9020\u6210\u707C\u70E7\u6548\u679C\u5E76\u6253\u65AD\u654C\u4EBA"
-  preSkills: []
+  preSkills:
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: 5328069fc3306d244864912d7711dfeb, type: 2}
   damage: 20
   burnSustainability: 3

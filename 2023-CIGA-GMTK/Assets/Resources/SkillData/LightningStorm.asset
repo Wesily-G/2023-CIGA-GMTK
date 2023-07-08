@@ -9,17 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca374a8d77c4e224481c6931d49992e0, type: 3}
-  m_Name: DoubleCast2
+  m_Script: {fileID: 11500000, guid: f88aef34f0917254398ac4e89d81b473, type: 3}
+  m_Name: LightningStorm
   m_EditorClassIdentifier: 
-  elementType: 2
-  Name: "\u53CC\u91CD\u65BD\u6CD5"
-  cost: 3
-  memoryCost: 5
-  magicCost: 1
+  elementType: 0
+  Name: 
+  cost: 1
+  memoryCost: 0
+  magicCost: 0
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u540E2\u56DE\u5408\u6CD5\u672F\u65BD\u6CD52\u6B21"
+  spellDescription: "\u4F24\u5BB3:28\n\u8303\u56F4\u4F24\u5BB3\uFF0C\u4F7F\u654C\u4EBA\u9EBB\u75F91\u56DE\u5408"
   preSkills: []
+  damage: 28

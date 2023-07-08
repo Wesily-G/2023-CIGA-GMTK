@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 7368756408950721936}
   - component: {fileID: 5454651767681855246}
   m_Layer: 5
-  m_Name: Button (Legacy) (12)
+  m_Name: BloodFuneral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3552,7 +3552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -288.74, y: 0}
+  m_AnchoredPosition: {x: -288.74, y: 0.00009072928}
   m_SizeDelta: {x: 603.64, y: 300}
   m_Pivot: {x: 0.000000007450581, y: 1}
 --- !u!1 &6152118060850875232
@@ -4658,7 +4658,7 @@ GameObject:
   - component: {fileID: 1575669561807369511}
   - component: {fileID: 8562231685635704087}
   m_Layer: 5
-  m_Name: Button (Legacy) (6)
+  m_Name: FireMinion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

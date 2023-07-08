@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca374a8d77c4e224481c6931d49992e0, type: 3}
-  m_Name: DoubleCast2
+  m_Script: {fileID: 11500000, guid: f77fb74c5a5acd84f9e35a9bb407d51c, type: 3}
+  m_Name: BloodFuneral
   m_EditorClassIdentifier: 
-  elementType: 2
-  Name: "\u53CC\u91CD\u65BD\u6CD5"
-  cost: 3
-  memoryCost: 5
-  magicCost: 1
+  elementType: 1
+  Name: "\u8840\u4E4B\u846C\u793C"
+  cost: 10
+  memoryCost: 10
+  magicCost: 4
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u540E2\u56DE\u5408\u6CD5\u672F\u65BD\u6CD52\u6B21"
+  spellDescription: "\u4F24\u5BB3:70\n\u51FB\u6740\u76EE\u6807\u540E\u6C38\u4E45\u83B7\u5F97\u517610%\u7684\u8840\u91CF\u5E76\u56DE\u590D\u76EE\u6807\u751F\u547D\u503C\u768450%"
   preSkills: []

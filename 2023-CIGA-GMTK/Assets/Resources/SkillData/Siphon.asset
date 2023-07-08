@@ -9,20 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08b36bedcd85e7c4089f269f2450c228, type: 3}
-  m_Name: FireHealing
+  m_Script: {fileID: 11500000, guid: 8fce5a7862f9d4549952add9d6963ec2, type: 3}
+  m_Name: Siphon
   m_EditorClassIdentifier: 
-  elementType: 0
-  Name: "\u706B\u7597"
+  elementType: 1
+  Name: "\u8679\u5438"
   cost: 2
-  memoryCost: 2
+  memoryCost: 3
   magicCost: 1
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u6062\u590D:5\n\u589E\u52A020%\u4F24\u5BB3\uFF0C\u6301\u7EED1\u56DE\u5408"
-  preSkills:
-  - decmemoryCost: 1
-    prev: {fileID: 11400000, guid: 5328069fc3306d244864912d7711dfeb, type: 2}
-  healAmount: 5
+  spellDescription: "\u4F24\u5BB3:5\n\u5438\u8840\uFF0C\u4F60\u7684\u4E0B\u4E2A\u6CD5\u672F\u4E5F\u83B7\u5F97\u5438\u8840"
+  preSkills: []
+  damage: 5

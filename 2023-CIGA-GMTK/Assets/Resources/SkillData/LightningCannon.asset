@@ -9,17 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca374a8d77c4e224481c6931d49992e0, type: 3}
-  m_Name: DoubleCast2
+  m_Script: {fileID: 11500000, guid: 3e12b3c448e3c074695cb6bed0c52b8e, type: 3}
+  m_Name: LightningCannon
   m_EditorClassIdentifier: 
   elementType: 2
-  Name: "\u53CC\u91CD\u65BD\u6CD5"
+  Name: "\u7535\u78C1\u70AE"
   cost: 3
-  memoryCost: 5
+  memoryCost: 3
   magicCost: 1
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u540E2\u56DE\u5408\u6CD5\u672F\u65BD\u6CD52\u6B21"
+  spellDescription: "\u4F24\u5BB3:5\n30%\u66B4\u51FB\u7387\uFF0C\u9EBB\u75F91\u56DE\u5408"
   preSkills: []
+  damage: 5
+  paralysisConsistance: 1
+  criticalPercentage: 0.3
