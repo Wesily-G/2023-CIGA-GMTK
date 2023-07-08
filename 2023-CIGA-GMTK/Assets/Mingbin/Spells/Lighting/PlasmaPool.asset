@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f365db7b997b3641a7e973692cc9b53, type: 3}
+  m_Script: {fileID: 11500000, guid: c8c7711af38bac142bfe7aa1392014d2, type: 3}
   m_Name: PlasmaPool
   m_EditorClassIdentifier: 
-  elementType: 1
-  Name: 'Plasma Pool '
+  elementType: 2
+  Name: 
   cost: 1
   memoryCost: 0
   magicCost: 0
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills: []
