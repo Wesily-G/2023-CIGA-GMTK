@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class SpellsManager : MonoBehaviour
 {
+    public static SpellsManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     //学习技能List
     public List<Spells> learnedSpells = new List<Spells>();
 
     //All Spells
-    public static List<Spells> allSpells = new List<Spells>();
+    public List<Spells> allSpells = new List<Spells>();
 
-    public static Spells getSpell(string name){
+    public Spells getSpell(string name){
         // switch(name){
         //     case "":
         //         break;
@@ -38,7 +48,7 @@ public class SpellsManager : MonoBehaviour
         //When Round Ends
     }
 
-    public void Initialize()
+    public static void Initialize()
     {
         //Init
     }

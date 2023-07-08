@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d58dcfd761fb844b41b5ed99141268, type: 3}
-  m_Name: LightningStruck
+  m_Script: {fileID: 11500000, guid: 1c04f10f5eb2a2d43bb0c0dfce749662, type: 3}
+  m_Name: SnowStorm
   m_EditorClassIdentifier: 
-  elementType: 2
-  Name: 'Lightning Struck '
+  elementType: 1
+  Name: 'Snow Storm '
   cost: 1
   memoryCost: 0
   magicCost: 0
@@ -21,5 +21,5 @@ MonoBehaviour:
   learnNum: 0
   spellDescription: 
   prevSpellsOnTree: []
-  damage: 0
-  criticalPercentage: 0.5
+  damage: 12
+  fragilePercentage: 0.3

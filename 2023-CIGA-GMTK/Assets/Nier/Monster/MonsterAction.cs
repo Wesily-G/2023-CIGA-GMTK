@@ -16,7 +16,7 @@ public class MonsterAction : ScriptableObject
     }
 
     public static void SpellsCast(string name,Monster monster,bool castedByMonster = false){
-        Spells spell = SpellsManager.getSpell(name);
+        Spells spell = SpellsManager.instance.getSpell(name);
         spell.OnCast(monster,castedByMonster);
     }
 }
