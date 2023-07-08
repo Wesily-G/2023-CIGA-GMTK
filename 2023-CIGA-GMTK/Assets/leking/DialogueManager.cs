@@ -1,18 +1,105 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private struct Dialogue
     {
-        
+        public string speakerName;
+        public string dialogue;
+        public Dialogue(string speakerName, string dialogue)
+        {
+            this.speakerName = speakerName;
+            this.dialogue = dialogue;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject dialogueUI;
+    private static DialogueManager _instants;
+    public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI speakerNameText;
+    public Button continueButton;
+    public Image avatarSprite;
+
+    private Queue<Dialogue> _dialogueQueue = new();
+    private bool onDialogueStart;
+    private void Awake()
     {
-        
+        if (_instants == null)
+        {
+            _instants = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        speakerNameText.text = "";
+        dialogueText.text = "";
+        continueButton.onClick.AddListener(Continue);
+        dialogueUI.SetActive(false);
+    }
+
+    public static void AddDialogue(string speakerName, string dialogue)
+    {
+        if(_instants.onDialogueStart) return;
+        _instants._dialogueQueue.Enqueue(new Dialogue(speakerName,dialogue));
+    }
+
+    public static void StartDialogue()
+    {
+        _instants.onDialogueStart = true;
+        _instants.Continue();
+        _instants.ShowDialogue();
+    }
+
+    public void ShowDialogue()
+    {
+        dialogueUI.SetActive(true);
+    }
+    public void HideDialogue()
+    {
+        dialogueUI.SetActive(false);
+    }
+
+    private Coroutine _coroutine;
+    private void Continue()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+            dialogueText.text = _currentDialogue;
+            return;
+        }
+        if (_dialogueQueue.Count > 0)
+        {
+            var dialogue = _dialogueQueue.Dequeue();
+            speakerNameText.text = dialogue.speakerName;
+            _currentDialogue = dialogue.dialogue;
+            _coroutine = StartCoroutine(nameof(TypewriterEffect));
+        }
+        else
+        {
+            HideDialogue();
+        }
+    }
+
+    private string _currentDialogue;
+    private IEnumerator TypewriterEffect()
+    {
+        for (int i = 0; i < _currentDialogue.Length; i++)
+        {
+            dialogueText.text = _currentDialogue.Substring(0,i);
+            yield return new WaitForSeconds(0.01f);
+        }
+        _coroutine = null;
     }
 }

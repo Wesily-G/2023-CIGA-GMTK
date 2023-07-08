@@ -55,6 +55,9 @@ public class RoomManager : MonoBehaviour
     }
     private void Start()
     {
+        DialogueManager.AddDialogue("???","Where is this?");
+        DialogueManager.AddDialogue("???","I need to know where this is");
+        DialogueManager.StartDialogue();
         ToTitleRoom();
     }
 

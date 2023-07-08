@@ -13,6 +13,8 @@ public class SpellsManager : MonoBehaviour
     public int currentMemory = 20;
     public int memoryLimit = 20;
 
+    public int fixedSpellNum = 5;
+
     private void Awake()
     {
         if (_instance == null)
@@ -27,10 +29,30 @@ public class SpellsManager : MonoBehaviour
     //All Spells
     public List<Spells> allSpells = new List<Spells>();
 
+    public List<Spells> fixedSpells = new List<Spells>();
+
     public static Spells GetSpell(string name)
     {
         var spell = Resources.Load<Spells>($"SkillData/{name}");
         return spell;
+    }
+
+    public void AddFixSpell(Spells spell)
+    {
+        spell.isFixed = true;
+        if (!fixedSpells.Contains(spell))
+            fixedSpells.Add(spell);
+    }
+
+    public void FixedSpellReturnToHand()
+    {
+        foreach (Spells spell in fixedSpells)
+        {
+            if (!learnedSpells.Contains(spell))
+            {
+                learnedSpells.Add(spell);
+            }
+        }
     }
 
     //TODO:添加学习法术接口
@@ -58,6 +80,9 @@ public class SpellsManager : MonoBehaviour
                     //Successfully learn spell
                     currentMemory -= spell.memoryCost;
                     magicCost += spell.magicCost;
+                    spell.learnNum++;
+                    if (spell.learnNum >= fixedSpellNum)
+                        AddFixSpell(spell);
                     learnedSpells.Add(spell);
                     return true;
                 }

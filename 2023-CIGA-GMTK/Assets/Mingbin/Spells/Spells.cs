@@ -25,6 +25,10 @@ public class Spells : ScriptableObject //Base class of all spells
     [Tooltip("Cost of Memory Slot")]
     public int memoryCost = 0;  //记忆力消耗
     public int magicCost = 0; //法术占用量
+
+    [Header("Spell Special Effects")]
+    public bool isFixed = false; // Fixed spells will return to hand
+
     public Image skillSprite;
     
     //学习次数
