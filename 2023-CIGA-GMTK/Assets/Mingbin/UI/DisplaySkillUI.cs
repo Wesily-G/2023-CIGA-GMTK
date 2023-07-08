@@ -3,54 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class DisplaySkillUI : MonoBehaviour
 {
-    private Image skillImage;
-    private Text skillDes;
-    private Button sureBtn;
-    private Button closeBtn;
+    public static Image SkillImage;
+    public static Text skillText;
+    public static Button sureBtn;
+    public Button closeBtn;
+
+
     private void Start()
     {
-        //获取组件
+        SkillImage = transform.Find("SkillImage").GetComponent<Image>();
+        skillText = transform.Find("TxSkill").GetComponent<Text>();
+        sureBtn = transform.Find("BtnSure").GetComponent<Button>();
         
-        sureBtn = GameObject.Find("BtnSure").GetComponent<Button>();
-        closeBtn = GameObject.Find("BtnClose").GetComponent<Button>();
         
-        //添加
-        sureBtn.onClick.AddListener(onsureBtnClick);
-        closeBtn.onClick.AddListener(oncloseBtnClick);
+        closeBtn.onClick.AddListener(() =>
+        {
+            gameObject.SetActive(false);
+        });
     }
 
-    public void DisPlaySkill(string SkillName)
+    public static void DisplaySkill(Spells skill , bool isLearn = false)
     {
-        sureBtn = GameObject.Find("BtnSure").GetComponent<Button>();
-        closeBtn = GameObject.Find("BtnClose").GetComponent<Button>();
-        sureBtn.onClick.AddListener(onsureBtnClick);
-        closeBtn.onClick.AddListener(oncloseBtnClick);
+        sureBtn.onClick.RemoveAllListeners();
         
-        Spells skill = Resources.Load<Spells>("SkillData/" + SkillName);
-        
-        if(skill == null) Debug.LogError("寻找不到"+SkillName +"序列化脚本");
-        skillImage = GameObject.Find("SkillImage").GetComponent<Image>();
-        skillDes = GameObject.Find("TxSkill").GetComponent<Text>();
-        if (skill.skillSprite != null)skillImage = skill.skillSprite;
-        if(skillDes != null)
-            skillDes.text = skill.Name + "\n魔法量消耗:" + skill.cost +
-                        "\n记忆力消耗:" + skill.memoryCost +
-                        "\n法术容量占用" + skill.magicCost + 
-                        "\n" + skill.spellDescription;
-        
-    }
+        if (skill.skillSprite != null) SkillImage.sprite = skill.skillSprite;
+        skillText.text = skill.Name + "\n魔法量消耗" + skill.cost
+                         + "\n记忆力消耗" + skill.memoryCost
+                         + "\n法术容量占用" + skill.magicCost + skill.spellDescription;
 
-    private void onsureBtnClick()
-    {
-        //TODO:调用学习技能函数
+        if (isLearn) sureBtn.gameObject.SetActive(false);
+        else sureBtn.gameObject.SetActive(true);
+        
+        sureBtn.onClick.AddListener(() =>
+        {
+            SpellsManager.GetInstance().LearnSpell(skill.Name);
+        });
     }
-
-    private void oncloseBtnClick()
-    {
-        Debug.Log("关闭");
-        Game.uiManager.CloseUI("DisplaySkillUI");
-    }
+    
 }
