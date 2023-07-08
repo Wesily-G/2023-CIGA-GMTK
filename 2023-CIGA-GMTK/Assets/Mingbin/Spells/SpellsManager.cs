@@ -20,14 +20,8 @@ public class SpellsManager : MonoBehaviour
     //All Spells
     public List<Spells> allSpells = new List<Spells>();
 
-    public Spells getSpell(string name){
-        // switch(name){
-        //     case "":
-        //         break;
-        //     default:
-        //         return null;
-        // }
-
+    public static Spells GetSpell(string name){
+        var spell  = Resources.Load<Spells>("SkillData/")
         foreach (Spells spell in allSpells)
         {
             if (spell.name == name) return spell;

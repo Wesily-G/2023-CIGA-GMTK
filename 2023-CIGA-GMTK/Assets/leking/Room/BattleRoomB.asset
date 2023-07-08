@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779170a007ade324082498d5a0ad80dc, type: 3}
   m_Name: BattleRoomB
   m_EditorClassIdentifier: 
+  roomType: 0
   roomName: BattleRoomB
   describe: 
   roomPrefab: {fileID: 1218305626183215613, guid: 7e9e76144eac2644db2a6d6a12152574, type: 3}
+  floor: 0
   monsters:
-  - {fileID: 6174678211130278593, guid: 8cc73a08d8e085d42a73664b58b28816, type: 3}
+  - {fileID: 6174678211130278593, guid: 2fabc0b4240aec54e851967f9be02b76, type: 3}
+  - {fileID: 6174678211130278593, guid: 2fabc0b4240aec54e851967f9be02b76, type: 3}
