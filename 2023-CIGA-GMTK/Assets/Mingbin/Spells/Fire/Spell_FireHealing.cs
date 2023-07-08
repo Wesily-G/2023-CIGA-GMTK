@@ -7,22 +7,21 @@ public class Spell_FireHealing : Spells
 {
     public float healAmount = 5f;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        if (!castedByMonster)
+        base.OnCastByMonster(monster, castedByMonster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.HealPlayer(healAmount);
-            });
-        }
-        else
+            BattleManager.HealMonster(monster, healAmount);
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.HealMonster(monster, healAmount);
-            });
-        }
+            BattleManager.HealPlayer(healAmount);
+        });
     }
 }

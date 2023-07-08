@@ -7,23 +7,23 @@ using UnityEngine;
 public class Spell_LightningWrath : Spells
 {
     public float criticalPercentage = 0.5f;
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
+        base.OnCastByMonster(monster, castedByMonster);
 
-        if (!castedByMonster)
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(2, 0.5f));
-            });
-        }
-        else
+            BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(2, criticalPercentage));
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffCriticalStrike(2, criticalPercentage));
-            });
-        }
+            BattleManager.AddPlayerBuff(Buff.BuffCriticalStrike(2, 0.5f));
+        });
     }
 }

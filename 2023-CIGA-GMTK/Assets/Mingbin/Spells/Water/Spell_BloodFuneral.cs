@@ -5,9 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/Water/BloodFuneral")]
 public class Spell_BloodFuneral : Spells
 {
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
+        base.OnCastByMonster(monster, castedByMonster);
         //Place Holder
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
     }
 }

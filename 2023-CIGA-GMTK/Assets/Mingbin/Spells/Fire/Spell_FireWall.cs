@@ -7,27 +7,26 @@ public class Spell_FireWall : Spells
 {
     public int burnSustainability = 1;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
+        base.OnCastByMonster(monster, castedByMonster);
 
-        if (!castedByMonster)
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
-                BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
-                BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
-            });
-        }
-        else
+            BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
+            BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
+            BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
-                BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
-                BattleManager.AddMonsterBuff(monster, Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
-            });
-        }
+            BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Fire, burnSustainability, 1));
+            BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Lighting, burnSustainability, 1));
+            BattleManager.AddPlayerBuff(Buff.BuffResistance(ElementTypes.Water, burnSustainability, 0.5f));
+        });
     }
 }

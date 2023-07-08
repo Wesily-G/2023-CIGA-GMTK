@@ -5,22 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/Fire/DoubleCast")]
 public class Spell_DoubleCast : Spells
 {
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        if (!castedByMonster)
+        base.OnCastByMonster(monster, castedByMonster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(2));
-            });
-        }
-        else
-        {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(2));
-            }); 
-        }
+            BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(2));
+        });
     }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
+        {
+            BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(2));
+        });
+    }
+
 }

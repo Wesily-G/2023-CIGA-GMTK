@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Fire/FireFist")]
@@ -8,26 +9,25 @@ public class Spell_FireFist : Spells
     public float damage = 20;
     public int burnSustainability = 3;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
-        if (!castedByMonster)
+        base.OnCastByMonster(monster, castedByMonster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                BattleManager.AttackSelectedMonster(damage, elementType);
-                BattleManager.AddMonsterBuff(monster, Buff.BuffBurn(burnSustainability));
-                BattleManager.InterruptMonster(monster);
-            });
-        }
-        else
+            BattleManager.AttackPlayer(monster, damage, elementType);
+            BattleManager.AddPlayerBuff(Buff.BuffBurn(burnSustainability));
+            BattleManager.InterruptPlayer();
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                BattleManager.AttackPlayer(monster, damage, elementType);
-                BattleManager.AddPlayerBuff(Buff.BuffBurn(burnSustainability));
-                BattleManager.InterruptPlayer();
-            });
-        }
+            BattleManager.AttackSelectedMonster(damage, elementType);
+            BattleManager.AddSelectedMonsterBuff( Buff.BuffBurn(burnSustainability));
+            BattleManager.InterruptSelectedMonster();
+        });
     }
 }

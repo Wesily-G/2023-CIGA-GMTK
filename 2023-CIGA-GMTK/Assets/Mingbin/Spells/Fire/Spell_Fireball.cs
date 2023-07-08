@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Fire/Fireball")]
@@ -8,30 +9,21 @@ public class Spell_Fireball : Spells
     public float damage = 5f;
     public GameObject fireballVFX;
 
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster);
-        if (!castedByMonster) //Casted by player
+        base.OnCastByMonster(monster);
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
-            {
-                InstantiateVFX(monster.transform.position);
-                BattleManager.AttackSelectedMonster(damage, elementType);
-            });
-        }
-        else
-        {
-            BattleManager.AddMonsterCastQueue(() =>
-            {
-                InstantiateVFX(GameObject.FindGameObjectWithTag("Player").transform.position);
-                BattleManager.AttackPlayer(monster, damage, elementType);
-            });
-        }
+            BattleManager.AttackPlayer(monster, damage, elementType);
+        });
     }
 
-    private void InstantiateVFX(Vector2 targetPos)
+    public override void OnCastByPlayer()
     {
-        //Placeholder
-        GameObject vfx = Instantiate(fireballVFX, targetPos, Quaternion.identity);
+        base.OnCastByPlayer();
+        BattleManager.AddPlayerCastQueue(() =>
+        {
+            BattleManager.AttackSelectedMonster(damage, elementType);
+        });
     }
 }

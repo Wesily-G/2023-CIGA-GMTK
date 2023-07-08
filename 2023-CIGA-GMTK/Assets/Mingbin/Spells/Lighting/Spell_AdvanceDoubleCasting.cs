@@ -1,39 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Lightning/AdvancedDoubleCasting")]
 public class Spell_AdvanceDoubleCasting : Spells
 {
-    public override void OnCast(Monster monster, bool castedByMonster = false)
+    public override void OnCastByMonster(Monster monster, bool castedByMonster = false)
     {
-        base.OnCast(monster, castedByMonster);
+        base.OnCastByMonster(monster, castedByMonster);
 
-        if (!castedByMonster)
+        BattleManager.AddMonsterCastQueue(() =>
         {
-            BattleManager.AddPlayerCastQueue(() =>
+            BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(-1));
+
+            int rand = Random.Range(0, 100);
+            if (rand <= 20)
             {
-                BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(-1));
-                int rand = Random.Range(0, 100);
-                if (rand <= 20)
-                {
-                    BattleManager.AddMonsterBuff(monster, Buff.BuffParalysis(1));
-                }
-            });
-        }
-        else
+                BattleManager.AddPlayerBuff(Buff.BuffParalysis(1));
+            }
+        });
+    }
+
+    public override void OnCastByPlayer()
+    {
+        base.OnCastByPlayer();
+
+        BattleManager.AddPlayerCastQueue(() =>
         {
-            BattleManager.AddMonsterCastQueue(() => 
+            BattleManager.AddPlayerBuff(Buff.BuffDoubleCast(-1));
+            int rand = Random.Range(0, 100);
+            if (rand <= 20)
             {
-                BattleManager.AddMonsterBuff(monster, Buff.BuffDoubleCast(-1));
-
-                int rand = Random.Range(0, 100);
-                if (rand <= 20)
-                {
-                    BattleManager.AddPlayerBuff(Buff.BuffParalysis(1));
-                }
-            });
-
-        }
+                BattleManager.AddSelectedMonsterBuff(Buff.BuffParalysis(1));
+            }
+        });
     }
 }
