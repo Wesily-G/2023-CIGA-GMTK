@@ -67,4 +67,10 @@ public class Spells : ScriptableObject //Base class of all spells
     {
         //Call when casting spell to monster in a fight
     }
+
+    public virtual void OnCast()
+    {
+        Monster monster = null;
+        OnCast(monster, false);
+    }
 }
