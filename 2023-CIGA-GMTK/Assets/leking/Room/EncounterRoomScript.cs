@@ -5,7 +5,7 @@ using UnityEngine;
 public class EncounterRoomScript : MonoBehaviour
 {
     public void HealingHalf(){
-        changePlayerHpPercentage((float)0.5);
+        ChangePlayerHpPercentage((float)0.5);
     }
 
     public void CapacityImprove(int count){
@@ -27,9 +27,9 @@ public class EncounterRoomScript : MonoBehaviour
                 learnedLowSpells.Add(spell);
         }
 
-        SpellsManager.GetInstance().AddFixSpell(randomSpells(learnedLowSpells));
+        SpellsManager.GetInstance().AddFixSpell(RandomSpells(learnedLowSpells));
 
-        changePlayerHpPercentage((float)-0.2);
+        ChangePlayerHpPercentage((float)-0.2);
     }
 
     public void FixedMediumSpell(){
@@ -41,19 +41,19 @@ public class EncounterRoomScript : MonoBehaviour
                 learnedMediumSpells.Add(spell);
         }
 
-        SpellsManager.GetInstance().AddFixSpell(randomSpells(learnedMediumSpells));
+        SpellsManager.GetInstance().AddFixSpell(RandomSpells(learnedMediumSpells));
 
-        changePlayerHpPercentage((float)-0.5);
+        ChangePlayerHpPercentage((float)-0.5);
     }
 
-    public void changePlayerHpPercentage(float ratio){
+    public void ChangePlayerHpPercentage(float ratio){
         Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
         float hp = player.GetHp();
         hp += ratio*player.maxHp;
         player.Hp = hp;
     }
 
-    public Spells randomSpells(List<Spells> spells){
+    public Spells RandomSpells(List<Spells> spells){
         int randomNumber = Random.Range(0,spells.Count);
         return spells[randomNumber];
     }
