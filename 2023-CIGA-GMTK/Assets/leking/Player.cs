@@ -11,8 +11,8 @@ public interface IPlayer : IHealth, IBuff
 }
 public class Player : MonoBehaviour,IPlayer
 {
-    public float maxHp = 10;
-    private float _hp = 10;
+    public float maxHp = 40;
+    private float _hp = 40;
     public bool IsDead => Hp <= 0;
     public bool isSleep;
     public int vampireCount;
