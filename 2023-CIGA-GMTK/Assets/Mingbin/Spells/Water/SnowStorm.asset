@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 1
   Name: 'Snow Storm '
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 5
+  memoryCost: 7
+  magicCost: 2
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: 116a6e789618b684caefd10cf32c4207, type: 2}
   damage: 12
   fragilePercentage: 0.3

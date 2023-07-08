@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   Name: Double Cast
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 3
+  memoryCost: 5
+  magicCost: 1
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 5f1d80bdab4e12d46ad7a2fc779dd60e, type: 2}
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 92ddba8adc5b5a74f860cd103ae40f63, type: 2}

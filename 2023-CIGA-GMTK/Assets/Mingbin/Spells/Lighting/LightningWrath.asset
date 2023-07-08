@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 2
   Name: 'Lightning Wrath '
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 3
+  memoryCost: 5
+  magicCost: 1
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 51eb19a067702ad48a8e97eaa47c95e5, type: 2}
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 620ad133c4895354cae813a563cd0266, type: 2}
   criticalPercentage: 0.5

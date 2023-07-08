@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 2
   Name: 'Advance Double Casting '
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 6
+  memoryCost: 8
+  magicCost: 3
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 620ad133c4895354cae813a563cd0266, type: 2}
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: b98368c3a748aad4992aff68471a1e8d, type: 2}

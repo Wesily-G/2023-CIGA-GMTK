@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 2
   Name: 'Lightning Judgement '
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 9
+  memoryCost: 10
+  magicCost: 4
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 82fc7ed3bdb639a479d8a5a4a32940af, type: 2}
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: 4a48fe64636520c4ab2924fffa2ec23c, type: 2}
   damage: 65
   fragilePercentage: 1
   criticalPercentage: 0.5

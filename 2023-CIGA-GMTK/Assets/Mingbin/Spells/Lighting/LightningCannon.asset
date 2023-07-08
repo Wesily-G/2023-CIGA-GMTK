@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 2
   Name: 'Lightning Cannon '
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 3
+  memoryCost: 3
+  magicCost: 1
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
-  damage: 0
+  preSkills:
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 491de923e86dd104a88d50bae72edb1d, type: 2}
+  damage: 5
   paralysisConsistance: 1
   criticalPercentage: 0.3

@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 1
   Name: Siphon
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 2
+  memoryCost: 3
+  magicCost: 1
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 5d17a5b4d088cfb40898095dc6bf0834, type: 2}
   damage: 5

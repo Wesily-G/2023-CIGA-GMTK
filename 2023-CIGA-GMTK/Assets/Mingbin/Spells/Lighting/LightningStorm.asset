@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 2
   Name: Thunder Storm
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 6
+  memoryCost: 7
+  magicCost: 3
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: d41817df48439e1418c88c85173636cd, type: 2}
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 4a48fe64636520c4ab2924fffa2ec23c, type: 2}
   damage: 28

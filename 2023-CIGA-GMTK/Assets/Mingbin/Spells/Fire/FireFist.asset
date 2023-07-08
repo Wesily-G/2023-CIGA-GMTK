@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   Name: Fire Fist
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  cost: 4
+  memoryCost: 5
+  magicCost: 2
+  finalMemoryCost: 0
+  isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
+  preSkills:
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: af75d89ec2e624b46acf1683b5cd659f, type: 2}
   damage: 20
   burnSustainability: 3

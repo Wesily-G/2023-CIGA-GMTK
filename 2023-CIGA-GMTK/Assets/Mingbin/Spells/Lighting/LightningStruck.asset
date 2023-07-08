@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 2
   Name: 'Lightning Struck '
-  cost: 1
-  memoryCost: 0
+  cost: 0
+  memoryCost: 1
   magicCost: 0
+  finalMemoryCost: 0
+  isFixed: 1
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  prevSpellsOnTree: []
-  damage: 0
+  preSkills: []
+  damage: 3
   criticalPercentage: 0.5

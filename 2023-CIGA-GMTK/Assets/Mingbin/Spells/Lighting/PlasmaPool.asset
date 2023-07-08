@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: PlasmaPool
   m_EditorClassIdentifier: 
   elementType: 2
-  Name: 
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  Name: Plasma Pool
+  cost: 5
+  memoryCost: 6
+  magicCost: 2
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
   spellDescription: 
-  preSkills: []
+  preSkills:
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: 51eb19a067702ad48a8e97eaa47c95e5, type: 2}
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 856b63fff05bbad40829807e03de6eb7, type: 2}
