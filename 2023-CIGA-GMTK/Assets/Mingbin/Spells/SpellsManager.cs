@@ -38,6 +38,50 @@ public class SpellsManager : MonoBehaviour
     }
 
     //TODO:添加学习法术接口
+
+    public bool LearnSpell(string name)
+    {
+        Spells targetSpell;
+        foreach (Spells spell in allSpells)
+        {
+            if (spell.name == name)
+            {
+                targetSpell = spell;
+                if (!learnedSpells.Contains(spell))
+                {
+                    learnedSpells.Add(spell);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool SpellLearned(string name)
+    {
+        foreach (Spells spell in learnedSpells)
+        {
+            if (spell.name == name)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void RemoveSpell(string name)
+    {
+        foreach (Spells spell in learnedSpells)
+        {
+            if (spell.name == name)
+            {
+                learnedSpells.Remove(spell);
+                return;
+            }
+        }
+    }
+
     public void OnPlayerRoundStart()
     {
         //When Round Starts 
