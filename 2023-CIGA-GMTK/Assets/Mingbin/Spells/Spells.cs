@@ -63,7 +63,7 @@ public class Spells : ScriptableObject //Base class of all spells
         //Call when removing spell from list
     }
 
-    public virtual void OnCast(Monster monster, bool castedByMonster = false)
+    public virtual void OnCast(Monster monster, bool castedByMonster = true)
     {
         //Call when casting spell to monster in a fight
     }
