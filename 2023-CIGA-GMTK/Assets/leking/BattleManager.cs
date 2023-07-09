@@ -23,6 +23,7 @@ public class BattleManager : MonoBehaviour
     public Transform monsterSpawnStart;
     public Transform monsterSpawnEnd;
     public Transform avatarPos;
+    public LayerMask monsterLayer;
     private readonly List<Monster> _monsters = new();
     private StageType _currentStage;
     private int _roundCount;
@@ -37,9 +38,12 @@ public class BattleManager : MonoBehaviour
     private readonly Queue<Action> _roundCommandQueue = new();
     private readonly Queue<Action> _playerCastQueue = new();
     private readonly Queue<Action> _monsterCastQueue = new();
+    
+    private readonly Queue<GameObject> _monsterSpawnQueue = new();
 
     private int _tempMagic = 2;
     private int _currentCost;
+    private Camera _camera;
     public int TempMagic
     {
         get => _tempMagic;
@@ -58,7 +62,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private readonly Queue<GameObject> _monsterSpawnQueue = new();
+    private void Start()
+    {
+        _camera = Camera.main;
+    }
+
     public static void AddMonster(GameObject monster)
     {
         _instants._monsterSpawnQueue.Enqueue(monster);
@@ -331,10 +339,24 @@ public class BattleManager : MonoBehaviour
     {
         RemoveAllMonsterBuffs(BuffType.DelaySpell);
     }
-    
-    
-    
 
+    private void OnMouseOverMonster(Collider2D topCollider)
+    {
+        var monster = topCollider.GetComponent<Monster>();
+        if(monster == null) return;
+        //高亮
+        monster.isHighlight = true;
+        if (Input.GetMouseButtonDown(0))
+        {
+            _selectMonsterIndex = GetMonsterIndex(monster);
+            monster.isSelected = true;
+        }
+    }
+
+    private int GetMonsterIndex(Monster monster)
+    {
+        return _monsters.FindIndex(m => m == monster);
+    }
     public void SpawnMonster()
     {
         while (_monsterSpawnQueue.Count>0)
@@ -384,6 +406,19 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    private void ResetSelectedMonster()
+    {
+        for (int i = _monsters.Count - 1; i >= 0; i--)
+        {
+            if (i == _selectMonsterIndex)
+            {
+                _monsters[i].isSelected = true;
+                continue;
+            }
+            _monsters[i].isSelected = false;
+        }
+    }
+
     private void ResetBattle()
     {
         KillAllMonster();
@@ -403,6 +438,17 @@ public class BattleManager : MonoBehaviour
         _instants.TempMagic = RoomManager.GetFloorNumber()+1;
         CardManager.ShowCard();
     }
+
+    public void CleanQueue()
+    {
+        _monsterSpawnQueue.Clear();
+        _firstCommandQueue.Clear();
+        _playerCastQueue.Clear();
+        _monsterActionQueue.Clear();
+        _monsterCastQueue.Clear();
+        _roundCommandQueue.Clear();
+        _monsterReadyStack.Clear();
+    }
     public static void EndBattle()
     {
         _instants._inBattle = false;
@@ -412,6 +458,7 @@ public class BattleManager : MonoBehaviour
         {
             _instants._currentAvatar.Kill();
         }
+        _instants.CleanQueue();
         _instants._roundCount = 0;
         CardManager.HideCard();
         buffChange?.Invoke();
@@ -419,6 +466,8 @@ public class BattleManager : MonoBehaviour
     private void Update()
     {
         RemoveDeadMonster();
+        Ulit.GetTopCollider2D(_camera,OnMouseOverMonster,monsterLayer);
+        ResetSelectedMonster();
         if(!_inBattle) return;
         if (player.IsDead)
         {

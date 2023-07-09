@@ -120,6 +120,7 @@ namespace GameplayTest.Scripts
             var card = topCollider.GetComponent<Card>();
             if (actionable && card != _currentDragCard)
             {
+                if(card == null) return;
                 //高亮
                 card.isHighlight = true;
                 _currentShowCard = card;

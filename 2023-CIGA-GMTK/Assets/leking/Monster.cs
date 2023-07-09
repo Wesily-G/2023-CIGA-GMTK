@@ -19,6 +19,8 @@ public class Monster : MonoBehaviour,IMonster
     public MonsterAction action;
 
     private readonly List<Buff> _buffs = new();
+    public bool isHighlight;
+    public bool isSelected;
     
     [NonSerialized] 
     public bool isSleep;
@@ -54,7 +56,49 @@ public class Monster : MonoBehaviour,IMonster
     {
         leking.UIManager.AddMonsterHpBar(this,Vector3.up);
         leking.UIManager.AddMonsterBuffBar(this,Vector3.down);
+        initColor = GetComponent<SpriteRenderer>().color;
         _hp = maxHp;
+    }
+
+    private Color initColor;
+    private void Highlight()
+    {
+        
+        GetComponent<SpriteRenderer>().color = Color.gray;
+        print(name);
+    }
+
+    private void OnMouseOver()
+    {
+        isHighlight = true;
+    }
+
+    private void OnMouseExit()
+    {
+        isHighlight = false;
+    }
+
+    private void Update()
+    {
+        if (isHighlight)
+        {
+            Highlight();
+        }
+        else if(isSelected)
+        {
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = initColor;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        // if (isHighlight) Highlight();
+        // GetComponent<SpriteRenderer>().color = Color.white;
+        // isHighlight = false;
     }
     public void MonsterAction()
     {
