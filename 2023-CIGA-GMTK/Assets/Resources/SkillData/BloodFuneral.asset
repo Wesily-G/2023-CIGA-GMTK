@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: BloodFuneral
   m_EditorClassIdentifier: 
   elementType: 1
-  Name: "\u8840\u4E4B\u846C\u793C"
+  spellName: "\u8840\u4E4B\u846C\u793C"
   cost: 10
   memoryCost: 10
   magicCost: 4
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u4F24\u5BB3:70\n\u51FB\u6740\u76EE\u6807\u540E\u6C38\u4E45\u83B7\u5F97\u517610%\u7684\u8840\u91CF\u5E76\u56DE\u590D\u76EE\u6807\u751F\u547D\u503C\u768450%"
   preSkills: []

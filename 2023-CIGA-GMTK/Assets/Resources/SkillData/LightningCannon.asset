@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: LightningCannon
   m_EditorClassIdentifier: 
   elementType: 2
-  Name: "\u7535\u78C1\u70AE"
+  spellName: "\u7535\u78C1\u70AE"
   cost: 3
   memoryCost: 3
   magicCost: 1
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u4F24\u5BB3:5\n30%\u66B4\u51FB\u7387\uFF0C\u9EBB\u75F91\u56DE\u5408"
   preSkills: []

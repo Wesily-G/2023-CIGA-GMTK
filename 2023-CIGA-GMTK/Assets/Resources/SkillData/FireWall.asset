@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: FireWall
   m_EditorClassIdentifier: 
   elementType: 0
-  Name: "\u706B\u5899"
+  spellName: "\u706B\u5899"
   cost: 3
   memoryCost: 2
   magicCost: 1
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u514D\u75AB\u706B\u548C\u96F7\u6CD5\u672F\uFF0C\u6C34\u6CD5\u672F\u51CF\u534A\uFF0C\u6301\u7EED1\u56DE\u5408"
   preSkills: []

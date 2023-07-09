@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88aef34f0917254398ac4e89d81b473, type: 3}
   m_Name: LightningStorm
   m_EditorClassIdentifier: 
-  elementType: 0
-  Name: 
-  cost: 1
-  memoryCost: 0
-  magicCost: 0
+  elementType: 2
+  spellName: "\u4E07\u8C61\u5929\u96F7"
+  cost: 6
+  memoryCost: 7
+  magicCost: 3
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u4F24\u5BB3:28\n\u8303\u56F4\u4F24\u5BB3\uFF0C\u4F7F\u654C\u4EBA\u9EBB\u75F91\u56DE\u5408"
   preSkills: []

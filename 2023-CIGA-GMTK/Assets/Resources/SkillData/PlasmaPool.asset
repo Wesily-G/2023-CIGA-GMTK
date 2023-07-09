@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c7711af38bac142bfe7aa1392014d2, type: 3}
+  m_Name: PlasmaPool
+  m_EditorClassIdentifier: 
+  elementType: 2
+  spellName: "\u7535\u6D46\u6C60"
+  cost: 5
+  memoryCost: 6
+  magicCost: 2
+  finalMemoryCost: 0
+  isFixed: 0
+  skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
+  learnNum: 0
+  spellDescription: "\u4F24\u5BB3:15\n\u5438\u8840\uFF0C\u8303\u56F4\u4F24\u5BB3\uFF0C\u9EBB\u75F9\u654C\u4EBA\u6301\u7EED2\u56DE\u5408"
+  preSkills:
+  - decmemoryCost: 2
+    prev: {fileID: 11400000, guid: 51eb19a067702ad48a8e97eaa47c95e5, type: 2}
+  - decmemoryCost: 1
+    prev: {fileID: 11400000, guid: 856b63fff05bbad40829807e03de6eb7, type: 2}
+  damage: 5

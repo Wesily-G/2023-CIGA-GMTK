@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: LightningStruck
   m_EditorClassIdentifier: 
   elementType: 2
-  Name: "\u843D\u96F7"
+  spellName: "\u843D\u96F7"
   cost: 0
   memoryCost: 1
   magicCost: 0
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u4F24\u5BB3:3\n50%\u66B4\u51FB\u7387\uFF0C\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
   preSkills: []
