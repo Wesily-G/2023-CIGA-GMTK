@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GameplayTest.Scripts;
+using leking;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -433,6 +434,7 @@ public class BattleManager : MonoBehaviour
     }
     public static void StartBattle()
     {
+        UIManager.ShowNextRoundButton();
         _instants.ResetBattle();
         _instants.SpawnMonster();
         _instants.TempMagic = RoomManager.GetFloorNumber()+1;
@@ -451,6 +453,7 @@ public class BattleManager : MonoBehaviour
     }
     public static void EndBattle()
     {
+        UIManager.HideNextRoundButton();
         _instants._inBattle = false;
         _instants.player.CleanTempBuff();
         KillAllMonster();
@@ -525,6 +528,7 @@ public class BattleManager : MonoBehaviour
         {
             _firstCommandQueue.Dequeue()();
         }
+        UIManager.NextRoundButtonInteractable(true);
     }
 
     private void PlayerPart()
@@ -553,6 +557,7 @@ public class BattleManager : MonoBehaviour
 
     private void PlayerPartEnd()
     {
+        UIManager.NextRoundButtonInteractable(false);
         _monsterReadyStack.Clear();
         for (int i = _monsters.Count -1; i >=0; i--)
         {

@@ -29,6 +29,8 @@ namespace leking
         public TextMeshProUGUI floorNumber;
         public TextMeshProUGUI magicAmount;
         public TextMeshProUGUI cost;
+        public GameObject skillTree;
+        public Button nextRoundButton;
 
         private void Awake()
         {
@@ -48,6 +50,7 @@ namespace leking
             {
                 button.onClick.AddListener(RoomManager.ToReadyRoom);
             }
+            skillTree.SetActive(false);
         }
 
         private void Update()
@@ -163,6 +166,27 @@ namespace leking
         public static void HideNextRoomButton()
         {
             _instants.toReadyRoomButton.SetActive(false);
+        }
+        public static void ShowSkillTree()
+        {
+            _instants.skillTree.SetActive(true);
+        }
+        public static void HideSkillTree()
+        {
+            _instants.skillTree.SetActive(false);
+        }
+
+        public static void ShowNextRoundButton()
+        {
+            _instants.nextRoundButton.gameObject.SetActive(true);
+        }
+        public static void HideNextRoundButton()
+        {
+            _instants.nextRoundButton.gameObject.SetActive(false);
+        }
+        public static void NextRoundButtonInteractable(bool interactable)
+        {
+            _instants.nextRoundButton.interactable = interactable;
         }
     }
 }

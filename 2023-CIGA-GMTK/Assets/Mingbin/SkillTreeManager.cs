@@ -77,7 +77,6 @@ public class SkillTreeManager : MonoBehaviour
             });      
         }
     }
-
     public void RefreshNodes()
     {
         for (int i = 0; i < spellNodes.Length; i++)
@@ -85,7 +84,7 @@ public class SkillTreeManager : MonoBehaviour
             if (SpellsManager.GetInstance().SpellLearned(spellNodes[i].name))
             {
                 //spell is learned
-                spellNodes[i].GetComponent<Image>().color = Color.red;
+                spellNodes[i].GetComponent<Image>().color = Color.gray;
             }
             else
             {
