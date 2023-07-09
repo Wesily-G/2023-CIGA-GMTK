@@ -2919,7 +2919,6 @@ MonoBehaviour:
   normalRoomsPool:
   - {fileID: 11400000, guid: e1dbbb4be753461438c4be41ae0adcf0, type: 2}
   encounterRoomsPool:
-  - {fileID: 11400000, guid: 450d6a07c5b80404faf0ff17fa059f52, type: 2}
   - {fileID: 11400000, guid: d72fbe285f48f664da0fe24d3ab7f7c5, type: 2}
   bossRoomPool:
   - {fileID: 11400000, guid: 478c1575f500b824dbef483fcc24a057, type: 2}
