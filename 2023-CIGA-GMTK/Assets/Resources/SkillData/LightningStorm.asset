@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightningStorm
   m_EditorClassIdentifier: 
   elementType: 2
-  spellName: "\u4E07\u8C61\u5929\u96F7"
+  spellName: Thunder Storm
   cost: 6
   memoryCost: 7
   magicCost: 3
@@ -22,6 +22,6 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: fa7c8ed3809610f44948db9c13dfc28d, type: 3}
   cardSprite: {fileID: 21300000, guid: fa7c8ed3809610f44948db9c13dfc28d, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:28\n\u8303\u56F4\u4F24\u5BB3\uFF0C\u4F7F\u654C\u4EBA\u9EBB\u75F91\u56DE\u5408"
+  spellDescription: Due damage to all enemies, and palsy them for 1 turn
   preSkills: []
   damage: 28

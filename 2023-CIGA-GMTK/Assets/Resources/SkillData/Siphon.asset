@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Siphon
   m_EditorClassIdentifier: 
   elementType: 1
-  spellName: "\u8679\u5438"
+  spellName: Siphon
   cost: 2
   memoryCost: 3
   magicCost: 1
@@ -22,6 +22,6 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 655b806ae13e5fa48a8bb12e85fee447, type: 3}
   cardSprite: {fileID: 21300000, guid: 655b806ae13e5fa48a8bb12e85fee447, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:5\n\u5438\u8840\uFF0C\u4F60\u7684\u4E0B\u4E2A\u6CD5\u672F\u4E5F\u83B7\u5F97\u5438\u8840"
+  spellDescription: Due damage and heal yourself, your next spell will heal yourself
   preSkills: []
   damage: 5

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireHealing
   m_EditorClassIdentifier: 
   elementType: 0
-  spellName: "\u706B\u7597"
+  spellName: Fire Healing
   cost: 2
   memoryCost: 2
   magicCost: 1
@@ -22,7 +22,7 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 429f150afcfb65c4c9ec032411a210fe, type: 3}
   cardSprite: {fileID: 21300000, guid: 429f150afcfb65c4c9ec032411a210fe, type: 3}
   learnNum: 0
-  spellDescription: "\u6062\u590D:5\n\u589E\u52A020%\u4F24\u5BB3\uFF0C\u6301\u7EED1\u56DE\u5408"
+  spellDescription: Heal yourself for 5 hp, and gain 20% more damage for next 1 cast
   preSkills:
   - decmemoryCost: 1
     prev: {fileID: 11400000, guid: 5328069fc3306d244864912d7711dfeb, type: 2}

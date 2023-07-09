@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnowStorm
   m_EditorClassIdentifier: 
   elementType: 1
-  spellName: "\u51B0\u971C\u98CE\u66B4"
+  spellName: Snow Storm
   cost: 5
   memoryCost: 7
   magicCost: 2
@@ -22,7 +22,8 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 2462ba65619c97a4cadf543ed0801fd1, type: 3}
   cardSprite: {fileID: 21300000, guid: 2462ba65619c97a4cadf543ed0801fd1, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:12\n\u8303\u56F4\u4F24\u5BB3\uFF0C\u7ED9\u76EE\u6807\u9020\u621030%\u8106\u5F31\u5E76\u6253\u65AD"
+  spellDescription: Due damage to all the enemies, they will receive 30% more damage
+    and interrupt their chant
   preSkills: []
   damage: 12
   fragilePercentage: 0.3

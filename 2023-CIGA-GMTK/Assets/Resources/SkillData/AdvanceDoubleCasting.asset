@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AdvanceDoubleCasting
   m_EditorClassIdentifier: 
   elementType: 2
-  spellName: "\u9AD8\u901F\u4E8C\u8282\u548F\u5531"
+  spellName: Advance Double Casting
   cost: 6
   memoryCost: 8
   magicCost: 3
@@ -22,5 +22,6 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 023b043fbfdccb84b9868303d7036b42, type: 3}
   cardSprite: {fileID: 21300000, guid: 1316fd526bed1b242bf7a868226b0dee, type: 3}
   learnNum: 0
-  spellDescription: "\u672C\u573A\u6218\u6597\u83B7\u5F97\u6C38\u4E45\u7684\u53CC\u91CD\u65BD\u6CD5\u72B6\u6001\u4E14\u6CD5\u672F\u6D88\u8017-1"
+  spellDescription: Chant for 1 turn, gain double casting and -1 spell cost for this
+    whole fight
   preSkills: []
