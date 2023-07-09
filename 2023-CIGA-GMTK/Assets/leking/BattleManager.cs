@@ -441,16 +441,16 @@ public class BattleManager : MonoBehaviour
         if (!isNotFirstBattle)
         {
             isNotFirstBattle = true;
-            DialogueManager.AddDialogue("穿着长袍的人","你不应该进来。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这里是哪里。");
-            DialogueManager.AddDialogue("穿着长袍的人","快出去。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我是谁？");
+            DialogueManager.AddDialogue("In robes","You should not in here.");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Where is here?");
+            DialogueManager.AddDialogue("In robes","Go out!");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Who am I?");
             DialogueManager.AddDialogue("???","触碰我。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"谁在说话？");
-            DialogueManager.AddDialogue("穿着长袍的人","再不出去别怪我不留情。");
-            DialogueManager.AddDialogue("???","触碰我。触碰我。触碰我。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"是口袋里的卡牌！");
-            DialogueManager.AddDialogue("卡牌","触碰我。战胜他们，你就可以回想起来。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Who is talking?");
+            DialogueManager.AddDialogue("In robes","Don't go out, don't blame me no mercy.");
+            DialogueManager.AddDialogue("???","Touch me! Touch me! Touch me!");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Is your pocket CARDS!");
+            DialogueManager.AddDialogue("Card","Touch me. To overcome them, you can recall.");
             DialogueManager.StartDialogue();
         }
         UIManager.ShowNextRoundButton();

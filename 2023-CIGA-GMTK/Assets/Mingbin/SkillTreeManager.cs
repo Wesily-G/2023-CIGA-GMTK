@@ -39,9 +39,9 @@ public class SkillTreeManager : MonoBehaviour
         //Assign Info to UI
         skillInfoUI.SetActive(true);
 
-        string description = skill.spellName + "\n魔法量消耗" + skill.cost
-        + "\n记忆量消耗" + skill.memoryCost
-        + "\n法术容量占用" + skill.magicCost + skill.spellDescription;
+        string description = skill.spellName + "\nMagic Amount Cost" + skill.cost
+        + "\nMemory Cost" + skill.memoryCost
+        + "\nSpells Capacity Cost" + skill.magicCost + skill.spellDescription;
 
         Sprite sprite;
         if (skill.skillSprite != null)

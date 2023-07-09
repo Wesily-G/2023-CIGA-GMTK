@@ -13,8 +13,8 @@ public class MPItem : MonoBehaviour
         if (!_isNotFirstFalling && !RoomManager.isSwitchRoom)
         {
             _isNotFirstFalling = true;
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"发出着淡蓝色光的星星。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"触摸一下或许会想起什么。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"It sends the light blue color star.");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Touch it maybe thinking of what may.");
             DialogueManager.StartDialogue();
         }
     }
@@ -26,11 +26,11 @@ public class MPItem : MonoBehaviour
             if (!_isNotFirstPick)
             {
                 _isNotFirstPick = true;
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"好强的魔力！");
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这是。。");
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这是，魔力星，构成世界的元素。");
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"使用它就可以。。。");
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我想不起来。");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"The magic of spirit!");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"That is ...");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"This is the magic star, the constituent parts of the world.");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Using it can...");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"But I can't remember.");
                 DialogueManager.StartDialogue();
             }
             SpellsManager.AddMagicAmount(30);
