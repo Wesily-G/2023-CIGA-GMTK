@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: DoubleCast
   m_EditorClassIdentifier: 
   elementType: 0
-  Name: "\u53CC\u91CD\u65BD\u6CD5"
+  spellName: "\u53CC\u91CD\u65BD\u6CD5"
   cost: 3
   memoryCost: 5
   magicCost: 1
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u540E2\u56DE\u5408\u6CD5\u672F\u65BD\u6CD52\u6B21"
   preSkills:

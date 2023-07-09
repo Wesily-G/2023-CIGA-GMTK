@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: FireMinion
   m_EditorClassIdentifier: 
   elementType: 0
-  Name: "\u706B\u7130\u5316\u8EAB"
+  spellName: "\u706B\u7130\u5316\u8EAB"
   cost: 6
   memoryCost: 7
   magicCost: 3
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u53EC\u5524\u9AD8\u5632\u8BBD\u7684\u706B\u7130\u80FD\u91CF\u4F53\uFF0C\n\u6B7B\u4EA1\u65F6\u7206\u70B8\u9020\u621040\u70B9\u7FA4\u4F53\u4F24\u5BB3\u5E76\u707C\u70E7"
   preSkills: []
+  explosionDamage: 40

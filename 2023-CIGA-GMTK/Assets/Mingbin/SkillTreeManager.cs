@@ -41,9 +41,9 @@ public class SkillTreeManager : MonoBehaviour
         //Assign Info to UI
         skillInfoUI.SetActive(true);
 
-        string description = skill.spellName + "\nÄ§·¨Á¿ÏûºÄ" + skill.cost
-        + "\n¼ÇÒäÁ¦ÏûºÄ" + skill.memoryCost
-        + "\n·¨ÊõÈİÁ¿Õ¼ÓÃ" + skill.magicCost + skill.spellDescription;
+        string description = skill.spellName + "\né­”æ³•é‡æ¶ˆè€—" + skill.cost
+        + "\nè®°å¿†é‡æ¶ˆè€—" + skill.memoryCost
+        + "\næ³•æœ¯å®¹é‡å ç”¨" + skill.magicCost + skill.spellDescription;
 
         Sprite sprite;
         if (skill.skillSprite != null)

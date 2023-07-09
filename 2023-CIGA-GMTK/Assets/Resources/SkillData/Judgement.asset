@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Judgement
   m_EditorClassIdentifier: 
   elementType: 0
-  Name: "\u5BA1\u5224"
+  spellName: "\u5BA1\u5224"
   cost: 10
   memoryCost: 10
   magicCost: 4
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u4F24\u5BB3:10000\n\u541F\u55311\u56DE\u5408"
   preSkills: []
