@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightningCannon
   m_EditorClassIdentifier: 
   elementType: 2
-  spellName: "\u7535\u78C1\u70AE"
+  spellName: Lightning Cannon
   cost: 3
   memoryCost: 3
   magicCost: 1
@@ -22,7 +22,8 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 15a67a6cb78bd26409af5106c8b8d5bd, type: 3}
   cardSprite: {fileID: 21300000, guid: 15a67a6cb78bd26409af5106c8b8d5bd, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:5\n30%\u66B4\u51FB\u7387\uFF0C\u9EBB\u75F91\u56DE\u5408"
+  spellDescription: Palsy the target for 1 turn and due damage, have 50% chance of
+    critical hit
   preSkills: []
   damage: 5
   paralysisConsistance: 1

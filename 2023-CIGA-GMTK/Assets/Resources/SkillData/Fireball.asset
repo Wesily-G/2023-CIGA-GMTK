@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   elementType: 0
-  spellName: "\u5C0F\u706B\u7403"
+  spellName: Fire Ball
   cost: 1
   memoryCost: 0
   magicCost: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 7544005f29a54044585367ac8fac96cb, type: 3}
   cardSprite: {fileID: 21300000, guid: 7544005f29a54044585367ac8fac96cb, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:5\n\u56DE\u5408\u7ED3\u675F\u540E\u56DE\u5230\u624B\u724C"
+  spellDescription: Pined, 5 damage, will return to hand the next round after casting
   preSkills: []
   damage: 5
   fireballVFX: {fileID: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlasmaPool
   m_EditorClassIdentifier: 
   elementType: 2
-  spellName: "\u7535\u6D46\u6C60"
+  spellName: Plasma Pool
   cost: 5
   memoryCost: 6
   magicCost: 2
@@ -22,7 +22,7 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 023b043fbfdccb84b9868303d7036b42, type: 3}
   cardSprite: {fileID: 21300000, guid: 023b043fbfdccb84b9868303d7036b42, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:15\n\u5438\u8840\uFF0C\u8303\u56F4\u4F24\u5BB3\uFF0C\u9EBB\u75F9\u654C\u4EBA\u6301\u7EED2\u56DE\u5408"
+  spellDescription: Due damage to all enemies, palsy for 2 turns, and heal yourself
   preSkills:
   - decmemoryCost: 2
     prev: {fileID: 11400000, guid: 51eb19a067702ad48a8e97eaa47c95e5, type: 2}

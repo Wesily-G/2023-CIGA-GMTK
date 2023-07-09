@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireMinion
   m_EditorClassIdentifier: 
   elementType: 0
-  spellName: "\u706B\u7130\u5316\u8EAB"
+  spellName: Fire Minion
   cost: 6
   memoryCost: 7
   magicCost: 3
@@ -22,6 +22,7 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: f4faad78bb85d9b478fd6b9b29cd2c38, type: 3}
   cardSprite: {fileID: 21300000, guid: f4faad78bb85d9b478fd6b9b29cd2c38, type: 3}
   learnNum: 0
-  spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u53EC\u5524\u9AD8\u5632\u8BBD\u7684\u706B\u7130\u80FD\u91CF\u4F53\uFF0C\n\u6B7B\u4EA1\u65F6\u7206\u70B8\u9020\u621040\u70B9\u7FA4\u4F53\u4F24\u5BB3\u5E76\u707C\u70E7"
+  spellDescription: Chant for 1 turn then summon a fire minion, which will due 40
+    damage and burn all the enemies when die
   preSkills: []
   explosionDamage: 40

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Judgement
   m_EditorClassIdentifier: 
   elementType: 0
-  spellName: "\u5BA1\u5224"
+  spellName: Judgement
   cost: 10
   memoryCost: 10
   magicCost: 4
@@ -22,6 +22,6 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 80c33b61f8c476846866eeddf306ca28, type: 3}
   cardSprite: {fileID: 21300000, guid: 80c33b61f8c476846866eeddf306ca28, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:10000\n\u541F\u55311\u56DE\u5408"
+  spellDescription: Chant for 1 turn
   preSkills: []
   damage: 99999

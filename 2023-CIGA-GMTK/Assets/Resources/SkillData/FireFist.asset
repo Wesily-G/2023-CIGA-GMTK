@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireFist
   m_EditorClassIdentifier: 
   elementType: 0
-  spellName: "\u708E\u62F3"
+  spellName: Fire Fist
   cost: 4
   memoryCost: 5
   magicCost: 2
@@ -22,7 +22,7 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 7544005f29a54044585367ac8fac96cb, type: 3}
   cardSprite: {fileID: 21300000, guid: 7544005f29a54044585367ac8fac96cb, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:20\n\u9020\u6210\u707C\u70E7\u6548\u679C\u5E76\u6253\u65AD\u654C\u4EBA"
+  spellDescription: Burn the enemy, and interrupt its chant
   preSkills:
   - decmemoryCost: 2
     prev: {fileID: 11400000, guid: 5328069fc3306d244864912d7711dfeb, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoubleCast
   m_EditorClassIdentifier: 
   elementType: 0
-  spellName: "\u53CC\u91CD\u65BD\u6CD5"
+  spellName: Double Cast
   cost: 3
   memoryCost: 5
   magicCost: 1
@@ -22,7 +22,7 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 3b130277e6ae1854cb92ecd1869f89aa, type: 3}
   cardSprite: {fileID: 21300000, guid: 3b130277e6ae1854cb92ecd1869f89aa, type: 3}
   learnNum: 0
-  spellDescription: "\u541F\u55311\u56DE\u5408\uFF0C\u540E2\u56DE\u5408\u6CD5\u672F\u65BD\u6CD52\u6B21"
+  spellDescription: Chant for 1 turn, then your next spell will cast twice
   preSkills:
   - decmemoryCost: 1
     prev: {fileID: 11400000, guid: 5328069fc3306d244864912d7711dfeb, type: 2}

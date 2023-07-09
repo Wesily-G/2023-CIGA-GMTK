@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BloodFuneral
   m_EditorClassIdentifier: 
   elementType: 1
-  spellName: "\u8840\u4E4B\u846C\u793C"
+  spellName: Blood Fueneral
   cost: 10
   memoryCost: 10
   magicCost: 4
@@ -22,5 +22,6 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 91810d1b69fa9d64d80345d0a8c5ab63, type: 3}
   cardSprite: {fileID: 21300000, guid: 91810d1b69fa9d64d80345d0a8c5ab63, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:70\n\u51FB\u6740\u76EE\u6807\u540E\u6C38\u4E45\u83B7\u5F97\u517610%\u7684\u8840\u91CF\u5E76\u56DE\u590D\u76EE\u6807\u751F\u547D\u503C\u768450%"
+  spellDescription: Due damage, if target is killed by this spell, you gain 10% of
+    its max hp and then heal yourself 50% of its max hp
   preSkills: []

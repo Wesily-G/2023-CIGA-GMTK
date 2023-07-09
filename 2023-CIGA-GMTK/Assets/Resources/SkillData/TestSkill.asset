@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestSkill
   m_EditorClassIdentifier: 
   elementType: 0
-  spellName: "\u6D4B\u8BD5"
+  spellName: Test
   cost: 1
   memoryCost: 0
   magicCost: 0

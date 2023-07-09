@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ThunderboltJudgement
   m_EditorClassIdentifier: 
   elementType: 2
-  spellName: "\u88C1\u51B3"
+  spellName: Lightning Judgement
   cost: 9
   memoryCost: 10
   magicCost: 4
@@ -22,7 +22,9 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: 15a67a6cb78bd26409af5106c8b8d5bd, type: 3}
   cardSprite: {fileID: 21300000, guid: 15a67a6cb78bd26409af5106c8b8d5bd, type: 3}
   learnNum: 0
-  spellDescription: "\u4F24\u5BB3:65\n\u8303\u56F4\u4F24\u5BB3\uFF0C\u5BF9\u654C\u4EBA\u65BD\u52A0100%\u8106\u5F31\n\u83B7\u5F9750%\u66B4\u51FB\u7387\uFF0C50%\u66B4\u51FB\u4F24\u5BB3\uFF0C\u6301\u7EED2\u56DE\u5408"
+  spellDescription: Due damage to all enemies, they receive 100% more damage for
+    the next turn, gain 50% change of critical hit and 50% more critical damage,
+    last for 2 turns
   preSkills: []
   damage: 65
   fragilePercentage: 1

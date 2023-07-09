@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightningStruck
   m_EditorClassIdentifier: 
   elementType: 2
-  spellName: "\u843D\u96F7"
+  spellName: Lightning Struck
   cost: 0
   memoryCost: 1
   magicCost: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   skillSprite: {fileID: 21300000, guid: c709c93b6eaf73f4b9828936c9ad7b06, type: 3}
   cardSprite: {fileID: 21300000, guid: c709c93b6eaf73f4b9828936c9ad7b06, type: 3}
   learnNum: 1
-  spellDescription: "\u4F24\u5BB3:3\n50%\u66B4\u51FB\u7387\uFF0C\u56DE\u5408\u7ED3\u675F\u540E\u8FD4\u56DE\u624B\u724C"
+  spellDescription: Pined, due damage, and have 50% chance of critical hit
   preSkills: []
   damage: 3
   criticalPercentage: 0.5
