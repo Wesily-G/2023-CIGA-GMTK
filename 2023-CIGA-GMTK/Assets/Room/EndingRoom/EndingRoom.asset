@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba08d484c0f1954db4922164e3d4b70, type: 3}
+  m_Name: EndingRoom
+  m_EditorClassIdentifier: 
+  roomType: 1
+  roomName: 
+  describe: 
+  roomPrefab: {fileID: 1218305626183215613, guid: 98e2a3bcd4e2dfb4f942064eca632e69, type: 3}
+  floor: 0

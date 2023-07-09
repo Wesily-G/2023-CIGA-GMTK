@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8098398351459079602}
   - component: {fileID: 3728977753952298041}
   m_Layer: 7
-  m_Name: Monster_LightingE
+  m_Name: Monster_LightingE 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0865e4152a09855488d8b8104908e1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 45
   monsterName: FireNormal
   elementTypes: 0
   action: {fileID: 11400000, guid: 862c60775496d2846887ce4d74166980, type: 2}
