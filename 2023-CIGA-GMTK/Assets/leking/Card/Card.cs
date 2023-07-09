@@ -34,7 +34,7 @@ namespace GameplayTest.Scripts
             nameText.sortingOrder = sortingOrder;
             describeText.sortingOrder = sortingOrder;
             costText.text = _currentSpell.cost.ToString();
-            nameText.text = _currentSpell.Name.ToString();
+            nameText.text = _currentSpell.spellName.ToString();
             describeText.text = _currentSpell.spellDescription.ToString();
         }
 

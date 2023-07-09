@@ -22,7 +22,7 @@ public class SkillTreeNode : MonoBehaviour
             displaySkillUI.gameObject.SetActive(true);
         
         //判断是否学习
-        bool isLearn = SpellsManager.GetInstance().SpellLearned(skill.Name);
+        bool isLearn = SpellsManager.GetInstance().SpellLearned(skill.spellName);
         
         DisplaySkillUI.DisplaySkill(skill,isLearn);
     }

@@ -20,7 +20,7 @@ public struct PreSkill
 public class Spells : ScriptableObject //Base class of all spells
 {
     public ElementTypes elementType = ElementTypes.Fire;
-    public string Name;
+    public string spellName;
     [Tooltip("Cost in Battle")]
     public int cost = 1;  //魔法量消耗
     

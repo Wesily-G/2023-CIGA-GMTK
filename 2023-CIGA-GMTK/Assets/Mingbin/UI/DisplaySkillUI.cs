@@ -29,7 +29,7 @@ public class DisplaySkillUI : MonoBehaviour
         sureBtn.onClick.RemoveAllListeners();
         
         if (skill.skillSprite != null) SkillImage.sprite = skill.skillSprite;
-        skillText.text = skill.Name + "\n魔法量消耗" + skill.cost
+        skillText.text = skill.spellName + "\n魔法量消耗" + skill.cost
                          + "\n记忆力消耗" + skill.memoryCost
                          + "\n法术容量占用" + skill.magicCost + skill.spellDescription;
 
@@ -38,7 +38,7 @@ public class DisplaySkillUI : MonoBehaviour
         
         sureBtn.onClick.AddListener(() =>
         {
-            SpellsManager.GetInstance().LearnSpell(skill.Name);
+            SpellsManager.GetInstance().LearnSpell(skill.spellName);
         });
     }
 }
