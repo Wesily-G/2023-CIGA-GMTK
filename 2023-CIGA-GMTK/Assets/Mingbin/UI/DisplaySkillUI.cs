@@ -41,5 +41,4 @@ public class DisplaySkillUI : MonoBehaviour
             SpellsManager.GetInstance().LearnSpell(skill.Name);
         });
     }
-    
 }
