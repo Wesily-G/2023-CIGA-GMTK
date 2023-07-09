@@ -58,14 +58,9 @@ public class RoomManager : MonoBehaviour
     }
     private void Start()
     {
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这里是。。。城堡？");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我是谁？");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我什么都想不起来了。");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"但我记得我好像来过这。");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"进去看看吧。");
-        DialogueManager.StartDialogue();
         ToTitleRoom();
     }
+    
 
     public static int GetStepNumber()
     {
