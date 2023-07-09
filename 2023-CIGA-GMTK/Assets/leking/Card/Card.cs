@@ -130,6 +130,7 @@ namespace GameplayTest.Scripts
                         break;
                 }
                 AudioManager.PlayClip("Atk");
+                BattleManager.UseCost(_currentSpell.cost);
                 return true;
             }
             return false;

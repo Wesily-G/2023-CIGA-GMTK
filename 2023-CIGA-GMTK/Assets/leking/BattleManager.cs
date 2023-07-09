@@ -545,9 +545,9 @@ public class BattleManager : MonoBehaviour
     {
         return _instants._currentCost;
     }
-    public static void UseCost()
+    public static void UseCost(int value)
     {
-        _instants._currentCost-=1;
+        _instants._currentCost-=value;
     }
     private void RoundStart()
     {
