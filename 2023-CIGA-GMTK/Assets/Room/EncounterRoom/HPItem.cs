@@ -21,17 +21,20 @@ public class HPItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!_isNotFirstPick)
+        if (!RoomManager.isSwitchRoom)
         {
-            _isNotFirstPick = true;
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"感觉身体轻松了起来！");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这是我最爱吃的东西，红心蛋糕！");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我下午茶的时候一定会摆在桌子上的甜点！");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"但是，我为什么会忘记这一切呢？");
-            DialogueManager.StartDialogue();
+            if (!_isNotFirstPick)
+            {
+                _isNotFirstPick = true;
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"感觉身体轻松了起来！");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这是我最爱吃的东西，红心蛋糕！");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我下午茶的时候一定会摆在桌子上的甜点！");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"但是，我为什么会忘记这一切呢？");
+                DialogueManager.StartDialogue();
+            }
+            GameObject.FindWithTag("Player").GetComponent<Player>().Hp += GameObject.FindWithTag("Player").GetComponent<Player>().maxHp * 0.3f;
+            RoomManager.ReadyNextRoom();
+            Destroy(gameObject);
         }
-        GameObject.FindWithTag("Player").GetComponent<Player>().Hp += GameObject.FindWithTag("Player").GetComponent<Player>().maxHp * 0.3f;
-        RoomManager.ReadyNextRoom();
-        Destroy(gameObject);
     }
 }
