@@ -18,10 +18,10 @@ namespace GameplayTest.Scripts
         public Transform showPos;
         public TextMeshProUGUI cardDescribe;
         public Transform divider;
+        public GameObject cardPrefab;
         private readonly List<Card> _currentCardList = new ();
         private bool _activeDelayActions;
         private readonly Queue<Action> _delayActions = new();
-        private Camera _mainCamera;
         public bool actionable;
         private Card _currentShowCard;
         private Card _currentDragCard;
@@ -49,10 +49,14 @@ namespace GameplayTest.Scripts
                 _currentCardList.Add(c.AddComponent<Card>());
                 c.SetActive(false);
             }
-            HideCardHard();
 
+            HideCardHard();
+            //测试用卡
+            AddCardFromSpell(SpellsManager.GetSpell("Fireball"));
+            AddCardFromSpell(SpellsManager.GetSpell("IceLance"));
+            AddCardFromSpell(SpellsManager.GetSpell("ThunderboltJudgement"));
             //获取主摄像头
-            _mainCamera = Camera.main;
+            _camera = Camera.main;
             
             //显示并刷新卡牌坐标
             UpdateCardsPosHard();
@@ -85,8 +89,10 @@ namespace GameplayTest.Scripts
                     _currentDragCard.GetComponent<KGameObject>().ScaleTo(_initScale);
                     if (divider.position.y < _camera.ScreenToWorldPoint(Input.mousePosition).y)
                     {
-                        _currentCardList.Remove(_currentDragCard);
-                        _currentDragCard.OnUseCard();
+                        if (_currentDragCard.UseCard())
+                        {
+                            _currentCardList.Remove(_currentDragCard);
+                        }
                     }
                     UpdateCardsPos();
                     _currentDragCard = null;
@@ -134,7 +140,7 @@ namespace GameplayTest.Scripts
         {
             //获取碰撞信息
             var results = new RaycastHit2D[10];
-            var size = Physics2D.RaycastNonAlloc(_mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,results,cardLayerMask);
+            var size = Physics2D.RaycastNonAlloc(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,results,cardLayerMask);
             var nResults = new RaycastHit2D[size];
             
             //清除空的RaycastHit2D
@@ -289,7 +295,11 @@ namespace GameplayTest.Scripts
 
         public static void AddCardFromSpell(Spells spell)
         {
-            
+            var card = KGameObject.Instantiate(_instants.cardPrefab).AddComponent<Card>();
+            card.SetCardSpell(spell);
+            card.describe = spell.spellDescription;
+            _instants._currentCardList.Add(card);
+            _instants.UpdateCardsPos();
         }
         public static void RemoveAllCard()
         {

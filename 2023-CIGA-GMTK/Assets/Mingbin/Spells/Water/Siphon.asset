@@ -21,7 +21,7 @@ MonoBehaviour:
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: 
+  spellDescription: "\u9020\u62105\u4F24\u5BB3\uFF0C\u5438\u8840\uFF0C\u5E76\u4F7F\u4E0B\u4E00\u4E2A\u6CD5\u672F\u83B7\u5F97\u5438\u8840"
   preSkills:
   - decmemoryCost: 1
     prev: {fileID: 11400000, guid: 5d17a5b4d088cfb40898095dc6bf0834, type: 2}

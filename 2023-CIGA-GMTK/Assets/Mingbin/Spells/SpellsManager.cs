@@ -56,6 +56,10 @@ public class SpellsManager : MonoBehaviour
     {
         _instance._magicAmount += value;
     }
+    public static void SetMagicAmount(int value)
+    {
+        _instance._magicAmount = value;
+    }
 
     //学习技能List
     public List<Spells> learnedSpells = new List<Spells>();

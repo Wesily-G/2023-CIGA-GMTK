@@ -21,7 +21,7 @@ MonoBehaviour:
   isFixed: 1
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: 
+  spellDescription: "\u56FA\u5B9A\uFF0C\u751F\u6210\u706B\u7403\u653B\u51FB\u654C\u4EBA\uFF0C\u9020\u62105\u70B9\u4F24\u5BB3"
   preSkills: []
   damage: 5
   fireballVFX: {fileID: 0}

@@ -21,7 +21,7 @@ MonoBehaviour:
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: 
+  spellDescription: "\u5BF9\u654C\u65B9\u9020\u621065\u7FA4\u4F53\u4F24\u5BB3\uFF0C\u7136\u540E\u9644\u7740100%\u8106\u5F31\u6548\u679C\uFF0C\u81EA\u8EAB\u83B7\u5F9750%\u66B4\u51FB\u7387\uFF0C50%\u66B4\u51FB\u4F24\u5BB3\uFF0C\u6301\u7EED2\u56DE\u5408"
   preSkills:
   - decmemoryCost: 1
     prev: {fileID: 11400000, guid: 82fc7ed3bdb639a479d8a5a4a32940af, type: 2}

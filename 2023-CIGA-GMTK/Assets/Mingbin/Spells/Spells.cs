@@ -32,7 +32,8 @@ public class Spells : ScriptableObject //Base class of all spells
     [Header("Spell Special Effects")]
     public bool isFixed = false; // Fixed spells will return to hand
 
-    public Image skillSprite;
+    public Sprite skillSprite;
+    public Sprite cardSprite;
     
     //学习次数
     public int learnNum;

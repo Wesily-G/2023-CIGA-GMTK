@@ -21,7 +21,7 @@ MonoBehaviour:
   isFixed: 0
   skillSprite: {fileID: 0}
   learnNum: 0
-  spellDescription: 
+  spellDescription: "\u56FA\u5B9A\uFF0C\u9020\u62102\u4F24\u5BB3\uFF0C\u5438\u8840\u5E76\u8D4B\u4E88\u76EE\u680710%\u7684\u8106\u5F31\u6548\u679C"
   preSkills: []
   damage: 2
   fragilePercentage: 0.1
