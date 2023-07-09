@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomIndex: 0
-  battleRoomSprite: {fileID: 0}
+  battleRoomSprite: {fileID: 21300000, guid: 508956de90f145f44b283ed70a908894, type: 3}
   encounterRoomSprite: {fileID: 21300000, guid: a26fc8d06602bf64688a02eea20d0c95, type: 3}
   bossRoomSprite: {fileID: 0}
   type: 0
