@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: PlasmaPool
   m_EditorClassIdentifier: 
   elementType: 2
-  Name: Plasma Pool
+  Name: "\u7535\u6D46\u6C60"
   cost: 5
   memoryCost: 6
   magicCost: 2
   finalMemoryCost: 0
   isFixed: 0
   skillSprite: {fileID: 0}
+  cardSprite: {fileID: 0}
   learnNum: 0
   spellDescription: "\u5BF9\u76EE\u6807\u9020\u62105\u4F24\u5BB3\uFF0C\u5E76\u9EBB\u75F91\u56DE\u5408\uFF0C\u670930%\u51E0\u7387\u9020\u6210\u66B4\u51FB"
   preSkills:
