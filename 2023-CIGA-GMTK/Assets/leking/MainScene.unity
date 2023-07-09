@@ -8958,7 +8958,10 @@ MonoBehaviour:
   memoryLimit: 20
   fixedSpellNum: 5
   initMagicAmount: 80
-  learnedSpells: []
+  learnedSpells:
+  - {fileID: 11400000, guid: 5cf79a802f948f648a6511b54e7fac98, type: 2}
+  - {fileID: 11400000, guid: 33d783fdc3371ff489ad7b9512c43d0f, type: 2}
+  - {fileID: 11400000, guid: 96351480596e1ce44be431c573e28b36, type: 2}
   allSpells:
   - {fileID: 11400000, guid: 2864118775718d24aa13237cbc9ab063, type: 2}
   - {fileID: 11400000, guid: cfc4bf4abc02e3845a3ef2bddcf97425, type: 2}
@@ -8972,7 +8975,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0efe3585612a50949aec7f5b67099254, type: 2}
   - {fileID: 11400000, guid: 9f798a0d300bd624daf9fda8a6a58199, type: 2}
   - {fileID: 11400000, guid: bb9cda8ba7966a04190e67419d55d087, type: 2}
-  - {fileID: 11400000, guid: 96351480596e1ce44be431c573e28b36, type: 2}
   - {fileID: 11400000, guid: 22fa1ff1a79ad7a449c795be59080031, type: 2}
   - {fileID: 11400000, guid: 438d44ec541e2ab4b8ad088daa1efe08, type: 2}
   - {fileID: 11400000, guid: 053e935b77513094a913168da7d850e8, type: 2}

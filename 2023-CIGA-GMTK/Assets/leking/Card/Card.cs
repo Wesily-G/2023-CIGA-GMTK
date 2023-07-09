@@ -1,6 +1,8 @@
 using System;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameplayTest.Scripts
 {
@@ -9,27 +11,32 @@ namespace GameplayTest.Scripts
         public bool isHighlight;
         public string describe = "This is Test Card";
         private Spells _currentSpell;
-        protected SpriteRenderer _spriteRenderer;
+        public SpriteRenderer spriteRenderer;
         public TextMeshPro costText;
         public TextMeshPro nameText;
         public TextMeshPro describeText;
+        public Animator animator;
+        public Material fire;
+        public Material water;
+        public Material lighting;
 
         private void Start()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            costText = transform.Find("Cost").GetComponent<TextMeshPro>();
-            nameText = transform.Find("Name").GetComponent<TextMeshPro>();
-            describeText = transform.Find("Describe").GetComponent<TextMeshPro>();
+            
         }
 
         public void SetCardSpell(Spells spells)
         {
             _currentSpell = spells;
-            _spriteRenderer ??= GetComponent<SpriteRenderer>();
+            spriteRenderer ??= GetComponent<SpriteRenderer>();
             costText ??= transform.Find("Cost").GetComponent<TextMeshPro>();
             nameText ??= transform.Find("Name").GetComponent<TextMeshPro>();
             describeText ??= transform.Find("Describe").GetComponent<TextMeshPro>();
-            var sortingOrder = _spriteRenderer.sortingOrder+1;
+            if (_currentSpell.cardSprite != null)
+            {
+                spriteRenderer.sprite = _currentSpell.cardSprite;
+            }
+            var sortingOrder = spriteRenderer.sortingOrder+1;
             costText.sortingOrder = sortingOrder;
             nameText.sortingOrder = sortingOrder;
             describeText.sortingOrder = sortingOrder;
@@ -40,20 +47,34 @@ namespace GameplayTest.Scripts
 
         private void Update()
         {
-            var sortingOrder = _spriteRenderer.sortingOrder+1;
+            var sortingOrder = spriteRenderer.sortingOrder+1;
             costText.sortingOrder = sortingOrder;
             nameText.sortingOrder = sortingOrder;
             describeText.sortingOrder = sortingOrder;
         }
-
         protected void Highlight()
         {
             GetComponent<SpriteRenderer>().color = Color.gray;
         }
 
+        private bool isMouseOver;
+        private void OnMouseEnter()
+        {
+            isMouseOver = true;
+        }
+
+        private void OnMouseExit()
+        {
+            isMouseOver = false;
+        }
+
         private void LateUpdate()
         {
-            if (isHighlight) Highlight();
+            if (isHighlight && isMouseOver) Highlight();
+            if (!isMouseOver && !isHighlight)
+            {
+                GetComponent<SpriteRenderer>().color = Color.white;
+            }
             isHighlight = false;
         }
 
@@ -66,6 +87,10 @@ namespace GameplayTest.Scripts
                     CardManager.AddCardFromSpell(_currentSpell);
                 });
             }
+            else
+            {
+                SpellsManager.GetInstance().RemoveSpell(_currentSpell.name);
+            }
             _currentSpell.OnCastByPlayer();
             Destroy(gameObject);
         }
@@ -75,7 +100,22 @@ namespace GameplayTest.Scripts
             var tempMagic = Mathf.Min(BattleManager.GetCost(),SpellsManager.GetMagicAmount());
             if (_currentSpell.cost <= tempMagic)
             {
-                GetComponent<Animator>().enabled = true;
+                print(123);
+                switch (_currentSpell.elementType)
+                {
+                    case ElementTypes.Fire:
+                        spriteRenderer.material = fire;
+                        animator.SetBool("isFire",true);
+                        break;
+                    case ElementTypes.Water:
+                        spriteRenderer.material = water;
+                        animator.SetBool("isWater",true);
+                        break;
+                    case ElementTypes.Lighting:
+                        spriteRenderer.material = lighting;
+                        animator.SetBool("isRaiden",true);
+                        break;
+                }
                 return true;
             }
             return false;

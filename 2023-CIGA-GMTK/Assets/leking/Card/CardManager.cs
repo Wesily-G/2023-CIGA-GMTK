@@ -46,16 +46,12 @@ namespace GameplayTest.Scripts
             //初始化卡牌
             foreach (var c in cards.Select(KGameObject.Instantiate))
             {
-                _currentCardList.Add(c.AddComponent<Card>());
+                _currentCardList.Add(c.GetComponent<Card>());
                 c.SetActive(false);
             }
 
             HideCardHard();
-            //测试用卡
-            AddCardFromSpellHide(SpellsManager.GetSpell("Fireball"));
-            AddCardFromSpellHide(SpellsManager.GetSpell("IceLance"));
-            AddCardFromSpellHide(SpellsManager.GetSpell("ThunderboltJudgement"));
-            
+
             //获取主摄像头
             _camera = Camera.main;
             
@@ -310,7 +306,7 @@ namespace GameplayTest.Scripts
 
         public static void AddCardFromSpell(Spells spell)
         {
-            var card = KGameObject.Instantiate(_instants.cardPrefab).AddComponent<Card>();
+            var card = KGameObject.Instantiate(_instants.cardPrefab).GetComponent<Card>();
             card.SetCardSpell(spell);
             card.describe = spell.spellDescription;
             _instants._currentCardList.Add(card);
@@ -319,7 +315,7 @@ namespace GameplayTest.Scripts
         public static void AddCardFromSpellHide(Spells spell)
         {
             _instants.SetCardToHidePos();
-            var card = KGameObject.Instantiate(_instants.cardPrefab).AddComponent<Card>();
+            var card = KGameObject.Instantiate(_instants.cardPrefab).GetComponent<Card>();
             card.describe = spell.spellDescription;
             _instants._currentCardList.Add(card);
             _instants.UpdateCardsPosHard();
@@ -327,13 +323,16 @@ namespace GameplayTest.Scripts
         }
         public static void RemoveAllCard()
         {
-            
+            for (int i = _instants._currentCardList.Count-1; i>=0; i--)
+            {
+                Destroy(_instants._currentCardList[i].gameObject);
+            }
         }
         public void AddCard()
         {
             var c =  KGameObject.Instantiate(cards[0]);
             //c.SetActive(false);
-            _currentCardList.Add(c.AddComponent<Card>());
+            _currentCardList.Add(c.GetComponent<Card>());
             UpdateCardsPos();
         }
         

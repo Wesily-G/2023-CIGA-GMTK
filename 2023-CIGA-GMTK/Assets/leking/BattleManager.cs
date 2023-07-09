@@ -438,7 +438,13 @@ public class BattleManager : MonoBehaviour
         _instants.ResetBattle();
         _instants.SpawnMonster();
         _instants.TempMagic = RoomManager.GetFloorNumber()+1;
+        CardManager.RemoveAllCard();
+        var learnSpells = SpellsManager.GetInstance().learnedSpells;
         CardManager.ShowCard();
+        foreach (var spell in learnSpells)
+        {
+            CardManager.AddCardFromSpell(spell);
+        }
     }
 
     public void CleanQueue()
