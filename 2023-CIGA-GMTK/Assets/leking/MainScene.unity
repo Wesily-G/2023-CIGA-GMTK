@@ -2929,6 +2929,7 @@ MonoBehaviour:
   roomRoot: {fileID: 1918798991}
   readRoomPrefab: {fileID: 2096936671932846137, guid: cc0abb7e4e846284a908b6fffe75aa31, type: 3}
   floorReadRoomPrefab: {fileID: 2096936671932846137, guid: 216737568d4816c41b849543d30946c4, type: 3}
+  endingRoomPrefab: {fileID: 1218305626183215613, guid: 98e2a3bcd4e2dfb4f942064eca632e69, type: 3}
   rollRoomOffset: {x: -20, y: 0, z: 0}
   fadeRoomOffset: {x: 0, y: 0, z: 5}
   doorOffset: {x: 2.5, y: 0, z: 0}
@@ -7181,6 +7182,9 @@ MonoBehaviour:
   monsterSpawnStart: {fileID: 554549214}
   monsterSpawnEnd: {fileID: 857709236}
   avatarPos: {fileID: 1404139593}
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 128
   avatarPrefab: {fileID: 7729033575507984022, guid: ca78d9873d674a94489b85d40118ff1c, type: 3}
 --- !u!4 &1705526622
 Transform:

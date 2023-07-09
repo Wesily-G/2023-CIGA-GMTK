@@ -55,6 +55,7 @@ namespace GameplayTest.Scripts
             AddCardFromSpellHide(SpellsManager.GetSpell("Fireball"));
             AddCardFromSpellHide(SpellsManager.GetSpell("IceLance"));
             AddCardFromSpellHide(SpellsManager.GetSpell("ThunderboltJudgement"));
+            
             //获取主摄像头
             _camera = Camera.main;
             

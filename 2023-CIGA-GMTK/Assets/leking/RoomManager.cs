@@ -29,6 +29,7 @@ public class RoomManager : MonoBehaviour
     public GameObject roomRoot;
     public GameObject readRoomPrefab;
     public GameObject floorReadRoomPrefab;
+    public GameObject endingRoomPrefab;
     public Vector3 rollRoomOffset;
     public Vector3 fadeRoomOffset;
     public Vector3 doorOffset;
@@ -43,7 +44,7 @@ public class RoomManager : MonoBehaviour
     private List<RoomAsset> _recordNextRooms = new ();
     private List<RoomAsset> _nextRooms = new ();
     private RoomAsset _currentRoomAsset;
-    
+
     private void Awake()
     {
         if (_instants == null)
@@ -133,7 +134,7 @@ public class RoomManager : MonoBehaviour
     {
         leking.UIManager.HideTitleUI();
         var vr= Instantiate(encounterRoom.roomPrefab,_instants.roomRoot.transform);
-        onSwitched = leking.UIManager.ShowNextRoomButton;
+        //onSwitched = leking.UIManager.ShowNextRoomButton;
         RoomSwitchFade(vr);
     }
     public void ToBossRoom(BossRoom bossRoom)
@@ -228,8 +229,16 @@ public class RoomManager : MonoBehaviour
         GameObject rr;
         if (_instants._currentRoomType == RoomType.BossRoom)
         {
-            rr = Instantiate(_instants.floorReadRoomPrefab,_instants.roomRoot.transform);
+            if (_instants._currentFloor == 4)
+            {
+                rr = Instantiate(_instants.endingRoomPrefab, _instants.roomRoot.transform);
+            }
+            else
+            {
+                rr = Instantiate(_instants.floorReadRoomPrefab,_instants.roomRoot.transform);
+            }
         }
+        
         else
         {
             rr = Instantiate(_instants.readRoomPrefab,_instants.roomRoot.transform);
