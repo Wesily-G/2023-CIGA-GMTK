@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:2023-CIGA-GMTK/Assets/Kalkatos/DottedArrow/Documentation/Documentation.pdf.meta
+guid: 34c411d837211a14aa7da02770dfaa5e
+========
 guid: 5436536fd8620b341a1753d0627723bd
 folderAsset: yes
+>>>>>>>> f471b910cb007dd893d3e78cfbeaf369f8a7a760:2023-CIGA-GMTK/Assets/Resources/Character.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
