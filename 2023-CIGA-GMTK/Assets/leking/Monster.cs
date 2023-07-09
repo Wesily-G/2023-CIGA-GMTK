@@ -21,6 +21,8 @@ public class Monster : MonoBehaviour,IMonster
     private readonly List<Buff> _buffs = new();
     public bool isHighlight;
     public bool isSelected;
+    public static bool isNotfirstDeath;
+    public MemoryPoint memoryPoint;
     
     [NonSerialized] 
     public bool isSleep;
@@ -36,6 +38,14 @@ public class Monster : MonoBehaviour,IMonster
         {
             if (value <= 0)
             {
+                if (!isNotfirstDeath)
+                {
+                    isNotfirstDeath = false;
+                    DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"从怪物身上掉出来了一个亮点");
+                    DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"触碰一下会发生什么吗");
+                    DialogueManager.StartDialogue();
+                }
+                Instantiate(memoryPoint).transform.position = transform.position;
                 Kill();
             }
             else if (value > maxHp)

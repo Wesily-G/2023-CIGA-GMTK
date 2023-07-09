@@ -106,7 +106,7 @@ namespace GameplayTest.Scripts
             for (var i = 0; i < 10; i++)
             {
                 _transform.localScale = Vector3.Lerp(initScale, _endScale, i / 9f);
-                yield return new WaitForSeconds(1.0f/240);
+                yield return new WaitForSeconds(1.0f/80);
             }
         }
     }

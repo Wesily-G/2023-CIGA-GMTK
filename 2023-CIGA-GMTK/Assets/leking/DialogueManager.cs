@@ -98,7 +98,7 @@ public class DialogueManager : MonoBehaviour
     {
         for (int i = 0; i < _currentDialogue.Length; i++)
         {
-            dialogueText.text = _currentDialogue.Substring(0,i);
+            dialogueText.text = _currentDialogue.Substring(0,i+1);
             yield return new WaitForSeconds(0.01f);
         }
         _coroutine = null;

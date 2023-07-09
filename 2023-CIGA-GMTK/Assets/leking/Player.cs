@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,7 @@ public interface IPlayer : IHealth, IBuff
 }
 public class Player : MonoBehaviour,IPlayer
 {
+    private static Player _instants;
     public float maxHp = 40;
     private float _hp = 40;
     public bool IsDead => Hp <= 0;
@@ -18,8 +20,27 @@ public class Player : MonoBehaviour,IPlayer
     public bool isSleep;
     [NonSerialized] 
     public int vampireCount;
+
+    public Animator animator;
     
     private readonly List<Buff> _buffs = new();
+
+    private void Awake()
+    {
+        if (_instants == null)
+        {
+            _instants = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        
+    }
 
     public float Hp
     {
@@ -29,24 +50,36 @@ public class Player : MonoBehaviour,IPlayer
 
     public int VampireCount
     {
-        get => vampireCount;
         set => vampireCount = value<=0?0:value;
+    }
+
+    public static void PlayerWalk()
+    {
+        _instants.animator.SetBool("IsWalk",true);
+    }
+    public static void PlayerIdle()
+    {
+        _instants.animator.SetBool("IsWalk",false);
     }
 
     private float _recordMaxHp;
     private float _recordHp;
-    private float _recordMagicAmount;
+    private int _recordMagicAmount;
+    private int _recordMemory;
     public void RecordState()
     {
         _recordMaxHp = maxHp;
         _recordHp = _hp;
         _recordMagicAmount = SpellsManager.GetMagicAmount();
+        _recordMemory = SpellsManager.GetInstance().currentMemory;
     }
 
     public void RollbackState()
     {
         maxHp = _recordMaxHp;
         _hp = _recordHp;
+        SpellsManager.SetMagicAmount(_recordMagicAmount);
+        SpellsManager.GetInstance().currentMemory = _recordMemory;
     }
     public void Kill()
     {

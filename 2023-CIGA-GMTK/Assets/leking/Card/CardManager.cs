@@ -105,6 +105,18 @@ namespace GameplayTest.Scripts
             {
                 if (_currentDragCard is not null)
                 {
+                    if (divider.position.y < _camera.ScreenToWorldPoint(Input.mousePosition).y&&!isUp)
+                    {
+                        isUp = true;
+                        print("Small!");
+                        _currentDragCard.GetComponent<KGameObject>().ScaleTo(_initScale * 0.5f);
+                    }
+                    else if(divider.position.y >= _camera.ScreenToWorldPoint(Input.mousePosition).y&&isUp)
+                    {
+                        isUp = false;
+                        print("Big!");
+                        _currentDragCard.GetComponent<KGameObject>().ScaleTo(_initScale + 0.5f * Vector3.one);
+                    }
                     var movePos = _camera.ScreenToWorldPoint(Input.mousePosition);
                     movePos.z = 0;
                     _currentDragCard.transform.position = movePos;
@@ -116,6 +128,7 @@ namespace GameplayTest.Scripts
             }
         }
 
+        private bool isUp;
         private void TopColliderAction(Collider2D topCollider)
         {
             var card = topCollider.GetComponent<Card>();

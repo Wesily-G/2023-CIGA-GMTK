@@ -257,6 +257,7 @@ public class RoomManager : MonoBehaviour
     private GameObject _nextRoomObject;
     private void RoomSwitchRoll(GameObject targetRoom)
     {
+        Player.PlayerWalk();
         if(targetRoom == null) return;
         if (_currentRoomObject == null)
         {
@@ -282,6 +283,10 @@ public class RoomManager : MonoBehaviour
     {
         RollBackBattalStart();
     }
+    public void RollBackBig()
+    {
+        RollBackRoom();
+    }
     private static void RollBackBattalStart()
     {
         BattleManager.EndBattle();
@@ -297,9 +302,10 @@ public class RoomManager : MonoBehaviour
     {
         BattleManager.EndBattle();
         GameObject.FindWithTag("Player").GetComponent<Player>().RollbackState();
+        _instants._currentStep -= 1;
+        _instants._nextRooms.Clear();
         foreach (var roomAsset in _instants._recordNextRooms)
         {
-            _instants._nextRooms.Clear();
             _instants._nextRooms.Add(roomAsset);
         }
         leking.UIManager.HideNextRoomButton();
@@ -376,6 +382,7 @@ public class RoomManager : MonoBehaviour
             onSwitched();
             onSwitched = () => { };
             isSwitchRoom = false;
+            Player.PlayerIdle();
         }
     }
 }
