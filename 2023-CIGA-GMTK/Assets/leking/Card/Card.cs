@@ -91,6 +91,19 @@ namespace GameplayTest.Scripts
             {
                 SpellsManager.GetInstance().RemoveSpell(_currentSpell.name);
             }
+
+            switch (_currentSpell.elementType)
+            {
+                case ElementTypes.Fire:
+                    AudioManager.PlayClip("Fire");
+                    break;
+                case ElementTypes.Water:
+                    AudioManager.PlayClip("Water");
+                    break;
+                case ElementTypes.Lighting:
+                    AudioManager.PlayClip("Thunder");
+                    break;
+            }
             _currentSpell.OnCastByPlayer();
             Destroy(gameObject);
         }
@@ -116,6 +129,7 @@ namespace GameplayTest.Scripts
                         animator.SetBool("isRaiden",true);
                         break;
                 }
+                AudioManager.PlayClip("Atk");
                 return true;
             }
             return false;

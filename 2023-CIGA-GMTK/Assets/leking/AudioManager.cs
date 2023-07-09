@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
     {
         _soundEffectsAudioSource = transform.Find("SoundEffects").GetComponent<AudioSource>();
         _backGroundMusicAudioSource = transform.Find("BackGroundMusic").GetComponent<AudioSource>();
-        PlayMusic("TestMusic");
+        PlayMusic("BGM");
     }
 
     public static void PlayMusic(string musicName)

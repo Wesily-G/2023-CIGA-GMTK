@@ -45,6 +45,8 @@ public class BattleManager : MonoBehaviour
     private int _tempMagic = 2;
     private int _currentCost;
     private Camera _camera;
+
+    private static bool isNotFirstBattle;
     public int TempMagic
     {
         get => _tempMagic;
@@ -432,9 +434,27 @@ public class BattleManager : MonoBehaviour
         _currentStage = StageType.RoundStart;
         _roundCount = 0;
     }
+
+    public GameObject teachMap;
     public static void StartBattle()
     {
+        if (!isNotFirstBattle)
+        {
+            isNotFirstBattle = true;
+            DialogueManager.AddDialogue("穿着长袍的人","你不应该进来。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这里是哪里。");
+            DialogueManager.AddDialogue("穿着长袍的人","快出去。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我是谁？");
+            DialogueManager.AddDialogue("???","触碰我。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"谁在说话？");
+            DialogueManager.AddDialogue("穿着长袍的人","再不出去别怪我不留情。");
+            DialogueManager.AddDialogue("???","触碰我。触碰我。触碰我。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"是口袋里的卡牌！");
+            DialogueManager.AddDialogue("卡牌","触碰我。战胜他们，你就可以回想起来。");
+            DialogueManager.StartDialogue();
+        }
         UIManager.ShowNextRoundButton();
+        UIManager.ShowRoundNumber();
         _instants.ResetBattle();
         _instants.SpawnMonster();
         _instants.TempMagic = RoomManager.GetFloorNumber()+1;
@@ -460,6 +480,7 @@ public class BattleManager : MonoBehaviour
     public static void EndBattle()
     {
         UIManager.HideNextRoundButton();
+        UIManager.HideRoundNumber();
         _instants._inBattle = false;
         _instants.player.CleanTempBuff();
         KillAllMonster();

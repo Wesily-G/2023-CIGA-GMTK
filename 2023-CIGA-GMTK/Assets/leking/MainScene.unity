@@ -444,6 +444,7 @@ MonoBehaviour:
   hpBarPrefab: {fileID: 7433429478915020813, guid: afe38a3b5903e8647a3ab7aabf483e87, type: 3}
   playerStatesUI: {fileID: 1972267401}
   roundNumber: {fileID: 23167889}
+  roundIcon: {fileID: 1884366338}
   messageText: {fileID: 1474720241}
   monsterBuffBarPrefab: {fileID: -1218739391693498702, guid: 38554984621e58b49b53fc27d49a2e62, type: 3}
   toReadyRoomButton: {fileID: 100633997}
@@ -770,7 +771,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 0ad12648892cf8243be9b375cdc167c6, type: 3}
+  - {fileID: 8300000, guid: b6cb678fac9f80a41aba55ff6ba0bbca, type: 3}
+  - {fileID: 8300000, guid: cf41064e009b7cc4086fa4070bc837c1, type: 3}
+  - {fileID: 8300000, guid: 2a799200c90257f438d6599b653619d3, type: 3}
+  - {fileID: 8300000, guid: db5c71bd654dad0448159beeaa25f96b, type: 3}
+  - {fileID: 8300000, guid: 4418d083bb80b25499d6273e0b386895, type: 3}
   musicVolume: 0.043
   soundEffectVolume: 0.074
 --- !u!4 &143420127
@@ -8050,6 +8055,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   avatarPrefab: {fileID: 7729033575507984022, guid: ca78d9873d674a94489b85d40118ff1c, type: 3}
+  teachMap: {fileID: 0}
 --- !u!4 &1705526622
 Transform:
   m_ObjectHideFlags: 0
@@ -9023,7 +9029,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884366338}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9034,7 +9040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93, y: 359}
+  m_AnchoredPosition: {x: 93.00001, y: 358.99997}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1884366340
@@ -18319,7 +18325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &3833406198245457677
 CanvasRenderer:
   m_ObjectHideFlags: 0

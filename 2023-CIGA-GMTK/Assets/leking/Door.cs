@@ -6,6 +6,9 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public int roomIndex;
+    public Sprite battleRoomSprite;
+    public Sprite encounterRoomSprite;
+    public Sprite bossRoomSprite;
 
     public RoomType type;
 
@@ -27,7 +30,7 @@ public class Door : MonoBehaviour
             case RoomType.NormalRoom:
                 break;
             case RoomType.EncounterRoom:
-                _spriteRenderer.color = Color.white;
+                _spriteRenderer.sprite = encounterRoomSprite;
                 break;
             case RoomType.BossRoom:
                 _spriteRenderer.color = Color.black;

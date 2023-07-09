@@ -20,6 +20,7 @@ namespace leking
         public MonsterHpBar hpBarPrefab;
         public PlayerStatesUI playerStatesUI;
         public TextMeshProUGUI roundNumber;
+        public GameObject roundIcon;
         public TextMeshProUGUI messageText;
         public MonsterBuffBar monsterBuffBarPrefab;
         public GameObject toReadyRoomButton;
@@ -176,6 +177,14 @@ namespace leking
             _instants.skillTree.SetActive(false);
         }
 
+        public static void ShowRoundNumber()
+        {
+            _instants.roundIcon.gameObject.SetActive(true);
+        }
+        public static void HideRoundNumber()
+        {
+            _instants.roundIcon.gameObject.SetActive(false);
+        }
         public static void ShowNextRoundButton()
         {
             _instants.nextRoundButton.gameObject.SetActive(true);
