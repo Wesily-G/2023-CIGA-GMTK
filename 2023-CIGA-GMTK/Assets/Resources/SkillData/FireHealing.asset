@@ -19,8 +19,8 @@ MonoBehaviour:
   magicCost: 1
   finalMemoryCost: 0
   isFixed: 0
-  skillSprite: {fileID: 0}
-  cardSprite: {fileID: 0}
+  skillSprite: {fileID: 21300000, guid: 429f150afcfb65c4c9ec032411a210fe, type: 3}
+  cardSprite: {fileID: 21300000, guid: 429f150afcfb65c4c9ec032411a210fe, type: 3}
   learnNum: 0
   spellDescription: "\u6062\u590D:5\n\u589E\u52A020%\u4F24\u5BB3\uFF0C\u6301\u7EED1\u56DE\u5408"
   preSkills:

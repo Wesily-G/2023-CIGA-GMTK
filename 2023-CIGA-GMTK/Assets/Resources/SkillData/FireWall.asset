@@ -17,11 +17,11 @@ MonoBehaviour:
   cost: 3
   memoryCost: 2
   magicCost: 1
-  finalMemoryCost: 0
+  finalMemoryCost: 2
   isFixed: 0
-  skillSprite: {fileID: 0}
-  cardSprite: {fileID: 0}
-  learnNum: 0
+  skillSprite: {fileID: 21300000, guid: 429f150afcfb65c4c9ec032411a210fe, type: 3}
+  cardSprite: {fileID: 21300000, guid: f4faad78bb85d9b478fd6b9b29cd2c38, type: 3}
+  learnNum: 2
   spellDescription: "\u514D\u75AB\u706B\u548C\u96F7\u6CD5\u672F\uFF0C\u6C34\u6CD5\u672F\u51CF\u534A\uFF0C\u6301\u7EED1\u56DE\u5408"
   preSkills: []
   burnSustainability: 1
