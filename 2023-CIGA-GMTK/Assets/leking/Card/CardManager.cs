@@ -52,9 +52,9 @@ namespace GameplayTest.Scripts
 
             HideCardHard();
             //测试用卡
-            AddCardFromSpell(SpellsManager.GetSpell("Fireball"));
-            AddCardFromSpell(SpellsManager.GetSpell("IceLance"));
-            AddCardFromSpell(SpellsManager.GetSpell("ThunderboltJudgement"));
+            AddCardFromSpellHide(SpellsManager.GetSpell("Fireball"));
+            AddCardFromSpellHide(SpellsManager.GetSpell("IceLance"));
+            AddCardFromSpellHide(SpellsManager.GetSpell("ThunderboltJudgement"));
             //获取主摄像头
             _camera = Camera.main;
             
@@ -63,7 +63,7 @@ namespace GameplayTest.Scripts
         }
 
         private Vector3 _offset;
-        private Vector3 _initScale = new Vector3(2.5f, 2.5f, 2.5f);
+        private Vector3 _initScale = new Vector3(1f, 1f, 1f);
         private void Update()
         {
             if (_currentShowCard is not null)
@@ -178,7 +178,7 @@ namespace GameplayTest.Scripts
                 //显示卡牌
                 c.SetActive(true);
                 //设置卡牌的排序层
-                c.GetComponent<SpriteRenderer>().sortingOrder = i;
+                c.GetComponent<SpriteRenderer>().sortingOrder = 2*i;
                 //对卡牌位置进行球面插值
                 var t = _currentCardList.Count - 1>0?i / (float)(_currentCardList.Count - 1):0;
                 var sp = cardStart.position;
@@ -216,7 +216,7 @@ namespace GameplayTest.Scripts
                 //显示卡牌
                 c.SetActive(true);
                 //设置卡牌的排序层
-                c.GetComponent<SpriteRenderer>().sortingOrder = i;
+                c.GetComponent<SpriteRenderer>().sortingOrder = 2*i;
                 //对卡牌位置进行球面插值
                 var t = _currentCardList.Count - 1>0?i / (float)(_currentCardList.Count - 1):0;
                 var sp = cardStart.position;
@@ -300,6 +300,15 @@ namespace GameplayTest.Scripts
             card.describe = spell.spellDescription;
             _instants._currentCardList.Add(card);
             _instants.UpdateCardsPos();
+        }
+        public static void AddCardFromSpellHide(Spells spell)
+        {
+            _instants.SetCardToHidePos();
+            var card = KGameObject.Instantiate(_instants.cardPrefab).AddComponent<Card>();
+            card.describe = spell.spellDescription;
+            _instants._currentCardList.Add(card);
+            _instants.UpdateCardsPosHard();
+            card.SetCardSpell(spell);
         }
         public static void RemoveAllCard()
         {

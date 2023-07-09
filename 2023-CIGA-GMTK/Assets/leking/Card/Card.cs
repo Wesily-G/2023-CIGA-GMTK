@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace GameplayTest.Scripts
@@ -8,15 +9,41 @@ namespace GameplayTest.Scripts
         public bool isHighlight;
         public string describe = "This is Test Card";
         private Spells _currentSpell;
-        protected Color _initColor;
+        protected SpriteRenderer _spriteRenderer;
+        public TextMeshPro costText;
+        public TextMeshPro nameText;
+        public TextMeshPro describeText;
+
         private void Start()
         {
-            _initColor = GetComponent<SpriteRenderer>().color;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            costText = transform.Find("Cost").GetComponent<TextMeshPro>();
+            nameText = transform.Find("Name").GetComponent<TextMeshPro>();
+            describeText = transform.Find("Describe").GetComponent<TextMeshPro>();
         }
 
         public void SetCardSpell(Spells spells)
         {
             _currentSpell = spells;
+            _spriteRenderer ??= GetComponent<SpriteRenderer>();
+            costText ??= transform.Find("Cost").GetComponent<TextMeshPro>();
+            nameText ??= transform.Find("Name").GetComponent<TextMeshPro>();
+            describeText ??= transform.Find("Describe").GetComponent<TextMeshPro>();
+            var sortingOrder = _spriteRenderer.sortingOrder+1;
+            costText.sortingOrder = sortingOrder;
+            nameText.sortingOrder = sortingOrder;
+            describeText.sortingOrder = sortingOrder;
+            costText.text = _currentSpell.cost.ToString();
+            nameText.text = _currentSpell.Name.ToString();
+            describeText.text = _currentSpell.spellDescription.ToString();
+        }
+
+        private void Update()
+        {
+            var sortingOrder = _spriteRenderer.sortingOrder+1;
+            costText.sortingOrder = sortingOrder;
+            nameText.sortingOrder = sortingOrder;
+            describeText.sortingOrder = sortingOrder;
         }
 
         protected void Highlight()
@@ -27,7 +54,6 @@ namespace GameplayTest.Scripts
         private void LateUpdate()
         {
             if (isHighlight) Highlight();
-            else GetComponent<SpriteRenderer>().color = _initColor;
             isHighlight = false;
         }
 
@@ -49,7 +75,7 @@ namespace GameplayTest.Scripts
             var tempMagic = Mathf.Min(BattleManager.GetCost(),SpellsManager.GetMagicAmount());
             if (_currentSpell.cost <= tempMagic)
             {
-                OnCardUsed();
+                GetComponent<Animator>().enabled = true;
                 return true;
             }
             return false;

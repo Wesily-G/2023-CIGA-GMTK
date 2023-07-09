@@ -400,7 +400,7 @@ public class BattleManager : MonoBehaviour
     {
         _instants.ResetBattle();
         _instants.SpawnMonster();
-        _instants.TempMagic = 1 + RoomManager.GetFloorNumber();
+        _instants.TempMagic = RoomManager.GetFloorNumber()+1;
         CardManager.ShowCard();
     }
     public static void EndBattle()

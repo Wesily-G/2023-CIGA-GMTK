@@ -23,7 +23,6 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI speakerNameText;
     public Button continueButton;
-    public Image avatarSprite;
 
     private Queue<Dialogue> _dialogueQueue = new();
     private bool onDialogueStart;
@@ -44,7 +43,7 @@ public class DialogueManager : MonoBehaviour
         speakerNameText.text = "";
         dialogueText.text = "";
         continueButton.onClick.AddListener(Continue);
-        dialogueUI.SetActive(false);
+        //dialogueUI.SetActive(false);
     }
 
     public static void AddDialogue(string speakerName, string dialogue)
@@ -60,11 +59,12 @@ public class DialogueManager : MonoBehaviour
         _instants.ShowDialogue();
     }
 
-    public void ShowDialogue()
+    private void ShowDialogue()
     {
+        print(dialogueUI);
         dialogueUI.SetActive(true);
     }
-    public void HideDialogue()
+    private void HideDialogue()
     {
         dialogueUI.SetActive(false);
     }
@@ -89,6 +89,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             HideDialogue();
+            onDialogueStart = false;
         }
     }
 

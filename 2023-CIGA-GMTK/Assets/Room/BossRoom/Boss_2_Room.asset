@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e210dc4d1f73f94479be769efdf40d9b, type: 3}
   m_Name: Boss_2_Room
   m_EditorClassIdentifier: 
-  roomType: 0
+  roomType: 4
   roomName: Boss_Water
   describe: 
   roomPrefab: {fileID: 1218305626183215613, guid: 9f31249b355a24f4c8f4db30b4816d10, type: 3}

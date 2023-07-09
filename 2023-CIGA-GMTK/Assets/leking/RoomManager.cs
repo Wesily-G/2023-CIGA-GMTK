@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -22,7 +23,6 @@ public class RoomManager : MonoBehaviour
     public List<NormalRoom> normalRoomsPool;
     public List<EncounterRoom> encounterRoomsPool;
     public List<BossRoom> bossRoomPool;
-    private List<Door> _doors = new();
     private bool _readyNextRoom;
     private int _currentFloor;
     private int _currentStep;
@@ -59,6 +59,8 @@ public class RoomManager : MonoBehaviour
     {
         DialogueManager.AddDialogue("???","Where is this?");
         DialogueManager.AddDialogue("???","I need to know where this is");
+        DialogueManager.AddDialogue("???","Where is this?");
+        DialogueManager.AddDialogue("???","I need to know where this is");
         DialogueManager.StartDialogue();
         ToTitleRoom();
     }
@@ -87,19 +89,30 @@ public class RoomManager : MonoBehaviour
         _nextRooms.Clear();
         if (_currentStep == 5)
         {
-            _nextRooms.Add(bossRoomPool[_currentFloor]);
+            if (bossRoomPool.Count((room)=>room.floor == _currentFloor) > 0)
+            {
+                _nextRooms.Add(bossRoomPool.Where((room)=>room.floor == _currentFloor).ToList()[0]);
+            }
             return;
         }
-        var roomCount = Random.Range(1, 4);
+        if (_currentRoomType == RoomType.BossRoom)
+        {
+            var nextFloorRooms = battleRoomsPool.Where((room) => room.floor == _currentFloor + 1);
+            if(!nextFloorRooms.Any()) return;
+            _nextRooms.Add(nextFloorRooms.ToList()[0]);
+        }
+        var roomCount = Random.Range(2, 4);
+        var battleFloorRoom = battleRoomsPool.Where((room) => room.floor == _currentFloor ||room.floor == 0).ToList();
+        var encounterFloorRoom = encounterRoomsPool.Where((room) => room.floor == _currentFloor ||room.floor == 0).ToList();
         for (int i = 0; i < roomCount; i++)
         {
             switch (Random.Range(0,2))
             {
                 case 0:
-                    _nextRooms.Add(battleRoomsPool[Random.Range(0,battleRoomsPool.Count)]);
+                    _nextRooms.Add(battleFloorRoom[Random.Range(0,battleFloorRoom.Count)]);
                     break;
                 case 1:
-                    _nextRooms.Add(encounterRoomsPool[Random.Range(0,encounterRoomsPool.Count)]);
+                    _nextRooms.Add(encounterFloorRoom[Random.Range(0,encounterFloorRoom.Count)]);
                     break;
             }
         }
@@ -134,6 +147,14 @@ public class RoomManager : MonoBehaviour
         onSwitched = BattleManager.StartBattle;
         RoomSwitchFade(vr);
     }
+
+    public static void NextFloor()
+    {
+        if(isSwitchRoom) return;
+        _instants._currentFloor += 1;
+        _instants._currentStep = 1;
+        NextRoom(0);
+    }
     //前往下一个房间
     public static void NextRoom(int roomIndex)
     {
@@ -161,15 +182,11 @@ public class RoomManager : MonoBehaviour
         _instants._currentStep += 1;
         _instants.SpawnNextRoom();
     }
-
-    public static void NextFloor()
-    {
-        if(isSwitchRoom) return;
-    }
     public void StartGame()
     {
         leking.UIManager.HideTitleUI();
         _currentStep = 0;
+        _currentFloor = 1;
         _currentRoomAsset = battleRoomsPool[Random.Range(0, battleRoomsPool.Count)];
         _currentStep++;
         _currentRoomType = RoomType.BattleRoom;
