@@ -25,7 +25,7 @@ public class Door : MonoBehaviour
         switch (type)
         {
             case RoomType.BattleRoom:
-                _spriteRenderer.color = Color.magenta;
+                _spriteRenderer.sprite = battleRoomSprite;
                 break;
             case RoomType.NormalRoom:
                 break;

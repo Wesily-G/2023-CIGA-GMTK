@@ -25,7 +25,10 @@ public class DialogueManager : MonoBehaviour
     public Button continueButton;
 
     private Queue<Dialogue> _dialogueQueue = new();
-    private bool onDialogueStart;
+    private bool _onDialogueStart;
+
+    public static bool InDialogue => _instants._onDialogueStart;
+
     private void Awake()
     {
         if (_instants == null)
@@ -48,13 +51,13 @@ public class DialogueManager : MonoBehaviour
 
     public static void AddDialogue(string speakerName, string dialogue)
     {
-        if(_instants.onDialogueStart) return;
+        if(_instants._onDialogueStart) return;
         _instants._dialogueQueue.Enqueue(new Dialogue(speakerName,dialogue));
     }
 
     public static void StartDialogue()
     {
-        _instants.onDialogueStart = true;
+        _instants._onDialogueStart = true;
         _instants.Continue();
         _instants.ShowDialogue();
     }
@@ -89,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             HideDialogue();
-            onDialogueStart = false;
+            _onDialogueStart = false;
         }
     }
 

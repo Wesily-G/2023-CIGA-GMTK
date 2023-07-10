@@ -120,7 +120,7 @@ namespace GameplayTest.Scripts
             }
             else
             {
-                GetTopCollider2D(TopColliderAction);
+                Ulit.GetTopCollider2D(_camera, TopColliderAction, cardLayerMask);
             }
         }
 
@@ -145,33 +145,6 @@ namespace GameplayTest.Scripts
                     card.GetComponent<SpriteRenderer>().sortingOrder = _currentCardList.Count;
                 }
             }
-        }
-        
-        private bool GetTopCollider2D(Action<Collider2D> action = null)
-        {
-            //获取碰撞信息
-            var results = new RaycastHit2D[10];
-            var size = Physics2D.RaycastNonAlloc(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,results,cardLayerMask);
-            var nResults = new RaycastHit2D[size];
-            
-            //清除空的RaycastHit2D
-            for (int i = 0; i < size; i++)
-            {
-                nResults[i] = results[i];
-            }
-            if (size > 0)
-            {
-                //获取最上层的collider2D
-                var collider2Ds = 
-                    from result in nResults
-                    orderby result.collider.GetComponent<SpriteRenderer>().sortingOrder descending 
-                    select result.collider;
-                var topCollider = collider2Ds.ToArray()[0];
-                action?.Invoke(topCollider);
-                return true;
-            }
-
-            return false;
         }
         public void UpdateCardsPos()
         {

@@ -22,6 +22,7 @@ public class Ulit : MonoBehaviour
     }
     public static bool GetTopCollider2D(Camera targetCamera,Action<Collider2D> action = null,LayerMask layerMask = new())
     {
+        if (DialogueManager.InDialogue) return false;
         //获取碰撞信息
         var results = new RaycastHit2D[10];
         var size = Physics2D.RaycastNonAlloc(targetCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,results,layerMask);

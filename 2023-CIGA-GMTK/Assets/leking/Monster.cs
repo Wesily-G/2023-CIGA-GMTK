@@ -104,7 +104,8 @@ public class Monster : MonoBehaviour,IMonster
     }
     public void MonsterAction()
     {
-        Task.Delay(1000).GetAwaiter().OnCompleted(() =>
+        AudioManager.PlayClip("Atk");
+        Task.Delay(500).GetAwaiter().OnCompleted(() =>
         {
             if (action != null)
             {
