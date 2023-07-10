@@ -14,8 +14,8 @@ public class MemoryPoint : MonoBehaviour
         if (!_isNotFirstFalling)
         {
             _isNotFirstFalling = true;
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"从怪物身上掉出来了一个亮点");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"触碰一下会发生什么吗");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"A window from monsters fall out");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"If touch it will happen something?");
             DialogueManager.StartDialogue();
         }
     }
@@ -25,12 +25,11 @@ public class MemoryPoint : MonoBehaviour
         if (!_isNotFirstPick)
         {
             _isNotFirstPick = true;
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这是。。。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我想起来了，我来过这里。。。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"不行。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"其他的我想不起来了。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"如果继续触摸这些光的话，我或许就能想起什么。");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"继续前进吧。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"It is ... ?");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"I remember, I have been here...");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Emm ... I think I can not something else.");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"If continue to touch the light, I might be able to think of anything.");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Move on.");
             DialogueManager.StartDialogue();
         }
         SpellsManager.GetInstance().currentMemory = memoryValue;

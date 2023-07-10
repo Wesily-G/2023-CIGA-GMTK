@@ -28,12 +28,12 @@ public class StartUserName : MonoBehaviour
     private void TimeLineOnPlayed(PlayableDirector obj)
     {
         Destroy(gameObject);
-        DialogueManager.AddDialogue("???","这里是。。。城堡？");
-        DialogueManager.AddDialogue("???","我是谁？");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,$"我记得我叫{GameObject.FindWithTag("Player").GetComponent<Player>().name}");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我什么都想不起来了。");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"但我记得我好像来过这。");
-        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"进去看看吧。");
+        DialogueManager.AddDialogue("???","Here is the... The castle?");
+        DialogueManager.AddDialogue("???","Who am I?");
+        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,$"I remember that my name is {GameObject.FindWithTag("Player").GetComponent<Player>().name}");
+        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"I can't remember everything, holy .. ");
+        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"But I think I came to this.");
+        DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Go in and have a look.");
         DialogueManager.StartDialogue();
     }
 }

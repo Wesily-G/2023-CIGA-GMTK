@@ -13,8 +13,8 @@ public class HPItem : MonoBehaviour
         if (!_isNotFirstFalling && !RoomManager.isSwitchRoom)
         {
             _isNotFirstFalling = true;
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这是什么？");
-            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"触摸一下或许就可以知道。");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"What's this?");
+            DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Touch your can possibly know.");
             DialogueManager.StartDialogue();
         }
     }
@@ -26,10 +26,10 @@ public class HPItem : MonoBehaviour
             if (!_isNotFirstPick)
             {
                 _isNotFirstPick = true;
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"感觉身体轻松了起来！");
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"这是我最爱吃的东西，红心蛋糕！");
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"我下午茶的时候一定会摆在桌子上的甜点！");
-                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"但是，我为什么会忘记这一切呢？");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"Feel the body easily up!");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"This is my favorite thing, the hearts of cake!");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"It's the afternoon tea which will be on the table for dessert!");
+                DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"But, why I forget it?");
                 DialogueManager.StartDialogue();
             }
             GameObject.FindWithTag("Player").GetComponent<Player>().Hp += GameObject.FindWithTag("Player").GetComponent<Player>().maxHp * 0.3f;
