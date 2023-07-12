@@ -10,7 +10,7 @@ public class MPItem : MonoBehaviour
 
     private void Start()
     {
-        if (!_isNotFirstFalling && !RoomManager.isSwitchRoom)
+        if (!_isNotFirstFalling && !RoomManager.IsSwitchRoom)
         {
             _isNotFirstFalling = true;
             DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"It sends the light blue color star.");
@@ -21,7 +21,7 @@ public class MPItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!RoomManager.isSwitchRoom)
+        if (!RoomManager.IsSwitchRoom)
         {
             if (!_isNotFirstPick)
             {

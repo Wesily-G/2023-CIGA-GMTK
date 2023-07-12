@@ -9,7 +9,7 @@ public class BossRoomCutScene : MonoBehaviour
 
     private void Update()
     {
-        if (!RoomManager.isSwitchRoom && !isStartCutScene)
+        if (!RoomManager.IsSwitchRoom && !isStartCutScene)
         {
             isStartCutScene = true;
             StartCutScene();

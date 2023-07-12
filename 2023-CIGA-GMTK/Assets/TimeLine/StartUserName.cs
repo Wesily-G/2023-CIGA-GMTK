@@ -30,6 +30,10 @@ public class StartUserName : MonoBehaviour
         Destroy(gameObject);
         DialogueManager.AddDialogue("???","Here is the... The castle?");
         DialogueManager.AddDialogue("???","Who am I?");
+        DialogueManager.AddAction(() =>
+        {
+            print("Hello World!");
+        });
         DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,$"I remember that my name is {GameObject.FindWithTag("Player").GetComponent<Player>().name}");
         DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"I can't remember everything, holy .. ");
         DialogueManager.AddDialogue(GameObject.FindWithTag("Player").GetComponent<Player>().name,"But I think I came to this.");

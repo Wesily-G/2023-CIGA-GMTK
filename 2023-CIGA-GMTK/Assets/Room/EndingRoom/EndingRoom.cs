@@ -8,7 +8,7 @@ public class EndingRoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!RoomManager.isSwitchRoom && !isStartCutScene)
+        if (!RoomManager.IsSwitchRoom && !isStartCutScene)
         {
             isStartCutScene = true;
             StartCutScene();

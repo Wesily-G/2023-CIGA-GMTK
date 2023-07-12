@@ -37,7 +37,7 @@ public class RoomManager : MonoBehaviour
     public GameObject roomMaskPos;
     public Door doorPrefab;
 
-    public static bool isSwitchRoom;
+    public static bool IsSwitchRoom;
     private RoomType _currentRoomType;
     private RoomType _recordCurrentRoomType;
 
@@ -147,7 +147,7 @@ public class RoomManager : MonoBehaviour
 
     public static void NextFloor()
     {
-        if(isSwitchRoom) return;
+        if(IsSwitchRoom) return;
         _instants._currentFloor += 1;
         _instants._currentStep = 1;
         NextRoom(0);
@@ -155,7 +155,7 @@ public class RoomManager : MonoBehaviour
     //前往下一个房间
     public static void NextRoom(int roomIndex)
     {
-        if(isSwitchRoom) return;
+        if(IsSwitchRoom) return;
         if (roomIndex > _instants._nextRooms.Count-1) return;
         GameObject.FindWithTag("Player").GetComponent<Player>().RecordState();
         _instants._recordCurrentRoomType = _instants._currentRoomType;
@@ -326,9 +326,9 @@ public class RoomManager : MonoBehaviour
     }
     private IEnumerator RoomSwitchFadeCoroutine()
     {
-        if (!isSwitchRoom)
+        if (!IsSwitchRoom)
         {
-            isSwitchRoom = true;
+            IsSwitchRoom = true;
             leking.UIManager.HideCanvas();
             _nextRoomObject.transform.position += fadeRoomOffset;
             for (float i = 0; i <= 1; i += 0.01f)
@@ -350,14 +350,14 @@ public class RoomManager : MonoBehaviour
                 yield return new WaitForSeconds(1 / 100f);
             }
             leking.UIManager.ShowCanvas();
-            isSwitchRoom = false;
+            IsSwitchRoom = false;
         }
     }
     private IEnumerator RoomSwitchRollCoroutine()
     {
-        if (!isSwitchRoom)
+        if (!IsSwitchRoom)
         {
-            isSwitchRoom = true;
+            IsSwitchRoom = true;
             _nextRoomObject.transform.position -= rollRoomOffset;
             var position = roomRoot.transform.position;
             var targetPosNext = position;
@@ -377,7 +377,7 @@ public class RoomManager : MonoBehaviour
             _currentRoomObject = _nextRoomObject;
             onSwitched();
             onSwitched = () => { };
-            isSwitchRoom = false;
+            IsSwitchRoom = false;
             Player.PlayerIdle();
         }
     }
