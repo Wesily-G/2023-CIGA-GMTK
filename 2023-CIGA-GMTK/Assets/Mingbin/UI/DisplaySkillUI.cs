@@ -10,7 +10,6 @@ public class DisplaySkillUI : MonoBehaviour
     public static Button sureBtn;
     public Button closeBtn;
 
-
     private void Start()
     {
         SkillImage = transform.Find("SkillImage").GetComponent<Image>();

@@ -31,7 +31,7 @@ namespace leking
         public TextMeshProUGUI cost;
         public GameObject skillTree;
         public Button nextRoundButton;
-
+        [SerializeField] private List<GameObject> uiList;
         private void Awake()
         {
             if (_instants == null)
